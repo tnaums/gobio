@@ -1,0 +1,1555 @@
+pQLinkH
+
+
+          XhoI
+          \
+          CTCGAGCTTAATTAACAACACCATTTGTCGAGAAATCATAAAAAATTTATTTGCTTTGTG
+                   10        20        30        40        50        60        
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GAGCTCGAATTAATTGTTGTGGTAAACAGCTCTTTAGTATTTTTTAAATAAACGAAACAC
+              /
+              XhoI
+
+          L  E  L  N  *  Q  H  H  L  S  R  N  H  K  K  F  I  C  F  V  
+           S  S  L  I  N  N  T  I  C  R  E  I  I  K  N  L  F  A  L  * 
+            R  A  *  L  T  T  P  F  V  E  K  S  *  K  I  Y  L  L  C  E
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           X  S  S  L  *  C  C  W  K  D  L  F  *  L  F  N  I  Q  K  T 
+          X  R  A  *  N  V  V  G  N  T  S  F  D  Y  F  I  *  K  S  Q  
+            E  L  K  I  L  L  V  M  Q  R  S  I  M  F  F  K  N  A  K  H
+
+                        PsiI      MfeI                         EcoRI
+                        \         \                            \
+          AGCGGATAACAATTATAATAGATTCAATTGTGAGCGGATAACAATTTCACACAGAATTCA
+                   70        80        90        100       110       120       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TCGCCTATTGTTAATATTATCTAAGTTAACACTCGCCTATTGTTAAAGTGTGTCTTAAGT
+                        /             /                            /
+                        PsiI          MfeI                         EcoRI
+
+          S  G  *  Q  L  *  *  I  Q  L  *  A  D  N  N  F  T  Q  N  S  
+           A  D  N  N  Y  N  R  F  N  C  E  R  I  T  I  S  H  R  I  H 
+            R  I  T  I  I  I  D  S  I  V  S  G  *  Q  F  H  T  E  F  I
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           L  P  Y  C  N  Y  Y  I  *  N  H  A  S  L  L  K  V  C  F  E 
+          S  R  I  V  I  I  I  S  E  I  T  L  P  Y  C  N  *  V  S  N  
+            A  S  L  L  *  L  L  N  L  Q  S  R  I  V  I  E  C  L  I  *
+
+                                                      BspMI
+                              BseRI                   |OliI      PstI
+                              \                       \\         \
+          TTAAAGAGGAGAAATTAACTATGAAACATCACCATCACCATCACCATGGTGCTGCAGGTA
+                   130       140       150       160       170       180       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AATTTCTCCTCTTTAATTGATACTTTGTAGTGGTAGTGGTAGTGGTACCACGACGTCCAT
+                            /                          /  /  /
+                            BseRI                      |  |  PstI
+                                                       |  BspMI
+                                                       OliI
+
+          L  K  R  R  N  *  L  *  N  I  T  I  T  I  T  M  V  L  Q  V  
+           *  R  G  E  I  N  Y  E  T  S  P  S  P  S  P  W  C  C  R  Y 
+            K  E  E  K  L  T  M  K  H  H  H  H  H  H  H  G  A  A  G  T
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           N  F  L  L  F  *  S  H  F  M  V  M  V  M  V  M  T  S  C  T 
+          M  L  S  S  F  N  V  I  F  C  *  W  *  W  *  W  P  A  A  P  
+            *  L  P  S  I  L  *  S  V  D  G  D  G  D  G  H  H  Q  L  Y
+
+                                                   BamHI            SphI
+                                                   \                \
+          CAAGTTTGTACAAAAAAGCAGGCGAGAATCTTTATTTTCAGGGATCCAGTCTTCGCATGC
+                   190       200       210       220       230       240       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GTTCAAACATGTTTTTTCGTCCGCTCTTAGAAATAAAAGTCCCTAGGTCAGAAGCGTACG
+                                                       /        / /
+                                                       BamHI    | EcoT22I
+                                                                SphI
+
+          Q  V  C  T  K  K  Q  A  R  I  F  I  F  R  D  P  V  F  A  C  
+           K  F  V  Q  K  S  R  R  E  S  L  F  S  G  I  Q  S  S  H  A 
+            S  L  Y  K  K  A  G  E  N  L  Y  F  Q  G  S  S  L  R  M  H
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           C  T  Q  V  F  F  C  A  L  I  K  I  K  L  S  G  T  K  A  H 
+          V  L  K  Y  L  F  A  P  S  F  R  *  K  *  P  D  L  R  R  M  
+            L  N  T  C  F  L  L  R  S  D  K  N  E  P  I  W  D  E  C  A
+
+                   NotI
+                   XmaIII*
+          EcoT22I  |     AvrII                          HindIII     EspI*
+          \        \     \                              \           \
+          ATGAAGACGCGGCCGCCTAGGACCCAGCTTTCTTGTACAAAGTGGTAAGCTTAATTAGCT
+                   250       260       270       280       290       300       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TACTTCTGCGCCGGCGGATCCTGGGTCGAAAGAACATGTTTCACCATTCGAATTAATCGA
+                       /     /                              /
+                       |     AvrII                          HindIII
+                       XmaIII*
+                       NotI
+
+          M  K  T  R  P  P  R  T  Q  L  S  C  T  K  W  *  A  *  L  A  
+           *  R  R  G  R  L  G  P  S  F  L  V  Q  S  G  K  L  N  *  L 
+            E  D  A  A  A  *  D  P  A  F  L  Y  K  V  V  S  L  I  S  *
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           M  F  V  R  G  G  L  V  W  S  E  Q  V  F  H  Y  A  *  N  A 
+          C  S  S  A  A  A  *  S  G  A  K  K  Y  L  T  T  L  K  I  L  
+            H  L  R  P  R  R  P  G  L  K  R  T  C  L  P  L  S  L  *  S
+
+          
+          GAGCTTGGACTCCTGTTGATAGATCCAGTAATGACCTCAGAACTCCATCTGGATTTGTTC
+                   310       320       330       340       350       360       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CTCGAACCTGAGGACAACTATCTAGGTCATTACTGGAGTCTTGAGGTAGACCTAAACAAG
+           /
+           EspI*
+
+          E  L  G  L  L  L  I  D  P  V  M  T  S  E  L  H  L  D  L  F  
+           S  L  D  S  C  *  *  I  Q  *  *  P  Q  N  S  I  W  I  C  S 
+            A  W  T  P  V  D  R  S  S  N  D  L  R  T  P  S  G  F  V  Q
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           S  S  P  S  R  N  I  S  G  T  I  V  E  S  S  W  R  S  K  N 
+          Q  A  Q  V  G  T  S  L  D  L  L  S  R  L  V  G  D  P  N  T  
+            L  K  S  E  Q  Q  Y  I  W  Y  H  G  *  F  E  M  Q  I  Q  E
+
+          
+          AGAACGCTCGGTTGCCGCCGGGCGTTTTTTATTGGTGAGAATCCAAGTAACAACACCATT
+                   370       380       390       400       410       420       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TCTTGCGAGCCAACGGCGGCCCGCAAAAAATAACCACTCTTAGGTTCATTGTTGTGGTAA
+          
+
+          R  T  L  G  C  R  R  A  F  F  I  G  E  N  P  S  N  N  T  I  
+           E  R  S  V  A  A  G  R  F  L  L  V  R  I  Q  V  T  T  P  F 
+            N  A  R  L  P  P  G  V  F  Y  W  *  E  S  K  *  Q  H  H  L
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           L  V  S  P  Q  R  R  A  N  K  I  P  S  F  G  L  L  L  V  M 
+          *  F  A  R  N  G  G  P  T  K  *  Q  H  S  D  L  Y  C  C  W  
+            S  R  E  T  A  A  P  R  K  K  N  T  L  I  W  T  V  V  G  N
+
+                                              NheI
+          SwaI                                | CspCI
+          |  CspCI                            | | BmtI
+          \  \                                \ \ \
+          TAAATGGAGTGGTTACAAATGGAGTGGTTAATTAAGGCTAGCTTGGCGAGATTTTCAGGA
+                   430       440       450       460       470       480       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          ATTTACCTCACCAATGTTTACCTCACCAATTAATTCCGATCGAACCGCTCTAAAAGTCCT
+          //                                  /   /
+          |CspCI                              |   NheI
+          SwaI                                CspCI
+                                              BmtI
+
+          *  M  E  W  L  Q  M  E  W  L  I  K  A  S  L  A  R  F  S  G  
+           K  W  S  G  Y  K  W  S  G  *  L  R  L  A  W  R  D  F  Q  E 
+            N  G  V  V  T  N  G  V  V  N  *  G  *  L  G  E  I  F  R  S
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           *  I  S  H  N  C  I  S  H  N  I  L  A  L  K  A  L  N  E  P 
+          K  F  P  T  T  V  F  P  T  T  L  *  P  *  S  P  S  I  K  L  
+            L  H  L  P  *  L  H  L  P  *  N  L  S  A  Q  R  S  K  *  S
+
+           Bpu10I
+           \
+          GCTAAGGAAGCTAAAATGGAGAAAAAAATCACTGGATATACCACCGTTGATATATCCCAA
+                   490       500       510       520       530       540       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CGATTCCTTCGATTTTACCTCTTTTTTTAGTGACCTATATGGTGGCAACTATATAGGGTT
+              /
+              Bpu10I
+
+          A  K  E  A  K  M  E  K  K  I  T  G  Y  T  T  V  D  I  S  Q  
+           L  R  K  L  K  W  R  K  K  S  L  D  I  P  P  L  I  Y  P  N 
+            *  G  S  *  N  G  E  K  N  H  W  I  Y  H  R  *  Y  I  P  M
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           A  L  S  A  L  I  S  F  F  I  V  P  Y  V  V  T  S  I  D  W 
+          L  *  P  L  *  F  P  S  F  F  *  Q  I  Y  W  R  Q  Y  I  G  
+            S  L  F  S  F  H  L  F  F  D  S  S  I  G  G  N  I  Y  G  L
+
+          
+          TGGCATCGTAAAGAACATTTTGAGGCATTTCAGTCAGTTGCTCAATGTACCTATAACCAG
+                   550       560       570       580       590       600       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          ACCGTAGCATTTCTTGTAAAACTCCGTAAAGTCAGTCAACGAGTTACATGGATATTGGTC
+          
+
+          W  H  R  K  E  H  F  E  A  F  Q  S  V  A  Q  C  T  Y  N  Q  
+           G  I  V  K  N  I  L  R  H  F  S  Q  L  L  N  V  P  I  T  R 
+            A  S  *  R  T  F  *  G  I  S  V  S  C  S  M  Y  L  *  P  D
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           H  C  R  L  S  C  K  S  A  N  *  D  T  A  *  H  V  *  L  W 
+          I  A  D  Y  L  V  N  Q  P  M  E  T  L  Q  E  I  Y  R  Y  G  
+            P  M  T  F  F  M  K  L  C  K  L  *  N  S  L  T  G  I  V  L
+
+          
+          ACCGTTCAGCTGGATATTACGGCCTTTTTAAAGACCGTAAAGAAAAATAAGCACAAGTTT
+                   610       620       630       640       650       660       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TGGCAAGTCGACCTATAATGCCGGAAAAATTTCTGGCATTTCTTTTTATTCGTGTTCAAA
+          
+
+          T  V  Q  L  D  I  T  A  F  L  K  T  V  K  K  N  K  H  K  F  
+           P  F  S  W  I  L  R  P  F  *  R  P  *  R  K  I  S  T  S  F 
+            R  S  A  G  Y  Y  G  L  F  K  D  R  K  E  K  *  A  Q  V  L
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           V  T  *  S  S  I  V  A  K  K  F  V  T  F  F  F  L  C  L  N 
+          S  R  E  A  P  Y  *  P  R  K  L  S  R  L  S  F  Y  A  C  T  
+            G  N  L  Q  I  N  R  G  K  *  L  G  Y  L  F  I  L  V  L  K
+
+                                                      BspMII*
+                                                      \
+          TATCCGGCCTTTATTCACATTCTTGCCCGCCTGATGAATGCTCATCCGGAATTTCGTATG
+                   670       680       690       700       710       720       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          ATAGGCCGGAAATAAGTGTAAGAACGGGCGGACTACTTACGAGTAGGCCTTAAAGCATAC
+                                                          /
+                                                          BspMII*
+
+          Y  P  A  F  I  H  I  L  A  R  L  M  N  A  H  P  E  F  R  M  
+           I  R  P  L  F  T  F  L  P  A  *  *  M  L  I  R  N  F  V  W 
+            S  G  L  Y  S  H  S  C  P  P  D  E  C  S  S  G  I  S  Y  G
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           *  G  A  K  I  *  M  R  A  R  R  I  F  A  *  G  S  N  R  I 
+          K  D  P  R  *  E  C  E  Q  G  G  S  S  H  E  D  P  I  E  Y  
+            I  R  G  K  N  V  N  K  G  A  Q  H  I  S  M  R  F  K  T  H
+
+          
+          GCAATGAAAGACGGTGAGCTGGTGATATGGGATAGTGTTCACCCTTGTTACACCGTTTTC
+                   730       740       750       760       770       780       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CGTTACTTTCTGCCACTCGACCACTATACCCTATCACAAGTGGGAACAATGTGGCAAAAG
+          
+
+          A  M  K  D  G  E  L  V  I  W  D  S  V  H  P  C  Y  T  V  F  
+           Q  *  K  T  V  S  W  *  Y  G  I  V  F  T  L  V  T  P  F  S 
+            N  E  R  R  *  A  G  D  M  G  *  C  S  P  L  L  H  R  F  P
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           A  I  F  S  P  S  S  T  I  H  S  L  T  *  G  Q  *  V  T  K 
+          P  L  S  L  R  H  A  P  S  I  P  Y  H  E  G  K  N  C  R  K  
+            C  H  F  V  T  L  Q  H  Y  P  I  T  N  V  R  T  V  G  N  E
+
+          
+          CATGAGCAAACTGAAACGTTTTCATCGCTCTGGAGTGAATACCACGACGATTTCCGGCAG
+                   790       800       810       820       830       840       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GTACTCGTTTGACTTTGCAAAAGTAGCGAGACCTCACTTATGGTGCTGCTAAAGGCCGTC
+          
+
+          H  E  Q  T  E  T  F  S  S  L  W  S  E  Y  H  D  D  F  R  Q  
+           M  S  K  L  K  R  F  H  R  S  G  V  N  T  T  T  I  S  G  S 
+            *  A  N  *  N  V  F  I  A  L  E  *  I  P  R  R  F  P  A  V
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           W  S  C  V  S  V  N  E  D  S  Q  L  S  Y  W  S  S  K  R  C 
+          G  H  A  F  Q  F  T  K  M  A  R  S  H  I  G  R  R  N  G  A  
+            M  L  L  S  F  R  K  *  R  E  P  T  F  V  V  V  I  E  P  L
+
+          
+          TTTCTACACATATATTCGCAAGATGTGGCGTGTTACGGTGAAAACCTGGCCTATTTCCCT
+                   850       860       870       880       890       900       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AAAGATGTGTATATAAGCGTTCTACACCGCACAATGCCACTTTTGGACCGGATAAAGGGA
+          
+
+          F  L  H  I  Y  S  Q  D  V  A  C  Y  G  E  N  L  A  Y  F  P  
+           F  Y  T  Y  I  R  K  M  W  R  V  T  V  K  T  W  P  I  S  L 
+            S  T  H  I  F  A  R  C  G  V  L  R  *  K  P  G  L  F  P  *
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           N  R  C  M  Y  E  C  S  T  A  H  *  P  S  F  R  A  *  K  G 
+          T  E  V  C  I  N  A  L  H  P  T  N  R  H  F  G  P  R  N  G  
+            K  *  V  Y  I  R  L  I  H  R  T  V  T  F  V  Q  G  I  E  R
+
+                                                  PasI
+                                                  \
+          AAAGGGTTTATTGAGAATATGTTTTTCGTCTCAGCCAATCCCTGGGTGAGTTTCACCAGT
+                   910       920       930       940       950       960       
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TTTCCCAAATAACTCTTATACAAAAAGCAGAGTCGGTTAGGGACCCACTCAAAGTGGTCA
+                                                     /
+                                                     PasI
+
+          K  G  F  I  E  N  M  F  F  V  S  A  N  P  W  V  S  F  T  S  
+           K  G  L  L  R  I  C  F  S  S  Q  P  I  P  G  *  V  S  P  V 
+            R  V  Y  *  E  Y  V  F  R  L  S  Q  S  L  G  E  F  H  Q  F
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           L  P  N  I  S  F  I  N  K  T  E  A  L  G  Q  T  L  K  V  L 
+          *  L  T  *  Q  S  Y  T  K  R  R  L  W  D  R  P  S  N  *  W  
+            F  P  K  N  L  I  H  K  E  D  *  G  I  G  P  H  T  E  G  T
+
+          
+          TTTGATTTAAACGTGGCCAATATGGACAACTTCTTCGCCCCCGTTTTCACCATGGGCAAA
+                   970       980       990       1000      1010      1020      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AAACTAAATTTGCACCGGTTATACCTGTTGAAGAAGCGGGGGCAAAAGTGGTACCCGTTT
+          
+
+          F  D  L  N  V  A  N  M  D  N  F  F  A  P  V  F  T  M  G  K  
+           L  I  *  T  W  P  I  W  T  T  S  S  P  P  F  S  P  W  A  N 
+            *  F  K  R  G  Q  Y  G  Q  L  L  R  P  R  F  H  H  G  Q  I
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           K  S  K  F  T  A  L  I  S  L  K  K  A  G  T  K  V  M  P  L 
+          N  Q  N  L  R  P  W  Y  P  C  S  R  R  G  R  K  *  W  P  C  
+            K  I  *  V  H  G  I  H  V  V  E  E  G  G  N  E  G  H  A  F
+
+          
+          TATTATACGCAAGGCGACAAGGTGCTGATGCCGCTGGCGATTCAGGTTCATCATGCCGTT
+                   1030      1040      1050      1060      1070      1080      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          ATAATATGCGTTCCGCTGTTCCACGACTACGGCGACCGCTAAGTCCAAGTAGTACGGCAA
+          
+
+          Y  Y  T  Q  G  D  K  V  L  M  P  L  A  I  Q  V  H  H  A  V  
+           I  I  R  K  A  T  R  C  *  C  R  W  R  F  R  F  I  M  P  F 
+            L  Y  A  R  R  Q  G  A  D  A  A  G  D  S  G  S  S  C  R  L
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           Y  *  V  C  P  S  L  T  S  I  G  S  A  I  *  T  *  *  A  T 
+          I  N  Y  A  L  R  C  P  A  S  A  A  P  S  E  P  E  D  H  R  
+            I  I  R  L  A  V  L  H  Q  H  R  Q  R  N  L  N  M  M  G  N
+
+          
+          TGTGATGGCTTCCATGTCGGCAGAATGCTTAATGAATTACAACAGTACTGCGATGAGTGG
+                   1090      1100      1110      1120      1130      1140      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          ACACTACCGAAGGTACAGCCGTCTTACGAATTACTTAATGTTGTCATGACGCTACTCACC
+          
+
+          C  D  G  F  H  V  G  R  M  L  N  E  L  Q  Q  Y  C  D  E  W  
+           V  M  A  S  M  S  A  E  C  L  M  N  Y  N  S  T  A  M  S  G 
+            *  W  L  P  C  R  Q  N  A  *  *  I  T  T  V  L  R  *  V  A
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           Q  S  P  K  W  T  P  L  I  S  L  S  N  C  C  Y  Q  S  S  H 
+          K  H  H  S  G  H  R  C  F  A  *  H  I  V  V  T  S  R  H  T  
+            T  I  A  E  M  D  A  S  H  K  I  F  *  L  L  V  A  I  L  P
+
+          
+          CAGGGCGGGGCGTAATTTTTTTAAGGCAGTTATTGGTGCCCTTAAACGCCTGGGGTAATG
+                   1150      1160      1170      1180      1190      1200      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GTCCCGCCCCGCATTAAAAAAATTCCGTCAATAACCACGGGAATTTGCGGACCCCATTAC
+          
+
+          Q  G  G  A  *  F  F  *  G  S  Y  W  C  P  *  T  P  G  V  M  
+           R  A  G  R  N  F  F  K  A  V  I  G  A  L  K  R  L  G  *  * 
+            G  R  G  V  I  F  L  R  Q  L  L  V  P  L  N  A  W  G  N  D
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           C  P  P  A  Y  N  K  *  P  L  *  Q  H  G  *  V  G  P  T  I 
+          A  P  R  P  T  I  K  K  L  C  N  N  T  G  K  F  A  Q  P  L  
+            L  A  P  R  L  K  K  L  A  T  I  P  A  R  L  R  R  P  Y  H
+
+          
+          ACTCTCTAGCTTGAGGCATCAAATAAAACGAAAGGCTCAGTCGAAAGACTGGGCCTTTCG
+                   1210      1220      1230      1240      1250      1260      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TGAGAGATCGAACTCCGTAGTTTATTTTGCTTTCCGAGTCAGCTTTCTGACCCGGAAAGC
+          
+
+          T  L  *  L  E  A  S  N  K  T  K  G  S  V  E  R  L  G  L  S  
+           L  S  S  L  R  H  Q  I  K  R  K  A  Q  S  K  D  W  A  F  R 
+            S  L  A  *  G  I  K  *  N  E  R  L  S  R  K  T  G  P  F  V
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           V  R  *  S  S  A  D  F  L  V  F  P  E  T  S  L  S  P  R  E 
+          S  E  R  A  Q  P  M  L  Y  F  S  L  S  L  R  F  V  P  G  K  
+            S  E  L  K  L  C  *  I  F  R  F  A  *  D  F  S  Q  A  K  R
+
+          
+          TTTTATCTGTTGTTTGTCGGTGAACGCTCTCCTGAGTAGGACAAATCCGCCCTCTAGATT
+                   1270      1280      1290      1300      1310      1320      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AAAATAGACAACAAACAGCCACTTGCGAGAGGACTCATCCTGTTTAGGCGGGAGATCTAA
+          
+
+          F  Y  L  L  F  V  G  E  R  S  P  E  *  D  K  S  A  L  *  I  
+           F  I  C  C  L  S  V  N  A  L  L  S  R  T  N  P  P  S  R  L 
+            L  S  V  V  C  R  *  T  L  S  *  V  G  Q  I  R  P  L  D  Y
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           N  *  R  N  N  T  P  S  R  E  G  S  Y  S  L  D  A  R  *  I 
+          T  K  D  T  T  Q  R  H  V  S  E  Q  T  P  C  I  R  G  R  S  
+            K  I  Q  Q  K  D  T  F  A  R  R  L  L  V  F  G  G  E  L  N
+
+          
+          ACGTGCAGTCGATGATAAGCTGTCAAACATGAGAATTGTGCCTAATGAGTGAGCTAACTT
+                   1330      1340      1350      1360      1370      1380      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TGCACGTCAGCTACTATTCGACAGTTTGTACTCTTAACACGGATTACTCACTCGATTGAA
+          
+
+          T  C  S  R  *  *  A  V  K  H  E  N  C  A  *  *  V  S  *  L  
+           R  A  V  D  D  K  L  S  N  M  R  I  V  P  N  E  *  A  N  L 
+            V  Q  S  M  I  S  C  Q  T  *  E  L  C  L  M  S  E  L  T  Y
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           V  H  L  R  H  Y  A  T  L  C  S  F  Q  A  *  H  T  L  *  S 
+          *  T  C  D  I  I  L  Q  *  V  H  S  N  H  R  I  L  S  S  V  
+            R  A  T  S  S  L  S  D  F  M  L  I  T  G  L  S  H  A  L  K
+
+          
+          ACATTAATTGCGTTGCGCTCACTGCCCGCTTTCCAGTCGGGAAACCTGTCGTGCCAGCTG
+                   1390      1400      1410      1420      1430      1440      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TGTAATTAACGCAACGCGAGTGACGGGCGAAAGGTCAGCCCTTTGGACAGCACGGTCGAC
+          
+
+          T  L  I  A  L  R  S  L  P  A  F  Q  S  G  N  L  S  C  Q  L  
+           H  *  L  R  C  A  H  C  P  L  S  S  R  E  T  C  R  A  S  C 
+            I  N  C  V  A  L  T  A  R  F  P  V  G  K  P  V  V  P  A  A
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           V  N  I  A  N  R  E  S  G  A  K  W  D  P  F  R  D  H  W  S 
+          *  M  L  Q  T  A  S  V  A  R  K  G  T  P  F  G  T  T  G  A  
+            C  *  N  R  Q  A  *  Q  G  S  E  L  R  S  V  Q  R  A  L  Q
+
+                                                        KasI
+                                                        |NarI
+                                                        |BsaXI
+                                                        ||DinI 
+                           BsaXI                        ||| BbeI
+                           \                            \\\ \
+          CATTAATGAATCGGCCAACGCGCGGGGAGAGGCGGTTTGCGTATTGGGCGCCAGGGTGGT
+                   1450      1460      1470      1480      1490      1500      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GTAATTACTTAGCCGGTTGCGCGCCCCTCTCCGCCAAACGCATAACCCGCGGTCCCACCA
+                        /                             / / ///
+                        BsaXI                         | | ||KasI
+                                                      | | |NarI
+                                                      | | DinI
+                                                      | BbeI
+                                                      BsaXI
+
+          H  *  *  I  G  Q  R  A  G  R  G  G  L  R  I  G  R  Q  G  G  
+           I  N  E  S  A  N  A  R  G  E  A  V  C  V  L  G  A  R  V  V 
+            L  M  N  R  P  T  R  G  E  R  R  F  A  Y  W  A  P  G  W  F
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           C  *  H  I  P  W  R  A  P  L  P  P  K  R  I  P  R  W  P  P 
+          A  N  I  F  R  G  V  R  P  S  L  R  N  A  Y  Q  A  G  P  H  
+            M  L  S  D  A  L  A  R  P  S  A  T  Q  T  N  P  A  L  T  T
+
+          
+          TTTTCTTTTCACCAGTGAGACGGGCAACAGCTGATTGCCCTTCACCGCCTGGCCCTGAGA
+                   1510      1520      1530      1540      1550      1560      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AAAAGAAAAGTGGTCACTCTGCCCGTTGTCGACTAACGGGAAGTGGCGGACCGGGACTCT
+          
+
+          F  S  F  H  Q  *  D  G  Q  Q  L  I  A  L  H  R  L  A  L  R  
+           F  L  F  T  S  E  T  G  N  S  *  L  P  F  T  A  W  P  *  E 
+            F  F  S  P  V  R  R  A  T  A  D  C  P  S  P  P  G  P  E  R
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           K  E  K  *  W  H  S  P  C  C  S  I  A  R  *  R  R  A  R  L 
+          N  K  K  E  G  T  L  R  A  V  A  S  Q  G  E  G  G  P  G  S  
+            K  R  K  V  L  S  V  P  L  L  Q  N  G  K  V  A  Q  G  Q  S
+
+          
+          GAGTTGCAGCAAGCGGTCCACGCTGGTTTGCCCCAGCAGGCGAAAATCCTGTTTGATGGT
+                   1570      1580      1590      1600      1610      1620      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CTCAACGTCGTTCGCCAGGTGCGACCAAACGGGGTCGTCCGCTTTTAGGACAAACTACCA
+          
+
+          E  L  Q  Q  A  V  H  A  G  L  P  Q  Q  A  K  I  L  F  D  G  
+           S  C  S  K  R  S  T  L  V  C  P  S  R  R  K  S  C  L  M  V 
+            V  A  A  S  G  P  R  W  F  A  P  A  G  E  N  P  V  *  W  W
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           S  N  C  C  A  T  W  A  P  K  G  W  C  A  F  I  R  N  S  P 
+          L  T  A  A  L  P  G  R  Q  N  A  G  A  P  S  F  G  T  Q  H  
+            L  Q  L  L  R  D  V  S  T  Q  G  L  L  R  F  D  Q  K  I  T
+
+             HpaI
+             HindII                                                  EcoRV
+             \                                                       \
+          GGTTAACGGCGGGATATAACATGAGCTGTCTTCGGTATCGTCGTATCCCACTACCGAGAT
+                   1630      1640      1650      1660      1670      1680      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CCAATTGCCGCCCTATATTGTACTCGACAGAAGCCATAGCAGCATAGGGTGATGGCTCTA
+             /                                                       /
+             HindII                                                  EcoRV
+             HpaI
+
+          G  *  R  R  D  I  T  *  A  V  F  G  I  V  V  S  H  Y  R  D  
+           V  N  G  G  I  *  H  E  L  S  S  V  S  S  Y  P  T  T  E  I 
+            L  T  A  G  Y  N  M  S  C  L  R  Y  R  R  I  P  L  P  R  Y
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           P  *  R  R  S  I  V  H  A  T  K  P  I  T  T  D  W  *  R  S 
+          H  N  V  A  P  Y  L  M  L  Q  R  R  Y  R  R  I  G  S  G  L  
+            T  L  P  P  I  Y  C  S  S  D  E  T  D  D  Y  G  V  V  S  I
+
+                                            BsePI
+                                            \
+          ATCCGCACCAACGCGCAGCCCGGACTCGGTAATGGCGCGCATTGCGCCCAGCGCCATCTG
+                   1690      1700      1710      1720      1730      1740      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TAGGCGTGGTTGCGCGTCGGGCCTGAGCCATTACCGCGCGTAACGCGGGTCGCGGTAGAC
+                                                /
+                                                BsePI
+
+          I  R  T  N  A  Q  P  G  L  G  N  G  A  H  C  A  Q  R  H  L  
+           S  A  P  T  R  S  P  D  S  V  M  A  R  I  A  P  S  A  I  * 
+            P  H  Q  R  A  A  R  T  R  *  W  R  A  L  R  P  A  P  S  D
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           I  R  V  L  A  C  G  P  S  P  L  P  A  C  Q  A  W  R  W  R 
+          Y  G  C  W  R  A  A  R  V  R  Y  H  R  A  N  R  G  A  G  D  
+            D  A  G  V  R  L  G  S  E  T  I  A  R  M  A  G  L  A  M  Q
+
+          
+          ATCGTTGGCAACCAGCATCGCAGTGGGAACGATGCCCTCATTCAGCATTTGCATGGTTTG
+                   1750      1760      1770      1780      1790      1800      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TAGCAACCGTTGGTCGTAGCGTCACCCTTGCTACGGGAGTAAGTCGTAAACGTACCAAAC
+          
+
+          I  V  G  N  Q  H  R  S  G  N  D  A  L  I  Q  H  L  H  G  L  
+           S  L  A  T  S  I  A  V  G  T  M  P  S  F  S  I  C  M  V  C 
+            R  W  Q  P  A  S  Q  W  E  R  C  P  H  S  A  F  A  W  F  V
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           I  T  P  L  W  C  R  L  P  F  S  A  R  M  *  C  K  C  P  K 
+          S  R  Q  C  G  A  D  C  H  S  R  H  G  *  E  A  N  A  H  N  
+            D  N  A  V  L  M  A  T  P  V  I  G  E  N  L  M  Q  M  T  Q
+
+          
+          TTGAAAACCGGACATGGCACTCCAGTCGCCTTCCCGTTCCGCTATCGGCTGAATTTGATT
+                   1810      1820      1830      1840      1850      1860      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AACTTTTGGCCTGTACCGTGAGGTCAGCGGAAGGGCAAGGCGATAGCCGACTTAAACTAA
+          
+
+          L  K  T  G  H  G  T  P  V  A  F  P  F  R  Y  R  L  N  L  I  
+           *  K  P  D  M  A  L  Q  S  P  S  R  S  A  I  G  *  I  *  L 
+            E  N  R  T  W  H  S  S  R  L  P  V  P  L  S  A  E  F  D  C
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           N  F  V  P  C  P  V  G  T  A  K  G  N  R  *  R  S  F  K  I 
+          T  S  F  R  V  H  C  E  L  R  R  G  T  G  S  D  A  S  N  S  
+            Q  F  G  S  M  A  S  W  D  G  E  R  E  A  I  P  Q  I  Q  N
+
+                                                                    Bsp120I
+                                                                    \
+          GCGAGTGAGATATTTATGCCAGCCAGCCAGACGCAGACGCGCCGAGACAGAACTTAATGG
+                   1870      1880      1890      1900      1910      1920      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CGCTCACTCTATAAATACGGTCGGTCGGTCTGCGTCTGCGCGGCTCTGTCTTGAATTACC
+                                                                    /
+                                                                    HgiJII*
+                                                                    ApaI
+
+          A  S  E  I  F  M  P  A  S  Q  T  Q  T  R  R  D  R  T  *  W  
+           R  V  R  Y  L  C  Q  P  A  R  R  R  R  A  E  T  E  L  N  G 
+            E  *  D  I  Y  A  S  Q  P  D  A  D  A  P  R  Q  N  L  M  G
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           A  L  S  I  N  I  G  A  L  W  V  C  V  R  R  S  L  V  *  H 
+          Q  S  H  S  I  *  A  L  W  G  S  A  S  A  G  L  C  F  K  I  
+            R  T  L  Y  K  H  W  G  A  L  R  L  R  A  S  V  S  S  L  P
+
+            ApaI
+            HgiJII*              BstEII
+            \                    \
+          GCCCGCTAACAGCGCGATTTGCTGGTGACCCAATGCGACCAGATGCTCCACGCCCAGTCG
+                   1930      1940      1950      1960      1970      1980      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CGGGCGATTGTCGCGCTAAACGACCACTGGGTTACGCTGGTCTACGAGGTGCGGGTCAGC
+            /                         /
+            Bsp120I                   BstEII
+
+          A  R  *  Q  R  D  L  L  V  T  Q  C  D  Q  M  L  H  A  Q  S  
+           P  A  N  S  A  I  C  W  *  P  N  A  T  R  C  S  T  P  S  R 
+            P  L  T  A  R  F  A  G  D  P  M  R  P  D  A  P  R  P  V  A
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           A  R  *  C  R  S  K  S  T  V  W  H  S  W  I  S  W  A  W  D 
+          P  G  S  V  A  R  N  A  P  S  G  I  R  G  S  A  G  R  G  T  
+            G  A  L  L  A  I  Q  Q  H  G  L  A  V  L  H  E  V  G  L  R
+
+          
+          CGTACCGTCTTCATGGGAGAAAATAATACTGTTGATGGGTGTCTGGTCAGAGACATCAAG
+                   1990      2000      2010      2020      2030      2040      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GCATGGCAGAAGTACCCTCTTTTATTATGACAACTACCCACAGACCAGTCTCTGTAGTTC
+                                                                   /
+                                                                   TstI
+
+          R  T  V  F  M  G  E  N  N  T  V  D  G  C  L  V  R  D  I  K  
+           V  P  S  S  W  E  K  I  I  L  L  M  G  V  W  S  E  T  S  R 
+            Y  R  L  H  G  R  K  *  Y  C  *  W  V  S  G  Q  R  H  Q  E
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           R  V  T  K  M  P  S  F  L  V  T  S  P  H  R  T  L  S  M  L 
+          A  Y  R  R  *  P  L  F  Y  Y  Q  Q  H  T  D  P  *  L  C  *  
+            T  G  D  E  H  S  F  I  I  S  N  I  P  T  Q  D  S  V  D  L
+
+            TstI                            TstI
+            \                               \
+          AAATAACGCCGGAACATTAGTGCAGGCAGCTTCCACAGCAATGGCATCCTGGTCATCCAG
+                   2050      2060      2070      2080      2090      2100      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TTTATTGCGGCCTTGTAATCACGTCCGTCGAAGGTGTCGTTACCGTAGGACCAGTAGGTC
+                                       /
+                                       TstI
+
+          K  *  R  R  N  I  S  A  G  S  F  H  S  N  G  I  L  V  I  Q  
+           N  N  A  G  T  L  V  Q  A  A  S  T  A  M  A  S  W  S  S  S 
+            I  T  P  E  H  *  C  R  Q  L  P  Q  Q  W  H  P  G  H  P  A
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           F  Y  R  R  F  M  L  A  P  L  K  W  L  L  P  M  R  T  M  W 
+          S  I  V  G  S  C  *  H  L  C  S  G  C  C  H  C  G  P  *  G  
+            F  L  A  P  V  N  T  C  A  A  E  V  A  I  A  D  Q  D  D  L
+
+                     BclI          MluI
+                     \             \
+          CGGATAGTTAATGATCAGCCCACTGACGCGTTGCGCGAGAAGATTGTGCACCGCCGCTTT
+                   2110      2120      2130      2140      2150      2160      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GCCTATCAATTACTAGTCGGGTGACTGCGCAACGCGCTCTTCTAACACGTGGCGGCGAAA
+                         /             /
+                         BclI          MluI
+
+          R  I  V  N  D  Q  P  T  D  A  L  R  E  K  I  V  H  R  R  F  
+           G  *  L  M  I  S  P  L  T  R  C  A  R  R  L  C  T  A  A  L 
+            D  S  *  *  S  A  H  *  R  V  A  R  E  D  C  A  P  P  L  Y
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           R  I  T  L  S  *  G  V  S  A  N  R  S  F  I  T  C  R  R  K 
+          A  S  L  *  H  D  A  W  Q  R  T  A  R  S  S  Q  A  G  G  S  
+            P  Y  N  I  I  L  G  S  V  R  Q  A  L  L  N  H  V  A  A  K
+
+          
+          ACAGGCTTCGACGCCGCTTCGTTCTACCATCGACACCACCACGCTGGCACCCAGTTGATC
+                   2170      2180      2190      2200      2210      2220      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TGTCCGAAGCTGCGGCGAAGCAAGATGGTAGCTGTGGTGGTGCGACCGTGGGTCAACTAG
+          
+
+          T  G  F  D  A  A  S  F  Y  H  R  H  H  H  A  G  T  Q  L  I  
+           Q  A  S  T  P  L  R  S  T  I  D  T  T  T  L  A  P  S  *  S 
+            R  L  R  R  R  F  V  L  P  S  T  P  P  R  W  H  P  V  D  R
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           V  P  K  S  A  A  E  N  *  W  R  C  W  W  A  P  V  W  N  I 
+          *  L  S  R  R  R  K  T  R  G  D  V  G  G  R  Q  C  G  T  S  
+            C  A  E  V  G  S  R  E  V  M  S  V  V  V  S  A  G  L  Q  D
+
+          
+          GGCGCGAGATTTAATCGCCGCGACAATTTGCGACGGCGCGTGCAGGGCCAGACTGGAGGT
+                   2230      2240      2250      2260      2270      2280      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CCGCGCTCTAAATTAGCGGCGCTGTTAAACGCTGCCGCGCACGTCCCGGTCTGACCTCCA
+          
+
+          G  A  R  F  N  R  R  D  N  L  R  R  R  V  Q  G  Q  T  G  G  
+           A  R  D  L  I  A  A  T  I  C  D  G  A  C  R  A  R  L  E  V 
+            R  E  I  *  S  P  R  Q  F  A  T  A  R  A  G  P  D  W  R  W
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           P  A  L  N  L  R  R  S  L  K  R  R  R  T  C  P  W  V  P  P 
+          R  R  S  I  *  D  G  R  C  N  A  V  A  R  A  P  G  S  Q  L  
+            A  R  S  K  I  A  A  V  I  Q  S  P  A  H  L  A  L  S  S  T
+
+          
+          GGCAACGCCAATCAGCAACGACTGTTTGCCCGCCAGTTGTTGTGCCACGCGGTTGGGAAT
+                   2290      2300      2310      2320      2330      2340      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CCGTTGCGGTTAGTCGTTGCTGACAAACGGGCGGTCAACAACACGGTGCGCCAACCCTTA
+          
+
+          G  N  A  N  Q  Q  R  L  F  A  R  Q  L  L  C  H  A  V  G  N  
+           A  T  P  I  S  N  D  C  L  P  A  S  C  C  A  T  R  L  G  M 
+            Q  R  Q  S  A  T  T  V  C  P  P  V  V  V  P  R  G  W  E  C
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           P  L  A  L  *  C  R  S  N  A  R  W  N  N  H  W  A  T  P  F 
+          H  C  R  W  D  A  V  V  T  Q  G  G  T  T  T  G  R  P  Q  S  
+            A  V  G  I  L  L  S  Q  K  G  A  L  Q  Q  A  V  R  N  P  I
+
+          
+          GTAATTCAGCTCCGCCATCGCCGCTTCCACTTTTTCCCGCGTTTTCGCAGAAACGTGGCT
+                   2350      2360      2370      2380      2390      2400      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CATTAAGTCGAGGCGGTAGCGGCGAAGGTGAAAAAGGGCGCAAAAGCGTCTTTGCACCGA
+          
+
+          V  I  Q  L  R  H  R  R  F  H  F  F  P  R  F  R  R  N  V  A  
+           *  F  S  S  A  I  A  A  S  T  F  S  R  V  F  A  E  T  W  L 
+            N  S  A  P  P  S  P  L  P  L  F  P  A  F  S  Q  K  R  G  W
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           T  I  *  S  R  W  R  R  K  W  K  K  G  R  K  R  L  F  T  A 
+          H  L  E  A  G  G  D  G  S  G  S  K  G  A  N  E  C  F  R  P  
+            Y  N  L  E  A  M  A  A  E  V  K  E  R  T  K  A  S  V  H  S
+
+          
+          GGCCTGGTTCACCACGCGGGAAACGGTCTGATAAGAGACACCGGCATACTCTGCGACATC
+                   2410      2420      2430      2440      2450      2460      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CCGGACCAAGTGGTGCGCCCTTTGCCAGACTATTCTCTGTGGCCGTATGAGACGCTGTAG
+          
+
+          G  L  V  H  H  A  G  N  G  L  I  R  D  T  G  I  L  C  D  I  
+           A  W  F  T  T  R  E  T  V  *  *  E  T  P  A  Y  S  A  T  S 
+            P  G  S  P  R  G  K  R  S  D  K  R  H  R  H  T  L  R  H  R
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           P  R  T  *  W  A  P  F  P  R  I  L  S  V  P  M  S  Q  S  M 
+          Q  G  P  E  G  R  P  F  R  D  S  L  L  C  R  C  V  R  R  C  
+            A  Q  N  V  V  R  S  V  T  Q  Y  S  V  G  A  Y  E  A  V  D
+
+          
+          GTATAACGTTACTGGTTTCACATTCACCACCCTGAATTGACTCTCTTCCGGGCGCTATCA
+                   2470      2480      2490      2500      2510      2520      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CATATTGCAATGACCAAAGTGTAAGTGGTGGGACTTAACTGAGAGAAGGCCCGCGATAGT
+          
+
+          V  *  R  Y  W  F  H  I  H  H  P  E  L  T  L  F  R  A  L  S  
+           Y  N  V  T  G  F  T  F  T  T  L  N  *  L  S  S  G  R  Y  H 
+            I  T  L  L  V  S  H  S  P  P  *  I  D  S  L  P  G  A  I  M
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           T  Y  R  *  Q  N  *  M  *  W  G  S  N  V  R  K  R  A  S  D 
+          R  I  V  N  S  T  E  C  E  G  G  Q  I  S  E  R  G  P  A  I  
+            Y  L  T  V  P  K  V  N  V  V  R  F  Q  S  E  E  P  R  *  *
+
+          
+          TGCCATACCGCGAAAGGTTTTGCACCATTCGATGGTGTCGGAATTTCGGGCAGCGTTGGG
+                   2530      2540      2550      2560      2570      2580      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          ACGGTATGGCGCTTTCCAAAACGTGGTAAGCTACCACAGCCTTAAAGCCCGTCGCAACCC
+          
+
+          C  H  T  A  K  G  F  A  P  F  D  G  V  G  I  S  G  S  V  G  
+           A  I  P  R  K  V  L  H  H  S  M  V  S  E  F  R  A  A  L  G 
+            P  Y  R  E  R  F  C  T  I  R  W  C  R  N  F  G  Q  R  W  V
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           H  W  V  A  F  P  K  A  G  N  S  P  T  P  I  E  P  L  T  P 
+          M  G  Y  R  S  L  N  Q  V  M  R  H  H  R  F  K  P  C  R  Q  
+            A  M  G  R  F  T  K  C  W  E  I  T  D  S  N  R  A  A  N  P
+
+                         FspAI
+                         \
+          TCCTGGCCACGGGTGCGCATGATCTAGAGCTGCCTCGCGCGTTTCGGTGATGACGGTGAA
+                   2590      2600      2610      2620      2630      2640      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AGGACCGGTGCCCACGCGTACTAGATCTCGACGGAGCGCGCAAAGCCACTACTGCCACTT
+                         /
+                         FspAI
+
+          S  W  P  R  V  R  M  I  *  S  C  L  A  R  F  G  D  D  G  E  
+           P  G  H  G  C  A  *  S  R  A  A  S  R  V  S  V  M  T  V  K 
+            L  A  T  G  A  H  D  L  E  L  P  R  A  F  R  *  *  R  *  K
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           D  Q  G  R  T  R  M  I  *  L  Q  R  A  R  K  P  S  S  P  S 
+          T  R  A  V  P  A  C  S  R  S  S  G  R  A  N  R  H  H  R  H  
+            G  P  W  P  H  A  H  D  L  A  A  E  R  T  E  T  I  V  T  F
+
+                             PfoI
+                             \
+          AACCTCTGACACATGCAGCTCCCGGAGACGGTCACAGCTTGTCTGTAAGCGGATGCCGGG
+                   2650      2660      2670      2680      2690      2700      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TTGGAGACTGTGTACGTCGAGGGCCTCTGCCAGTGTCGAACAGACATTCGCCTACGGCCC
+                                  /
+                                  PfoI
+
+          N  L  *  H  M  Q  L  P  E  T  V  T  A  C  L  *  A  D  A  G  
+           T  S  D  T  C  S  S  R  R  R  S  Q  L  V  C  K  R  M  P  G 
+            P  L  T  H  A  A  P  G  D  G  H  S  L  S  V  S  G  C  R  E
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           F  R  Q  C  M  C  S  G  S  V  T  V  A  Q  R  Y  A  S  A  P 
+          F  G  R  V  C  A  A  G  P  S  P  *  L  K  D  T  L  P  H  R  
+            V  E  S  V  H  L  E  R  L  R  D  C  S  T  Q  L  R  I  G  P
+
+          
+          AGCAGACAAGCCCGTCAGGGCGCGTCAGCGGGTGTTGGCGGGTGTCGGGGCGCAGCCATG
+                   2710      2720      2730      2740      2750      2760      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TCGTCTGTTCGGGCAGTCCCGCGCAGTCGCCCACAACCGCCCACAGCCCCGCGTCGGTAC
+          
+
+          S  R  Q  A  R  Q  G  A  S  A  G  V  G  G  C  R  G  A  A  M  
+           A  D  K  P  V  R  A  R  Q  R  V  L  A  G  V  G  A  Q  P  * 
+            Q  T  S  P  S  G  R  V  S  G  C  W  R  V  S  G  R  S  H  D
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           L  L  C  A  R  *  P  A  D  A  P  T  P  P  H  R  P  A  A  M 
+          S  C  V  L  G  D  P  R  T  L  P  H  Q  R  T  D  P  R  L  W  
+            A  S  L  G  T  L  A  R  *  R  T  N  A  P  T  P  A  C  G  H
+
+                                     AccI
+            Tth111I                  |BssNAI
+            \                        \\
+          ACCCAGTCACGTAGCGATAGCGGAGTGTATACTGGCTTAACTATGCGGCATCAGAGCAGA
+                   2770      2780      2790      2800      2810      2820      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TGGGTCAGTGCATCGCTATCGCCTCACATATGACCGAATTGATACGCCGTAGTCTCGTCT
+             /                        //
+             Tth111I                  |AccI  
+                                      BssNAI
+
+          T  Q  S  R  S  D  S  G  V  Y  T  G  L  T  M  R  H  Q  S  R  
+           P  S  H  V  A  I  A  E  C  I  L  A  *  L  C  G  I  R  A  D 
+            P  V  T  *  R  *  R  S  V  Y  W  L  N  Y  A  A  S  E  Q  I
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           V  W  D  R  L  S  L  P  T  Y  V  P  K  V  I  R  C  *  L  L 
+          S  G  T  V  Y  R  Y  R  L  T  Y  Q  S  L  *  A  A  D  S  C  
+            G  L  *  T  A  I  A  S  H  I  S  A  *  S  H  P  M  L  A  S
+
+          
+          TTGTACTGAGAGTGCACCACATGCGGTGTGAAATACCGCACAGATGCGTAAGGAGAAAAT
+                   2830      2840      2850      2860      2870      2880      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AACATGACTCTCACGTGGTGTACGCCACACTTTATGGCGTGTCTACGCATTCCTCTTTTA
+          
+
+          L  Y  *  E  C  T  T  C  G  V  K  Y  R  T  D  A  *  G  E  N  
+           C  T  E  S  A  P  H  A  V  *  N  T  A  Q  M  R  K  E  K  I 
+            V  L  R  V  H  H  M  R  C  E  I  P  H  R  C  V  R  R  K  Y
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           N  Y  Q  S  H  V  V  H  P  T  F  Y  R  V  S  A  Y  P  S  F 
+          I  T  S  L  T  C  W  M  R  H  S  I  G  C  L  H  T  L  L  F  
+            Q  V  S  L  A  G  C  A  T  H  F  V  A  C  I  R  L  S  F  I
+
+                             SapI
+                             \
+          ACCGCATCAGGCGCTCTTCCGCTTCCTCGCTCACTGACTCGCTGCGCTCGGTCGTTCGGC
+                   2890      2900      2910      2920      2930      2940      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TGGCGTAGTCCGCGAGAAGGCGAAGGAGCGAGTGACTGAGCGACGCGAGCCAGCAAGCCG
+                                /
+                                SapI
+
+          T  A  S  G  A  L  P  L  P  R  S  L  T  R  C  A  R  S  F  G  
+           P  H  Q  A  L  F  R  F  L  A  H  *  L  A  A  L  G  R  S  A 
+            R  I  R  R  S  S  A  S  S  L  T  D  S  L  R  S  V  V  R  L
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           V  A  D  P  A  R  G  S  G  R  E  S  V  R  Q  A  R  D  N  P 
+          Y  R  M  L  R  E  E  A  E  E  S  V  S  E  S  R  E  T  T  R  
+            G  C  *  A  S  K  R  K  R  A  *  Q  S  A  A  S  P  R  E  A
+
+          
+          TGCGGCGAGCGGTATCAGCTCACTCAAAGGCGGTAATACGGTTATCCACAGAATCAGGGG
+                   2950      2960      2970      2980      2990      3000      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          ACGCCGCTCGCCATAGTCGAGTGAGTTTCCGCCATTATGCCAATAGGTGTCTTAGTCCCC
+          
+
+          C  G  E  R  Y  Q  L  T  Q  R  R  *  Y  G  Y  P  Q  N  Q  G  
+           A  A  S  G  I  S  S  L  K  G  G  N  T  V  I  H  R  I  R  G 
+            R  R  A  V  S  A  H  S  K  A  V  I  R  L  S  T  E  S  G  D
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           Q  P  S  R  Y  *  S  V  *  L  R  Y  Y  P  *  G  C  F  *  P 
+          S  R  R  A  T  D  A  *  E  F  A  T  I  R  N  D  V  S  D  P  
+            A  A  L  P  I  L  E  S  L  P  P  L  V  T  I  W  L  I  L  P
+
+                         BspLU11I*
+                         \
+          ATAACGCAGGAAAGAACATGTGAGCAAAAGGCCAGCAAAAGGCCAGGAACCGTAAAAAGG
+                   3010      3020      3030      3040      3050      3060      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TATTGCGTCCTTTCTTGTACACTCGTTTTCCGGTCGTTTTCCGGTCCTTGGCATTTTTCC
+                             /
+                             BspLU11I*
+
+          I  T  Q  E  R  T  C  E  Q  K  A  S  K  R  P  G  T  V  K  R  
+           *  R  R  K  E  H  V  S  K  R  P  A  K  G  Q  E  P  *  K  G 
+            N  A  G  K  N  M  *  A  K  G  Q  Q  K  A  R  N  R  K  K  A
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           I  V  C  S  L  V  H  S  C  F  A  L  L  L  G  P  V  T  F  L 
+          S  L  A  P  F  F  M  H  A  F  P  W  C  F  A  L  F  R  L  F  
+            Y  R  L  F  S  C  T  L  L  L  G  A  F  P  W  S  G  Y  F  P
+
+          
+          CCGCGTTGCTGGCGTTTTTCCATAGGCTCCGCCCCCCTGACGAGCATCACAAAAATCGAC
+                   3070      3080      3090      3100      3110      3120      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GGCGCAACGACCGCAAAAAGGTATCCGAGGCGGGGGGACTGCTCGTAGTGTTTTTAGCTG
+          
+
+          P  R  C  W  R  F  S  I  G  S  A  P  L  T  S  I  T  K  I  D  
+           R  V  A  G  V  F  P  *  A  P  P  P  *  R  A  S  Q  K  S  T 
+            A  L  L  A  F  F  H  R  L  R  P  P  D  E  H  H  K  N  R  R
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           G  R  Q  Q  R  K  E  M  P  E  A  G  R  V  L  M  V  F  I  S 
+          A  A  N  S  A  N  K  W  L  S  R  G  G  S  S  C  *  L  F  R  
+            R  T  A  P  T  K  G  Y  A  G  G  G  Q  R  A  D  C  F  D  V
+
+          
+          GCTCAAGTCAGAGGTGGCGAAACCCGACAGGACTATAAAGATACCAGGCGTTTCCCCCTG
+                   3130      3140      3150      3160      3170      3180      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CGAGTTCAGTCTCCACCGCTTTGGGCTGTCCTGATATTTCTATGGTCCGCAAAGGGGGAC
+          
+
+          A  Q  V  R  G  G  E  T  R  Q  D  Y  K  D  T  R  R  F  P  L  
+           L  K  S  E  V  A  K  P  D  R  T  I  K  I  P  G  V  S  P  W 
+            S  S  Q  R  W  R  N  P  T  G  L  *  R  Y  Q  A  F  P  P  G
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           A  *  T  L  P  P  S  V  R  C  S  *  L  S  V  L  R  K  G  R 
+          R  E  L  *  L  H  R  F  G  V  P  S  Y  L  Y  W  A  N  G  G  
+            S  L  D  S  T  A  F  G  S  L  V  I  F  I  G  P  T  E  G  Q
+
+          
+          GAAGCTCCCTCGTGCGCTCTCCTGTTCCGACCCTGCCGCTTACCGGATACCTGTCCGCCT
+                   3190      3200      3210      3220      3230      3240      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CTTCGAGGGAGCACGCGAGAGGACAAGGCTGGGACGGCGAATGGCCTATGGACAGGCGGA
+          
+
+          E  A  P  S  C  A  L  L  F  R  P  C  R  L  P  D  T  C  P  P  
+           K  L  P  R  A  L  S  C  S  D  P  A  A  Y  R  I  P  V  R  L 
+            S  S  L  V  R  S  P  V  P  T  L  P  L  T  G  Y  L  S  A  F
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           S  A  G  E  H  A  R  R  N  R  G  Q  R  K  G  S  V  Q  G  G 
+          P  L  E  R  T  R  E  G  T  G  V  R  G  S  V  P  Y  R  D  A  
+            F  S  G  R  A  S  E  Q  E  S  G  A  A  *  R  I  G  T  R  R
+
+          
+          TTCTCCCTTCGGGAAGCGTGGCGCTTTCTCATAGCTCACGCTGTAGGTATCTCAGTTCGG
+                   3250      3260      3270      3280      3290      3300      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AAGAGGGAAGCCCTTCGCACCGCGAAAGAGTATCGAGTGCGACATCCATAGAGTCAAGCC
+          
+
+          F  S  L  R  E  A  W  R  F  L  I  A  H  A  V  G  I  S  V  R  
+           S  P  F  G  K  R  G  A  F  S  *  L  T  L  *  V  S  Q  F  G 
+            L  P  S  G  S  V  A  L  S  H  S  S  R  C  R  Y  L  S  S  V
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           K  E  R  R  S  A  H  R  K  R  M  A  *  A  T  P  I  E  T  R 
+          K  R  G  E  P  L  T  A  S  E  *  L  E  R  Q  L  Y  R  L  E  
+            E  G  K  P  F  R  P  A  K  E  Y  S  V  S  Y  T  D  *  N  P
+
+          
+          TGTAGGTCGTTCGCTCCAAGCTGGGCTGTGTGCACGAACCCCCCGTTCAGCCCGACCGCT
+                   3310      3320      3330      3340      3350      3360      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          ACATCCAGCAAGCGAGGTTCGACCCGACACACGTGCTTGGGGGGCAAGTCGGGCTGGCGA
+          
+
+          C  R  S  F  A  P  S  W  A  V  C  T  N  P  P  F  S  P  T  A  
+           V  G  R  S  L  Q  A  G  L  C  A  R  T  P  R  S  A  R  P  L 
+            *  V  V  R  S  K  L  G  C  V  H  E  P  P  V  Q  P  D  R  C
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           H  L  D  N  A  G  L  Q  A  T  H  V  F  G  G  N  L  G  V  A 
+          T  Y  T  T  R  E  L  S  P  Q  T  C  S  G  G  T  *  G  S  R  
+            T  P  R  E  S  W  A  P  S  H  A  R  V  G  R  E  A  R  G  S
+
+          
+          GCGCCTTATCCGGTAACTATCGTCTTGAGTCCAACCCGGTAAGACACGACTTATCGCCAC
+                   3370      3380      3390      3400      3410      3420      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CGCGGAATAGGCCATTGATAGCAGAACTCAGGTTGGGCCATTCTGTGCTGAATAGCGGTG
+          
+
+          A  P  Y  P  V  T  I  V  L  S  P  T  R  *  D  T  T  Y  R  H  
+           R  L  I  R  *  L  S  S  *  V  Q  P  G  K  T  R  L  I  A  T 
+            A  L  S  G  N  Y  R  L  E  S  N  P  V  R  H  D  L  S  P  L
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           A  G  *  G  T  V  I  T  K  L  G  V  R  Y  S  V  V  *  R  W 
+          Q  A  K  D  P  L  *  R  R  S  D  L  G  T  L  C  S  K  D  G  
+            R  R  I  R  Y  S  D  D  Q  T  W  G  P  L  V  R  S  I  A  V
+
+                     AlwNI
+                     \
+          TGGCAGCAGCCACTGGTAACAGGATTAGCAGAGCGAGGTATGTAGGCGGTGCTACAGAGT
+                   3430      3440      3450      3460      3470      3480      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          ACCGTCGTCGGTGACCATTGTCCTAATCGTCTCGCTCCATACATCCGCCACGATGTCTCA
+                  /
+                  AlwNI
+
+          W  Q  Q  P  L  V  T  G  L  A  E  R  G  M  *  A  V  L  Q  S  
+           G  S  S  H  W  *  Q  D  *  Q  S  E  V  C  R  R  C  Y  R  V 
+            A  A  A  T  G  N  R  I  S  R  A  R  Y  V  G  G  A  T  E  F
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           Q  C  C  G  S  T  V  P  N  A  S  R  P  I  Y  A  T  S  C  L 
+          S  A  A  A  V  P  L  L  I  L  L  A  L  Y  T  P  P  A  V  S  
+            P  L  L  W  Q  Y  C  S  *  C  L  S  T  H  L  R  H  *  L  T
+
+          
+          TCTTGAAGTGGTGGCCTAACTACGGCTACACTAGAAGGACAGTATTTGGTATCTGCGCTC
+                   3490      3500      3510      3520      3530      3540      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AGAACTTCACCACCGGATTGATGCCGATGTGATCTTCCTGTCATAAACCATAGACGCGAG
+          
+
+          S  *  S  G  G  L  T  T  A  T  L  E  G  Q  Y  L  V  S  A  L  
+           L  E  V  V  A  *  L  R  L  H  *  K  D  S  I  W  Y  L  R  S 
+            L  K  W  W  P  N  Y  G  Y  T  R  R  T  V  F  G  I  C  A  L
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           E  Q  L  P  P  R  V  V  A  V  S  S  P  C  Y  K  T  D  A  S 
+          N  K  F  H  H  G  L  *  P  *  V  L  L  V  T  N  P  I  Q  A  
+            R  S  T  T  A  *  S  R  S  C  *  F  S  L  I  Q  Y  R  R  E
+
+          
+          TGCTGAAGCCAGTTACCTTCGGAAAAAGAGTTGGTAGCTCTTGATCCGGCAAACAAACCA
+                   3550      3560      3570      3580      3590      3600      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          ACGACTTCGGTCAATGGAAGCCTTTTTCTCAACCATCGAGAACTAGGCCGTTTGTTTGGT
+          
+
+          C  *  S  Q  L  P  S  E  K  E  L  V  A  L  D  P  A  N  K  P  
+           A  E  A  S  Y  L  R  K  K  S  W  *  L  L  I  R  Q  T  N  H 
+            L  K  P  V  T  F  G  K  R  V  G  S  S  *  S  G  K  Q  T  T
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           Q  Q  L  W  N  G  E  S  F  S  N  T  A  R  S  G  A  F  L  G 
+          R  S  F  G  T  V  K  P  F  L  T  P  L  E  Q  D  P  L  C  V  
+            A  S  A  L  *  R  R  F  F  L  Q  Y  S  K  I  R  C  V  F  W
+
+          
+          CCGCTGGTAGCGGTGGTTTTTTTGTTTGCAAGCAGCAGATTACGCGCAGAAAAAAAGGAT
+                   3610      3620      3630      3640      3650      3660      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GGCGACCATCGCCACCAAAAAAACAAACGTTCGTCGTCTAATGCGCGTCTTTTTTTCCTA
+          
+
+          P  L  V  A  V  V  F  L  F  A  S  S  R  L  R  A  E  K  K  D  
+           R  W  *  R  W  F  F  C  L  Q  A  A  D  Y  A  Q  K  K  R  I 
+            A  G  S  G  G  F  F  V  C  K  Q  Q  I  T  R  R  K  K  G  S
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           G  S  T  A  T  T  K  K  N  A  L  L  L  N  R  A  S  F  F  S 
+          V  A  P  L  P  P  K  K  T  Q  L  C  C  I  V  R  L  F  F  P  
+            R  Q  Y  R  H  N  K  Q  K  C  A  A  S  *  A  C  F  F  L  I
+
+          
+          CTCAAGAAGATCCTTTGATCTTTTCTACGGGGTCTGACGCTCAGTGGAACGAAAACTCAC
+                   3670      3680      3690      3700      3710      3720      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GAGTTCTTCTAGGAAACTAGAAAAGATGCCCCAGACTGCGAGTCACCTTGCTTTTGAGTG
+          
+
+          L  K  K  I  L  *  S  F  L  R  G  L  T  L  S  G  T  K  T  H  
+           S  R  R  S  F  D  L  F  Y  G  V  *  R  S  V  E  R  K  L  T 
+            Q  E  D  P  L  I  F  S  T  G  S  D  A  Q  W  N  E  N  S  R
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           R  L  F  I  R  Q  D  K  R  R  P  R  V  S  L  P  V  F  V  * 
+          D  *  S  S  G  K  I  K  E  V  P  D  S  A  *  H  F  S  F  E  
+            E  L  L  D  K  S  R  K  *  P  T  Q  R  E  T  S  R  F  S  V
+
+          
+          GTTAAGGGATTTTGGTCATGAGATTATCAAAAAGGATCTTCACCTAGATCCTTTTAAATT
+                   3730      3740      3750      3760      3770      3780      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CAATTCCCTAAAACCAGTACTCTAATAGTTTTTCCTAGAAGTGGATCTAGGAAAATTTAA
+          
+
+          V  K  G  F  W  S  *  D  Y  Q  K  G  S  S  P  R  S  F  *  I  
+           L  R  D  F  G  H  E  I  I  K  K  D  L  H  L  D  P  F  K  L 
+            *  G  I  L  V  M  R  L  S  K  R  I  F  T  *  I  L  L  N  *
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           T  L  P  N  Q  D  H  S  *  *  F  P  D  E  G  L  D  K  *  I 
+          R  *  P  I  K  T  M  L  N  D  F  L  I  K  V  *  I  R  K  F  
+            N  L  S  K  P  *  S  I  I  L  F  S  R  *  R  S  G  K  L  N
+
+          
+          AAAAATGAAGTTTTAAATCAATCTAAAGTATATATGAGTAAACTTGGTCTGACAGTTACC
+                   3790      3800      3810      3820      3830      3840      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TTTTTACTTCAAAATTTAGTTAGATTTCATATATACTCATTTGAACCAGACTGTCAATGG
+          
+
+          K  N  E  V  L  N  Q  S  K  V  Y  M  S  K  L  G  L  T  V  T  
+           K  M  K  F  *  I  N  L  K  Y  I  *  V  N  L  V  *  Q  L  P 
+            K  *  S  F  K  S  I  *  S  I  Y  E  *  T  W  S  D  S  Y  Q
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           L  F  S  T  K  F  *  D  L  T  Y  I  L  L  S  P  R  V  T  V 
+          *  F  H  L  K  L  D  I  *  L  I  Y  S  Y  V  Q  D  S  L  *  
+            F  I  F  N  *  I  L  R  F  Y  I  H  T  F  K  T  Q  C  N  G
+
+          
+          AATGCTTAATCAGTGAGGCACCTATCTCAGCGATCTGTCTATTTCGTTCATCCATAGTTG
+                   3850      3860      3870      3880      3890      3900      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TTACGAATTAGTCACTCCGTGGATAGAGTCGCTAGACAGATAAAGCAAGTAGGTATCAAC
+          
+
+          N  A  *  S  V  R  H  L  S  Q  R  S  V  Y  F  V  H  P  *  L  
+           M  L  N  Q  *  G  T  Y  L  S  D  L  S  I  S  F  I  H  S  C 
+            C  L  I  S  E  A  P  I  S  A  I  C  L  F  R  S  S  I  V  A
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           L  A  *  D  T  L  C  R  D  *  R  D  T  *  K  T  *  G  Y  N 
+          W  H  K  I  L  S  A  G  I  E  A  I  Q  R  N  R  E  D  M  T  
+            I  S  L  *  H  P  V  *  R  L  S  R  D  I  E  N  M  W  L  Q
+
+                  Eam1105I
+                  \
+          CCTGACTCCCCGTCGTGTAGATAACTACGATACGGGAGGGCTTACCATCTGGCCCCAGTG
+                   3910      3920      3930      3940      3950      3960      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GGACTGAGGGGCAGCACATCTATTGATGCTATGCCCTCCCGAATGGTAGACCGGGGTCAC
+                 /
+                 Eam1105I
+
+          P  D  S  P  S  C  R  *  L  R  Y  G  R  A  Y  H  L  A  P  V  
+           L  T  P  R  R  V  D  N  Y  D  T  G  G  L  T  I  W  P  Q  C 
+            *  L  P  V  V  *  I  T  T  I  R  E  G  L  P  S  G  P  S  A
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           G  S  E  G  D  H  L  Y  S  R  Y  P  L  A  *  W  R  A  G  T 
+          A  Q  S  G  T  T  Y  I  V  V  I  R  S  P  K  G  D  P  G  L  
+            R  V  G  R  R  T  S  L  *  S  V  P  P  S  V  M  Q  G  W  H
+
+                   Eco31I
+                   \
+          CTGCAATGATACCGCGAGACCCACGCTCACCGGCTCCAGATTTATCAGCAATAAACCAGC
+                   3970      3980      3990      4000      4010      4020      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GACGTTACTATGGCGCTCTGGGTGCGAGTGGCCGAGGTCTAAATAGTCGTTATTTGGTCG
+                       /
+                       Eco31I
+
+          L  Q  *  Y  R  E  T  H  A  H  R  L  Q  I  Y  Q  Q  *  T  S  
+           C  N  D  T  A  R  P  T  L  T  G  S  R  F  I  S  N  K  P  A 
+            A  M  I  P  R  D  P  R  S  P  A  P  D  L  S  A  I  N  Q  P
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           S  C  H  Y  R  S  V  W  A  *  R  S  W  I  *  *  C  Y  V  L 
+          A  A  I  I  G  R  S  G  R  E  G  A  G  S  K  D  A  I  F  W  
+            Q  L  S  V  A  L  G  V  S  V  P  E  L  N  I  L  L  L  G  A
+
+                  BglI
+                  \
+          CAGCCGGAAGGGCCGAGCGCAGAAGTGGTCCTGCAACTTTATCCGCCTCCATCCAGTCTA
+                   4030      4040      4050      4060      4070      4080      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GTCGGCCTTCCCGGCTCGCGTCTTCACCAGGACGTTGAAATAGGCGGAGGTAGGTCAGAT
+               /
+               BglI
+
+          Q  P  E  G  P  S  A  E  V  V  L  Q  L  Y  P  P  P  S  S  L  
+           S  R  K  G  R  A  Q  K  W  S  C  N  F  I  R  L  H  P  V  Y 
+            A  G  R  A  E  R  R  S  G  P  A  T  L  S  A  S  I  Q  S  I
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           W  G  S  P  G  L  A  S  T  T  R  C  S  *  G  G  G  D  L  R 
+          G  A  P  L  A  S  R  L  L  P  G  A  V  K  D  A  E  M  W  D  
+            L  R  F  P  R  A  C  F  H  D  Q  L  K  I  R  R  W  G  T  *
+
+          
+          TTAATTGTTGCCGGGAAGCTAGAGTAAGTAGTTCGCCAGTTAATAGTTTGCGCAACGTTG
+                   4090      4100      4110      4120      4130      4140      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AATTAACAACGGCCCTTCGATCTCATTCATCAAGCGGTCAATTATCAAACGCGTTGCAAC
+          
+
+          L  I  V  A  G  K  L  E  *  V  V  R  Q  L  I  V  C  A  T  L  
+           *  L  L  P  G  S  *  S  K  *  F  A  S  *  *  F  A  Q  R  C 
+            N  C  C  R  E  A  R  V  S  S  S  P  V  N  S  L  R  N  V  V
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           N  I  T  A  P  F  S  S  Y  T  T  R  W  N  I  T  Q  A  V  N 
+          I  L  Q  Q  R  S  A  L  T  L  L  E  G  T  L  L  K  R  L  T  
+            *  N  N  G  P  L  *  L  L  Y  N  A  L  *  Y  N  A  C  R  Q
+
+          
+          TTGCCATTGCTACAGGCATCGTGGTGTCACGCTCGTCGTTTGGTATGGCTTCATTCAGCT
+                   4150      4160      4170      4180      4190      4200      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AACGGTAACGATGTCCGTAGCACCACAGTGCGAGCAGCAAACCATACCGAAGTAAGTCGA
+          
+
+          L  P  L  L  Q  A  S  W  C  H  A  R  R  L  V  W  L  H  S  A  
+           C  H  C  Y  R  H  R  G  V  T  L  V  V  W  Y  G  F  I  Q  L 
+            A  I  A  T  G  I  V  V  S  R  S  S  F  G  M  A  S  F  S  S
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           N  G  N  S  C  A  D  H  H  *  A  R  R  K  T  H  S  *  E  A 
+          T  A  M  A  V  P  M  T  T  D  R  E  D  N  P  I  A  E  N  L  
+            Q  W  Q  *  L  C  R  P  T  V  S  T  T  Q  Y  P  K  M  *  S
+
+          
+          CCGGTTCCCAACGATCAAGGCGAGTTACATGATCCCCCATGTTGTGCAAAAAAGCGGTTA
+                   4210      4220      4230      4240      4250      4260      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GGCCAAGGGTTGCTAGTTCCGCTCAATGTACTAGGGGGTACAACACGTTTTTTCGCCAAT
+          
+
+          P  V  P  N  D  Q  G  E  L  H  D  P  P  C  C  A  K  K  R  L  
+           R  F  P  T  I  K  A  S  Y  M  I  P  H  V  V  Q  K  S  G  * 
+            G  S  Q  R  S  R  R  V  T  *  S  P  M  L  C  K  K  A  V  S
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           G  T  G  L  S  *  P  S  N  C  S  G  G  H  Q  A  F  F  R  N 
+          E  P  E  W  R  D  L  R  T  V  H  D  G  M  N  H  L  F  A  T  
+            R  N  G  V  I  L  A  L  *  M  I  G  W  T  T  C  F  L  P  *
+
+                            PvuI
+                            \
+          GCTCCTTCGGTCCTCCGATCGTTGTCAGAAGTAAGTTGGCCGCAGTGTTATCACTCATGG
+                   4270      4280      4290      4300      4310      4320      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CGAGGAAGCCAGGAGGCTAGCAACAGTCTTCATTCAACCGGCGTCACAATAGTGAGTACC
+                          /
+                          PvuI
+
+          A  P  S  V  L  R  S  L  S  E  V  S  W  P  Q  C  Y  H  S  W  
+           L  L  R  S  S  D  R  C  Q  K  *  V  G  R  S  V  I  T  H  G 
+            S  F  G  P  P  I  V  V  R  S  K  L  A  A  V  L  S  L  M  V
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           A  G  E  T  R  R  D  N  D  S  T  L  Q  G  C  H  *  *  E  H 
+          L  E  K  P  G  G  I  T  T  L  L  L  N  A  A  T  N  D  S  M  
+            S  R  R  D  E  S  R  Q  *  F  Y  T  P  R  L  T  I  V  *  P
+
+          
+          TTATGGCAGCACTGCATAATTCTCTTACTGTCATGCCATCCGTAAGATGCTTTTCTGTGA
+                   4330      4340      4350      4360      4370      4380      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AATACCGTCGTGACGTATTAAGAGAATGACAGTACGGTAGGCATTCTACGAAAAGACACT
+          
+
+          L  W  Q  H  C  I  I  L  L  L  S  C  H  P  *  D  A  F  L  *  
+           Y  G  S  T  A  *  F  S  Y  C  H  A  I  R  K  M  L  F  C  D 
+            M  A  A  L  H  N  S  L  T  V  M  P  S  V  R  C  F  S  V  T
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           N  H  C  C  Q  M  I  R  K  S  D  H  W  G  Y  S  A  K  R  H 
+          T  I  A  A  S  C  L  E  R  V  T  M  G  D  T  L  H  K  E  T  
+            *  P  L  V  A  Y  N  E  *  Q  *  A  M  R  L  I  S  K  Q  S
+
+          
+          CTGGTGAGTACTCAACCAAGTCATTCTGAGAATAGTGTATGCGGCGACCGAGTTGCTCTT
+                   4390      4400      4410      4420      4430      4440      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GACCACTCATGAGTTGGTTCAGTAAGACTCTTATCACATACGCCGCTGGCTCAACGAGAA
+          
+
+          L  V  S  T  Q  P  S  H  S  E  N  S  V  C  G  D  R  V  A  L  
+           W  *  V  L  N  Q  V  I  L  R  I  V  Y  A  A  T  E  L  L  L 
+            G  E  Y  S  T  K  S  F  *  E  *  C  M  R  R  P  S  C  S  C
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           S  T  L  V  *  G  L  *  E  S  F  L  T  H  P  S  R  T  A  R 
+          V  P  S  Y  E  V  L  D  N  Q  S  Y  H  I  R  R  G  L  Q  E  
+            Q  H  T  S  L  W  T  M  R  L  I  T  Y  A  A  V  S  N  S  K
+
+          
+          GCCCGGCGTCAATACGGGATAATACCGCGCCACATAGCAGAACTTTAAAAGTGCTCATCA
+                   4450      4460      4470      4480      4490      4500      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CGGGCCGCAGTTATGCCCTATTATGGCGCGGTGTATCGTCTTGAAATTTTCACGAGTAGT
+          
+
+          A  R  R  Q  Y  G  I  I  P  R  H  I  A  E  L  *  K  C  S  S  
+           P  G  V  N  T  G  *  Y  R  A  T  *  Q  N  F  K  S  A  H  H 
+            P  A  S  I  R  D  N  T  A  P  H  S  R  T  L  K  V  L  I  I
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           A  R  R  *  Y  P  I  I  G  R  W  M  A  S  S  *  F  H  E  D 
+          Q  G  A  D  I  R  S  L  V  A  G  C  L  L  V  K  F  T  S  M  
+            G  P  T  L  V  P  Y  Y  R  A  V  Y  C  F  K  L  L  A  *  *
+
+                 XmnI
+                 \
+          TTGGAAAACGTTCTTCGGGGCGAAAACTCTCAAGGATCTTACCGCTGTTGAGATCCAGTT
+                   4510      4520      4530      4540      4550      4560      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          AACCTTTTGCAAGAAGCCCCGCTTTTGAGAGTTCCTAGAATGGCGACAACTCTAGGTCAA
+                 /
+                 XmnI
+
+          L  E  N  V  L  R  G  E  N  S  Q  G  S  Y  R  C  *  D  P  V  
+           W  K  T  F  F  G  A  K  T  L  K  D  L  T  A  V  E  I  Q  F 
+            G  K  R  S  S  G  R  K  L  S  R  I  L  P  L  L  R  S  S  S
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           N  S  F  T  R  R  P  S  F  E  *  P  D  *  R  Q  Q  S  G  T 
+          M  P  F  R  E  E  P  R  F  S  E  L  I  K  G  S  N  L  D  L  
+            Q  F  V  N  K  P  A  F  V  R  L  S  R  V  A  T  S  I  W  N
+
+          
+          CGATGTAACCCACTCGTGCACCCAACTGATCTTCAGCATCTTTTACTTTCACCAGCGTTT
+                   4570      4580      4590      4600      4610      4620      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GCTACATTGGGTGAGCACGTGGGTTGACTAGAAGTCGTAGAAAATGAAAGTGGTCGCAAA
+          
+
+          R  C  N  P  L  V  H  P  T  D  L  Q  H  L  L  L  S  P  A  F  
+           D  V  T  H  S  C  T  Q  L  I  F  S  I  F  Y  F  H  Q  R  F 
+            M  *  P  T  R  A  P  N  *  S  S  A  S  F  T  F  T  S  V  S
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           R  H  L  G  S  T  C  G  V  S  R  *  C  R  K  S  E  G  A  N 
+          E  I  Y  G  V  R  A  G  L  Q  D  E  A  D  K  V  K  V  L  T  
+            S  T  V  W  E  H  V  W  S  I  K  L  M  K  *  K  *  W  R  K
+
+          
+          CTGGGTGAGCAAAAACAGGAAGGCAAAATGCCGCAAAAAAGGGAATAAGGGCGACACGGA
+                   4630      4640      4650      4660      4670      4680      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          GACCCACTCGTTTTTGTCCTTCCGTTTTACGGCGTTTTTTCCCTTATTCCCGCTGTGCCT
+          
+
+          L  G  E  Q  K  Q  E  G  K  M  P  Q  K  R  E  *  G  R  H  G  
+           W  V  S  K  N  R  K  A  K  C  R  K  K  G  N  K  G  D  T  E 
+            G  *  A  K  T  G  R  Q  N  A  A  K  K  G  I  R  A  T  R  K
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           R  P  S  C  F  C  S  P  L  I  G  C  F  L  S  Y  P  R  C  P 
+          E  P  H  A  F  V  P  L  C  F  A  A  F  F  P  I  L  A  V  R  
+            Q  T  L  L  F  L  F  A  F  H  R  L  F  P  F  L  P  S  V  S
+
+          
+          AATGTTGAATACTCATACTCTTCCTTTTTCAATATTATTGAAGCATTTATCAGGGTTATT
+                   4690      4700      4710      4720      4730      4740      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          TTACAACTTATGAGTATGAGAAGGAAAAAGTTATAATAACTTCGTAAATAGTCCCAATAA
+          
+
+          N  V  E  Y  S  Y  S  S  F  F  N  I  I  E  A  F  I  R  V  I  
+           M  L  N  T  H  T  L  P  F  S  I  L  L  K  H  L  S  G  L  L 
+            C  *  I  L  I  L  F  L  F  Q  Y  Y  *  S  I  Y  Q  G  Y  C
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           F  T  S  Y  E  Y  E  E  K  K  L  I  I  S  A  N  I  L  T  I 
+          F  H  Q  I  S  M  S  K  R  K  *  Y  *  Q  L  M  *  *  P  *  
+            I  N  F  V  *  V  R  G  K  E  I  N  N  F  C  K  D  P  N  N
+
+          
+          GTCTCATGAGCGGATACATATTTGAATGTATTTAGAAAAATAAACAAATAGGGGTTCCGC
+                   4750      4760      4770      4780      4790      4800      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CAGAGTACTCGCCTATGTATAAACTTACATAAATCTTTTTATTTGTTTATCCCCAAGGCG
+          
+
+          V  S  *  A  D  T  Y  L  N  V  F  R  K  I  N  K  *  G  F  R  
+           S  H  E  R  I  H  I  *  M  Y  L  E  K  *  T  N  R  G  S  A 
+            L  M  S  G  Y  I  F  E  C  I  *  K  N  K  Q  I  G  V  P  R
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           T  E  H  A  S  V  Y  K  F  T  N  L  F  I  F  L  Y  P  N  R 
+          Q  R  M  L  P  Y  M  N  S  H  I  *  F  F  L  C  I  P  T  G  
+            D  *  S  R  I  C  I  Q  I  Y  K  S  F  Y  V  F  L  P  E  A
+
+                                      ZraI
+                                      | AatII
+                                      \ \
+          GCACATTTCCCCGAAAAGTGCCACCTGACGTCTAAGAAACCATTATTATCATGACATTAA
+                   4810      4820      4830      4840      4850      4860      
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+          CGTGTAAAGGGGCTTTTCACGGTGGACTGCAGATTCTTTGGTAATAATAGTACTGTAATT
+                                    / /
+                                    | ZraI
+                                    AatII
+
+          A  H  F  P  E  K  C  H  L  T  S  K  K  P  L  L  S  *  H  *  
+           H  I  S  P  K  S  A  T  *  R  L  R  N  H  Y  Y  H  D  I  N 
+            T  F  P  R  K  V  P  P  D  V  *  E  T  I  I  I  M  T  L  T
+          ----:----|----:----|----:----|----:----|----:----|----:----|
+           A  C  K  G  S  F  H  W  R  V  D  L  F  G  N  N  D  H  C  * 
+          R  V  N  G  R  F  T  G  G  S  T  *  S  V  M  I  I  M  V  N  
+            C  M  E  G  F  L  A  V  Q  R  R  L  F  W  *  *  *  S  M  L
+
+          
+          CCTATAAAAATAGGCGTATCACGAGGCCCTTTCGTCTTCAC
+                   4870      4880      4890      4900      
+          ----:----|----:----|----:----|----:----|-
+          GGATATTTTTATCCGCATAGTGCTCCGGGAAAGCAGAAGTG
+          
+
+          P  I  K  I  G  V  S  R  G  P  F  V  F  T                    
+           L  *  K  *  A  Y  H  E  A  L  S  S  S  X                   
+            Y  K  N  R  R  I  T  R  P  F  R  L  H                     
+          ----:----|----:----|----:----|----:----|-
+           G  I  F  I  P  T  D  R  P  G  K  T  K  V                   
+          V  *  L  F  L  R  I  V  L  G  K  R  R  *                    
+            R  Y  F  Y  A  Y  *  S  A  R  E  D  E                     
+
+
+# Enzymes that cut  Frequency	Isoschizomers
+     AatII	    1	
+      AccI	    1	
+     AlwNI	    1	
+      ApaI	    1	
+     AvrII	    1	AspA2I
+     BamHI	    1	
+      BbeI	    1	
+      BclI	    1	
+      BglI	    1	
+      BmtI	    1	BspOI
+    Bpu10I	    1	
+     BsaXI	    1	
+     BsePI	    1	
+     BseRI	    1	
+   Bsp120I	    1	PspOMI
+ BspLU11I*	    1	PciI
+     BspMI	    1	Acc36I
+   BspMII*	    1	AccIII
+    BssNAI	    1	Bst1107I,BstZ17I
+    BstEII	    1	
+     CspCI	    1	
+      DinI	    1	EgeI,EheI,SfoI
+  Eam1105I	    1	AhdI
+    Eco31I	    1	BsaI
+     EcoRI	    1	
+     EcoRV	    1	Eco32I
+   EcoT22I	    1	Mph1103I,NsiI,Zsp2I
+     EspI*	    1	BlpI
+     FspAI	    1	
+   HgiJII*	    1	BanII
+    HindII	    1	HincII
+   HindIII	    1	
+      HpaI	    1	
+      KasI	    1	
+      MfeI	    1	
+      MluI	    1	
+      NarI	    1	Mly113I
+      NheI	    1	AsuNHI
+      NotI	    1	CciNI
+      OliI	    1	AleI
+      PasI	    1	
+      PfoI	    1	
+      PsiI	    1	AanI
+      PstI	    1	BspMAI
+      PvuI	    1	BpvUI
+      SapI	    1	BspQI
+      SphI	    1	BbuI
+      SwaI	    1	SmiI
+      TstI	    1	
+   Tth111I	    1	AspI
+      XhoI	    1	PaeR7I
+   XmaIII*	    1	BseX3I
+      XmnI	    1	Asp700I
+      ZraI	    1	
+
+
+
+# Enzymes which cut less frequently than the MINCUTS criterion
+# Enzymes < MINCUTS Frequency	Isoschizomers
+
+
+
+# Enzymes which cut more frequently than the MAXCUTS criterion
+# Enzymes > MAXCUTS Frequency	Isoschizomers
+      AciI	    60	
+      AclI	    4	
+      AcyI	    4	
+    AflIII	    2	
+   AhaIII*	    6	DraI
+      AluI	    29	
+     ApaLI	    4	Alw44I
+      ApoI	    5	AcsI
+     AsuI*	    13	AspS9I
+      AvaI	    2	BmeT110I
+     AvaII	    5	
+      BalI	    2	
+      BbvI	    17	
+    BbvII*	    5	BbsI
+      BccI	    13	
+   Bce83I*	    5	BpuEI
+     BceAI	    5	
+      BcgI	    2	
+     BciVI	    3	
+      BdaI	    4	
+     BetI*	    5	BsaWI
+      BfiI	    5	
+     BinI*	    11	AclWI
+      BisI	    64	GluI
+      BlsI	    32	
+  BmgT120I	    13	
+     BsaAI	    2	
+     BseBI	    11	Bst2UI,BstNI,BstOI,MvaI
+     BseGI	    7	
+    BseMII	    11	
+     BseSI	    6	BaeGI
+     BseYI	    4	
+      BsgI	    3	
+     BsiI*	    3	BauI
+    BsiYI*	    10	AfiI
+     BsmAI	    8	Alw26I
+      BsmI	    2	BsaMI
+  Bsp1407I	    2	
+    BspCNI	    11	
+     BspHI	    3	
+     BsrBI	    4	AccBSI
+     BsrDI	    5	Bse3DI
+      BsrI	    23	Bse1I
+     BssKI	    19	BstSCI,StyD4I
+    BstAPI	    2	
+    BstF5I	    6	
+    BstKTI	    19	
+     BstXI	    5	
+     BtgZI	    4	
+     BtsCI	    6	
+      BtsI	    4	
+     Cac8I	    23	BstC8I
+    CauII*	    8	AsuC2I
+    Cfr10I	    2	Bse118I
+      CfrI	    5	AcoI
+     Csp6I	    8	CviQI,RsaNI
+    CviAII	    25	
+     CviJI	    75	
+    CviRI*	    19	HpyCH4V
+      DdeI	    13	BstDEI
+      DpnI	    19	
+     DraII	    3	
+      DrdI	    2	AasI
+     DsaI*	    3	BstDSI
+      EciI	    5	
+    Eco57I	    2	AcuI
+   Eco57MI	    6	
+    EcoRII	    11	AjnI
+     Esp3I	    3	BsmBI
+      FalI	    2	
+      FatI	    25	
+      FauI	    11	
+   FnuDII*	    25	AccII
+      FokI	    7	
+      GlaI	    29	
+      GsaI	    4	
+      GsuI	    4	BpmI
+     HaeII	    5	BstH2I
+    HaeIII	    20	BshFI
+      HgaI	    9	CseI
+    HgiAI*	    5	Alw21I
+    HgiCI*	    4	AccB1I
+      HhaI	    29	AspLEI
+     Hin4I	    7	
+   Hin4II*	    8	HpyAV
+     Hin6I	    29	HinP1I,HspAI
+     HinfI	    13	
+     HpaII	    20	BsiSI
+      HphI	    24	AsuHPI
+  Hpy166II	    11	Hpy8I
+Hpy178III*	    20	Hpy188III
+   Hpy188I	    16	
+    Hpy99I	    7	
+  Ksp632I*	    3	Bst6I
+      MaeI	    8	BfaI
+     MaeII	    10	HpyCH4IV
+    MaeIII	    16	
+      MboI	    19	BfuCI
+     MboII	    14	
+     McrI*	    5	Bsh1285I
+      MlyI	    7	
+      MmeI	    3	
+      MnlI	    19	
+      MseI	    29	
+      MslI	    9	
+     MstI*	    2	Acc16I
+      MwoI	    25	BstMWI
+      NcoI	    2	Bsp19I
+    NlaIII	    25	FaeI
+     NlaIV	    14	BmiI
+   NmeAIII	    2	
+   NspBII*	    9	MspA1I
+      NspI	    4	BstNSI
+      PacI	    2	
+     PflMI	    2	AccB7I
+      PleI	    7	
+      PpiI	    2	
+     PpuMI	    2	
+     PvuII	    3	
+      RsaI	    8	AfaI
+      ScaI	    2	AssI
+      SchI	    6	
+     ScrFI	    19	Bme1390I
+      SduI	    7	Bsp1286I
+     SecI*	    9	BsaJI
+      SetI	    59	
+     SfaNI	    15	LweI
+     SfeI*	    4	BfmI
+      SmlI	    6	
+      SspI	    2	
+      StyI	    3	BssT1I
+      TaiI	    10	
+      TaqI	    9	
+     TaqII	    8	
+      TatI	    5	
+      TauI	    15	
+      TfiI	    6	PfeI
+      TseI	    17	ApeKI
+      TsoI	    5	
+    Tsp45I	    5	NmuCI
+   Tsp4CI*	    18	Bst4CI
+    TspDTI	    13	
+     TspEI	    22	Sse9I
+    TspGWI	    2	
+     TspRI	    13	TscAI
+      VspI	    3	AseI
+      XbaI	    2	
+      XcmI	    3	
+     XhoII	    8	BstX2I
+
+
+
+# Enzymes that do not cut
+
+AarI      AbsI      Acc65I    AflII     AgeI      AjuI      AlfI      AloI      
+AscI      Asp718I   AsuII     BaeI      BarI      BbvCI     BglII     BplI      
+BsaBI     BslFI     BsmFI     BtrI      Cfr9I     ClaI      DraIII    Ecl136II  
+Eco47III  EcoICRI   EcoNI     FaqI      Fnu4HI    FseI      KpnI      MauBI     
+MroNI     NaeI      NdeI      NgoMIV    NruI      PmaCI     PmeI      PshAI     
+PspXI     PsrI      RsrII     SacI      SacII     SalI      SanDI     SauI*     
+SexAI     SfiI      SgfI      SgrAI     SgrDI     SmaI      SnaBI     SpeI      
+SplI*     SrfI      Sse232I*  Sse8387I  StuI      TspMI     XmaCI     XmaI      
+
+
+
+# No. of cutting enzymes which do not match the
+# SITELEN, BLUNT, STICKY, COMMERCIAL, AMBIGUOUS criteria
+
+72
+
