@@ -31,9 +31,47 @@ func TestReverse(t *testing.T) {
 	})
 }
 
+func TestReverseComplement(t *testing.T) {
+	sequence := "CTCGAGCTTAATTAACAACACCATTTGTCGAGAAATCATAAAAAATTTATTTGCTTTGTGAGCGGATAACAATTAT"
+	got := ReverseComplement(sequence)
+	want := "ATAATTGTTATCCGCTCACAAAGCAAATAAATTTTTTATGATTTCTCGACAAATGGTGTTGTTAATTAAGCTCGAG"
+	if got != want {
+		t.Errorf("\nexpected %s\n     got %s\n", want, got)
+	}
+}
+
 func assertCorrectMessage(t testing.TB, got, want string) {
 	t.Helper()
 	if got != want {
 		t.Errorf("got %q want %q", got, want)
+	}
+}
+
+func TestNewDnaFromSequence(t *testing.T) {
+	sequence := "CTCGAGCTTAATTAACAACACCATTTGTCGAGAAATCATAAAAAATTTATTTGCTTTGTGAGCGGATAACAATTAT"
+	got := NewDnaFromSequence(sequence)
+	wantP := "CTCGAGCTTAATTAACAACACCATTTGTCGAGAAATCATAAAAAATTTATTTGCTTTGTGAGCGGATAACAATTAT"
+	wantC := "ATAATTGTTATCCGCTCACAAAGCAAATAAATTTTTTATGATTTCTCGACAAATGGTGTTGTTAATTAAGCTCGAG"
+	if got.Parent != wantP {
+		t.Errorf("\nexpected %s\n     got %s\n", wantP, got.Parent)
+	}
+	if got.Complement != wantC {
+		t.Errorf("\nexpected %s\n     got %s\n", wantC, got.Complement)
+	}
+}
+
+func TestNewDnaFromFasta(t *testing.T) {
+	fastaFile := "test_file.fa"
+	expectedName := "pTest"
+	expectedSequence := "CTCGAGCTTAATTAACAACACCATTTGTCGAGAAATCATAAAAAATTTATTTGCTTTGTGAGCGGATAACAATTAT"
+	gotDna := NewDnaFromFasta(fastaFile)
+	if gotDna.File != fastaFile {
+		t.Errorf("expected filename %s, got %s", fastaFile, gotDna.File)
+	}
+	if gotDna.Name != expectedName {
+		t.Errorf("expected header name '%s', got '%s'", expectedName, gotDna.Name)
+	}
+	if gotDna.Parent != expectedSequence {
+		t.Errorf("\nexpected %s\n     got %s\n", expectedSequence, gotDna.Parent)
 	}
 }

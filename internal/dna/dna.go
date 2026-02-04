@@ -6,6 +6,31 @@ import (
 	"os"
 )
 
+type Dna struct {
+	File string
+	Name string
+	Parent string
+	Complement string
+}
+
+// Creates a type Dna struct from a sequence
+func NewDnaFromSequence(sequence string) Dna{
+	return Dna{Parent: sequence,
+		Complement: ReverseComplement(sequence),
+	}
+}
+
+// Creates a type Dna struct from a single fasta file
+func NewDnaFromFasta(filename string ) Dna{
+	header, sequence := FastaParser(filename)
+	return Dna{
+		File: filename,
+		Name: header,
+		Parent: sequence,
+		Complement: ReverseComplement(sequence),
+	}
+}
+
 // Opens a fasta file and returns the name and a string.
 // Limited to single fasta sequence files.
 func FastaParser(filename string) (name, sequence string) {
@@ -40,4 +65,22 @@ func reverse(s string) string {
 
 	// return the reversed string.
 	return string(rns)
+}
+
+// Takes a parent DNA strand and returns the complement strand.
+func ReverseComplement(parent string) (complement string) {
+
+	reverseSeq := reverse(parent)
+	for _, base := range reverseSeq {
+		if base == 'A' {
+			complement += string('T')
+		} else if base == 'C' {
+			complement += string('G')
+		} else if base == 'G' {
+			complement += string('C')
+		} else if base == 'T' {
+			complement += string('A')
+		}
+	}
+	return complement
 }
