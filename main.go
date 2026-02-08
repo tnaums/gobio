@@ -9,6 +9,10 @@ import (
 
 func main() {
 	fmt.Println("Welcome to gobio!")
+	if len(os.Args) != 3 {
+		fmt.Println("Usage: go run . <sequence.fa> <dna_search_string>")
+	}
+
 	fileName := os.Args[1]
 	subseq := os.Args[2]
 	dnaStruct := dna.NewDnaFromFasta(fileName)
@@ -23,6 +27,8 @@ func main() {
 	fmt.Println("--------------------")
 	y := longestMatch(dnaStruct.Complement, subseq)
 	fmt.Println(y)
+
+	fmt.Println(dnaStruct)
 
 }
 

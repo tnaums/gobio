@@ -13,6 +13,21 @@ type Dna struct {
 	Complement string
 }
 
+func(d Dna) String() string{
+	s := ">" + d.Name + "\n"
+	for idx, base := range d.Parent {
+		if idx == 0 {s += string(base); continue}
+		if idx % 60 == 0{
+			s += "\n"			
+			s += string(base)
+			continue
+		}
+		s += string(base)
+		
+	}
+	return s
+}
+
 // Creates a type Dna struct from a sequence
 func NewDnaFromSequence(sequence string) Dna{
 	return Dna{Parent: sequence,
