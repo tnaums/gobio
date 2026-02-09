@@ -28,7 +28,7 @@ func main() {
 	y := longestMatch(dnaStruct.Complement, subseq)
 	fmt.Println(y)
 
-	fmt.Println(dnaStruct)
+	dnaStruct.Translate()
 
 }
 
