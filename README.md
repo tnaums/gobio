@@ -9,7 +9,7 @@ Package dna provides a Dna type to store DNA sequence information and provides
 simple Dna methods.
 
 VARIABLES
-```
+```go
 var GeneticCode = map[string]byte{
 	"TTT": 'F', "TTC": 'F', "TTG": 'L', "TTA": 'L',
 	"TCT": 'S', "TCC": 'S', "TCA": 'S', "TCG": 'S',
@@ -33,7 +33,7 @@ var GeneticCode = map[string]byte{
 
 
 FUNCTIONS
-```
+```go
 func FastaParser(filename string) (name, sequence string)
     The FastaParser function opens a fasta file and extracts the sequence name
     from the header and creates a sequence string from the sequence.
