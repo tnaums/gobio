@@ -1,8 +1,12 @@
+// Module gobio provides tools for reading, parsing,
+// and analyzing DNA and protein sequences from
+// standard flat file formats.
 package main
 
 import (
 	"fmt"
 	"os"
+	//	"sort"
 	"strings"
 	"github.com/tnaums/gobio/internal/dna"
 )
@@ -28,9 +32,21 @@ func main() {
 	y := longestMatch(dnaStruct.Complement, subseq)
 	fmt.Println(y)
 
-	dnaStruct.Translate()
+	orfs := dnaStruct.Translate()
+
+	// sort.Slice(orfs, func(i, j int) bool {
+	// 	return len(orfs[i]) < len(orfs[j])
+	// })	
+	for _, orf := range orfs {
+		if len(orf) > 200 {
+			fmt.Println(orf)
+			fmt.Printf("length: %d\n\n", len(orf))
+		}
+	}
 
 }
+
+
 
 func longestMatch(seq, subseq string) int {
 	sub := ""

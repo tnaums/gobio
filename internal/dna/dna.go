@@ -1,3 +1,5 @@
+// Package dna provides a Dna type to store DNA
+// sequence information and provides simple Dna methods.
 package dna
 
 import (
@@ -6,6 +8,9 @@ import (
 	"os"
 )
 
+// The Dna struct contains the File name of the flat file, the
+// Name of the sequence, the Parent DNA sequence, and the
+// Complement DNA sequence.
 type Dna struct {
 	File       string
 	Name       string
@@ -13,6 +18,8 @@ type Dna struct {
 	Complement string
 }
 
+// GeneticCode is a map containing the standard genetic
+// code.
 var GeneticCode = map[string]byte{
 	"TTT": 'F', "TTC": 'F', "TTG": 'L', "TTA": 'L',
 	"TCT": 'S', "TCC": 'S', "TCA": 'S', "TCG": 'S',
@@ -32,29 +39,36 @@ var GeneticCode = map[string]byte{
 	"GGT": 'G', "GGC": 'G', "GGG": 'G', "GGA": 'G',
 }
 
-func (d Dna) Translate() {
-	orfs := []string{}
+// Translate converts DNA sequences to a slice of strings
+// containing all possible open reading frames.
+func (d Dna) Translate() (orfs []string){
+	orfs = []string{}
 	current := ""
-	fwdSequence := d.Parent
-	for j := 0; j < 3; j++ {
-		for i := j; i < len(fwdSequence)-2; i = i + 3 {
-			first := string(fwdSequence[i])
-			second := string(fwdSequence[i+1])
-			third := string(fwdSequence[i+2])
-			codon := first + second + third
-			aa := string(GeneticCode[codon])
-			current += aa
-			if aa == "*" {
-				orfs = append(orfs, current)
-				current = ""
-				continue
+	sequences := []string{d.Parent, d.Complement}
+	for _, sequence := range sequences {
+		for j := 0; j < 3; j++ {       // j is the start index for each frame
+			for i := j; i < len(sequence)-2; i = i + 3 {
+				first := string(sequence[i])
+				second := string(sequence[i+1])
+				third := string(sequence[i+2])
+				codon := first + second + third
+				aa := string(GeneticCode[codon])
+				current += aa
+				if aa == "*" {
+					orfs = append(orfs, current)
+					current = ""
+					continue
+				}
 			}
 		}
+		orfs = append(orfs, current)
 	}
-	orfs = append(orfs, current)
-	fmt.Printf("number of orfs: %d", len(orfs))
+	fmt.Printf("number of orfs: %d\n\n", len(orfs))
+	return orfs
 }
 
+// String is a Dna method for printing the sequence in
+// fasta format.
 func (d Dna) String() string {
 	s := ">" + d.Name + "\n"
 	for idx, base := range d.Parent {
@@ -73,14 +87,17 @@ func (d Dna) String() string {
 	return s
 }
 
-// Creates a type Dna struct from a sequence
+// NewDNAFromSequence is a function that creates a
+// type Dna struct from a sequence string.
 func NewDnaFromSequence(sequence string) Dna {
 	return Dna{Parent: sequence,
 		Complement: ReverseComplement(sequence),
 	}
 }
 
-// Creates a type Dna struct from a single fasta file
+// NewDnaFromFasta is a function that creates a
+// type Dna struct from a fasta file that contains
+// a single fasta entry.
 func NewDnaFromFasta(filename string) Dna {
 	header, sequence := FastaParser(filename)
 	return Dna{
@@ -91,8 +108,9 @@ func NewDnaFromFasta(filename string) Dna {
 	}
 }
 
-// Opens a fasta file and returns the name and a string.
-// Limited to single fasta sequence files.
+// The FastaParser function opens a fasta file and extracts
+// the sequence name from the header and creates a sequence
+// string from the sequence.
 func FastaParser(filename string) (name, sequence string) {
 	name = ""
 	sequence = ""
@@ -113,8 +131,8 @@ func FastaParser(filename string) (name, sequence string) {
 
 }
 
-// Returns a reversed string. A helper function to create
-// complement DNA strand from coding strand.
+// Returns a reversed string. A helper function called by
+// func ReverseComplement.
 func reverse(s string) string {
 	rns := []rune(s) // convert to rune
 	for i, j := 0, len(rns)-1; i < j; i, j = i+1, j-1 {
@@ -128,7 +146,8 @@ func reverse(s string) string {
 	return string(rns)
 }
 
-// Takes a parent DNA strand and returns the complement strand.
+// Function ReverseComplement takes a DNA sequence as a
+// string and returns the complement DNA strand as a string.
 func ReverseComplement(parent string) (complement string) {
 
 	reverseSeq := reverse(parent)
