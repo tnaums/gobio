@@ -27,7 +27,8 @@ var GeneticCode = map[string]byte{
 	"GCT": 'A', "GCC": 'A', "GCA": 'A', "GCG": 'A',
 	"GAT": 'D', "GAC": 'D', "GAG": 'E', "GAA": 'E',
 	"GGT": 'G', "GGC": 'G', "GGG": 'G', "GGA": 'G',
-}```
+}
+```
     GeneticCode is a map containing the standard genetic code.
 
 
@@ -39,21 +40,23 @@ func FastaParser(filename string) (name, sequence string)
 
 func ReverseComplement(parent string) (complement string)
     Function ReverseComplement takes a DNA sequence as a string and returns the
-    complement DNA strand as a string.```
+    complement DNA strand as a string.
+```
 
 
 TYPES
-
+```go
 type Dna struct {
 	File       string
 	Name       string
 	Parent     string
 	Complement string
 }
+```
     The Dna struct contains the File name of the flat file, the Name of the
     sequence, the Parent DNA sequence, and the Complement DNA sequence.
-
-func NewDnaFromFasta(filename string) Dna
+```go
+func NewDnaFromFasta(filename string) Dna`
     NewDnaFromFasta is a function that creates a type Dna struct from a fasta
     file that contains a single fasta entry.
 
@@ -67,3 +70,4 @@ func (d Dna) String() string
 func (d Dna) Translate() (orfs []string)
     Translate converts DNA sequences to a slice of strings containing all
     possible open reading frames.
+```
