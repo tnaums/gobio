@@ -1,9 +1,8 @@
 * gobio
-** gobio
 Module gobio provides tools for reading, parsing, and analyzing DNA and protein
 sequences from standard flat file formats.
 
-* dna.go
+** dna.go
 package dna // import "github.com/tnaums/gobio/internal/dna"
 
 Package dna provides a Dna type to store DNA sequence information and provides
@@ -11,7 +10,7 @@ simple Dna methods.
 
 VARIABLES
 
-var GeneticCode = map[string]byte{
+`var GeneticCode = map[string]byte{
 	"TTT": 'F', "TTC": 'F', "TTG": 'L', "TTA": 'L',
 	"TCT": 'S', "TCC": 'S', "TCA": 'S', "TCG": 'S',
 	"TAT": 'Y', "TAC": 'Y', "TAG": '*', "TAA": '*',
@@ -28,19 +27,19 @@ var GeneticCode = map[string]byte{
 	"GCT": 'A', "GCC": 'A', "GCA": 'A', "GCG": 'A',
 	"GAT": 'D', "GAC": 'D', "GAG": 'E', "GAA": 'E',
 	"GGT": 'G', "GGC": 'G', "GGG": 'G', "GGA": 'G',
-}
+}`
     GeneticCode is a map containing the standard genetic code.
 
 
 FUNCTIONS
 
-func FastaParser(filename string) (name, sequence string)
+`func FastaParser(filename string) (name, sequence string)
     The FastaParser function opens a fasta file and extracts the sequence name
     from the header and creates a sequence string from the sequence.
 
 func ReverseComplement(parent string) (complement string)
     Function ReverseComplement takes a DNA sequence as a string and returns the
-    complement DNA strand as a string.
+    complement DNA strand as a string.`
 
 
 TYPES
