@@ -8,14 +8,24 @@ import (
 	"os"
 )
 
-// The Dna struct contains the File name of the flat file, the
-// Name of the sequence, the Parent DNA sequence, and the
-// Complement DNA sequence.
+// The Dna struct contains the File name of a fasta file (if present)
+// , the Name of the sequence (if present), the Parent DNA sequence,
+// and the Complement DNA sequence. The Orfs slice contains all
+// possible open reading frames based solely on translation.
 type Dna struct {
 	File       string
 	Name       string
 	Parent     string
 	Complement string
+	Orfs []Orf
+}
+
+// The Orf struct contains information for a possible
+// open reading frame.
+type Orf struct {
+	Strand    string
+	Frame     int
+	AminoAcid string
 }
 
 // GeneticCode is a map containing the standard genetic
@@ -39,14 +49,23 @@ var GeneticCode = map[string]byte{
 	"GGT": 'G', "GGC": 'G', "GGG": 'G', "GGA": 'G',
 }
 
-// Translate converts DNA sequences to a slice of strings
+// Translate converts DNA sequences to a slice of type Orf
 // containing all possible open reading frames.
-func (d Dna) Translate() (orfs []string){
-	orfs = []string{}
+func (d Dna) Translate() (orfs []Orf) {
+	orfs = []Orf{}
 	current := ""
+	complementFlag := true
 	sequences := []string{d.Parent, d.Complement}
+	strand := ""
 	for _, sequence := range sequences {
-		for j := 0; j < 3; j++ {       // j is the start index for each frame
+		if complementFlag {
+			complementFlag = false
+			strand = "Parent"
+		} else {
+			complementFlag = true
+			strand = "Complement"
+		}
+		for j := 0; j < 3; j++ { // j is the start index for each frame
 			for i := j; i < len(sequence)-2; i = i + 3 {
 				first := string(sequence[i])
 				second := string(sequence[i+1])
@@ -55,13 +74,23 @@ func (d Dna) Translate() (orfs []string){
 				aa := string(GeneticCode[codon])
 				current += aa
 				if aa == "*" {
-					orfs = append(orfs, current)
+					newOrf := Orf{
+						Strand:    strand,
+						Frame:     j + 1,
+						AminoAcid: current,
+					}
+					orfs = append(orfs, newOrf)
 					current = ""
 					continue
 				}
 			}
+			newOrf := Orf{
+				Strand:    strand,
+				Frame:     j + 1,
+				AminoAcid: current,
+			}
+			orfs = append(orfs, newOrf)
 		}
-		orfs = append(orfs, current)
 	}
 	fmt.Printf("number of orfs: %d\n\n", len(orfs))
 	return orfs
@@ -87,12 +116,14 @@ func (d Dna) String() string {
 	return s
 }
 
-// NewDNAFromSequence is a function that creates a
-// type Dna struct from a sequence string.
+// NewDNAFromSequence is a function that creates
+// a type Dna struct from a sequence string.
 func NewDnaFromSequence(sequence string) Dna {
-	return Dna{Parent: sequence,
+	newDna :=  Dna{Parent: sequence,
 		Complement: ReverseComplement(sequence),
 	}
+	newDna.Orfs = newDna.Translate()
+	return newDna
 }
 
 // NewDnaFromFasta is a function that creates a
@@ -100,16 +131,18 @@ func NewDnaFromSequence(sequence string) Dna {
 // a single fasta entry.
 func NewDnaFromFasta(filename string) Dna {
 	header, sequence := FastaParser(filename)
-	return Dna{
+	newDna := Dna{
 		File:       filename,
 		Name:       header,
 		Parent:     sequence,
 		Complement: ReverseComplement(sequence),
 	}
+	newDna.Orfs = newDna.Translate()
+	return newDna
 }
 
-// The FastaParser function opens a fasta file and extracts
-// the sequence name from the header and creates a sequence
+// The FastaParser function opens a fasta file, extracts
+// the sequence name from the header, and creates a sequence
 // string from the sequence.
 func FastaParser(filename string) (name, sequence string) {
 	name = ""
