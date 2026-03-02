@@ -11,7 +11,7 @@ import (
 func main() {
 	fmt.Println("Welcome to gobio!")
 	if len(os.Args) != 2 {
-		fmt.Println("Usage: go run . <sequence.fa> <dna_search_string>")
+		fmt.Println("Usage: go run . <sequence.fa>")
 	}
 
 	fileName := os.Args[1]
