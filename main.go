@@ -15,13 +15,15 @@ func main() {
 	}
 
 	fileName := os.Args[1]
-	dnaStruct := dna.NewDnaFromFasta(fileName)
+	dnaStruct, err := dna.NewDnaFromFasta(fileName)
+	if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+	}
 
 	for _, orf := range dnaStruct.Orfs {
 		if len(orf.AminoAcid) > 200 {
-			fmt.Printf("Strand: %s\nFrame: %d\n", orf.Strand, orf.Frame)
-			fmt.Println(orf.AminoAcid)
-			fmt.Printf("length: %d\n\n", len(orf.AminoAcid))
+			fmt.Println(orf)
 		}
 	}
 

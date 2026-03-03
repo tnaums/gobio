@@ -1,12 +1,13 @@
 package dna
 
 import (
-	//	"fmt"
+	"strings"
 	"testing"
 )
 
 func TestFastaParser(t *testing.T) {
-	name, sequence := FastaParser("test_file.fa")
+	r := strings.NewReader(">pTest\nCTCGAGCTTAATTAACAACACCATTTGTCGAGAAATCATAAAAAATTTATTTGCTTTGTGAGCGGATAACAATTAT\n")
+	name, sequence := FastaParser(r)
 	ename := "pTest"
 	esequence := "CTCGAGCTTAATTAACAACACCATTTGTCGAGAAATCATAAAAAATTTATTTGCTTTGTGAGCGGATAACAATTAT"
 	if name != ename {
@@ -16,7 +17,6 @@ func TestFastaParser(t *testing.T) {
 		t.Errorf("\nexpected: %s\n     got: %s\n", esequence, sequence)
 	}
 }
-
 
 func TestReverse(t *testing.T) {
 	t.Run("reversing a simple string", func(t *testing.T) {
@@ -64,7 +64,7 @@ func TestNewDnaFromFasta(t *testing.T) {
 	fastaFile := "test_file.fa"
 	expectedName := "pTest"
 	expectedSequence := "CTCGAGCTTAATTAACAACACCATTTGTCGAGAAATCATAAAAAATTTATTTGCTTTGTGAGCGGATAACAATTAT"
-	gotDna := NewDnaFromFasta(fastaFile)
+	gotDna, _ := NewDnaFromFasta(fastaFile)
 	if gotDna.File != fastaFile {
 		t.Errorf("expected filename %s, got %s", fastaFile, gotDna.File)
 	}

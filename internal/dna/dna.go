@@ -5,6 +5,7 @@ package dna
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -17,7 +18,7 @@ type Dna struct {
 	Name       string
 	Parent     string
 	Complement string
-	Orfs []Orf
+	Orfs       []Orf
 }
 
 // The Orf struct contains information for a possible
@@ -96,7 +97,7 @@ func (d Dna) Translate() (orfs []Orf) {
 	return orfs
 }
 
-// String is a Dna method for printing the sequence in
+// Dna.String is a Dna method for printing the sequence in
 // fasta format.
 func (d Dna) String() string {
 	s := ">" + d.Name + "\n"
@@ -116,10 +117,30 @@ func (d Dna) String() string {
 	return s
 }
 
+// Orf.String is an Orf method for printing the sequence in
+// fasta format.
+func (o Orf) String() string {
+	s := fmt.Sprintf(">%s|Frame_%d|Length%d\n", o.Strand, o.Frame, len(o.AminoAcid))
+	for idx, base := range o.AminoAcid {
+		if idx == 0 {
+			s += string(base)
+			continue
+		}
+		if idx%60 == 0 {
+			s += "\n"
+			s += string(base)
+			continue
+		}
+		s += string(base)
+
+	}
+	return s
+}
+
 // NewDNAFromSequence is a function that creates
 // a type Dna struct from a sequence string.
 func NewDnaFromSequence(sequence string) Dna {
-	newDna :=  Dna{Parent: sequence,
+	newDna := Dna{Parent: sequence,
 		Complement: ReverseComplement(sequence),
 	}
 	newDna.Orfs = newDna.Translate()
@@ -129,8 +150,13 @@ func NewDnaFromSequence(sequence string) Dna {
 // NewDnaFromFasta is a function that creates a
 // type Dna struct from a fasta file that contains
 // a single fasta entry.
-func NewDnaFromFasta(filename string) Dna {
-	header, sequence := FastaParser(filename)
+func NewDnaFromFasta(filename string) (Dna, error) {
+	file, err := os.Open(filename)
+	if err != nil {
+		return Dna{}, err
+	}
+
+	header, sequence := FastaParser(file)
 	newDna := Dna{
 		File:       filename,
 		Name:       header,
@@ -138,20 +164,16 @@ func NewDnaFromFasta(filename string) Dna {
 		Complement: ReverseComplement(sequence),
 	}
 	newDna.Orfs = newDna.Translate()
-	return newDna
+	return newDna, nil
 }
 
-// The FastaParser function opens a fasta file, extracts
+// The FastaParser function reads a fasta file, extracts
 // the sequence name from the header, and creates a sequence
 // string from the sequence.
-func FastaParser(filename string) (name, sequence string) {
+func FastaParser(r io.Reader) (name, sequence string) {
 	name = ""
 	sequence = ""
-	file, err := os.Open(filename)
-	if err != nil {
-		fmt.Printf("Error opening file %s", filename)
-	}
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
 		if name == "" {
 			name = scanner.Text()
