@@ -40,6 +40,8 @@ func main() {
 	// 	fmt.Println()
 	// }
 	proteins := make(chan protein.Protein)
+	selected := make([]protein.Protein, 0)
+	
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -48,9 +50,15 @@ func main() {
 	go protein.ProteinPipeFasta(file, proteins)
 
 	for p := range proteins {
-		fmt.Println(p.Header)
-		fmt.Println(p.AminoAcid)
-		fmt.Println()
-	}	
+		if p.Mass > 15 && p.Mass < 20 {
+			selected = append(selected, p)
+			fmt.Println(p.Header)
+			fmt.Println(p.AminoAcid)
+			fmt.Println(p.Mass)
+			fmt.Println()
+		}
+
+	}
+	fmt.Printf("Number of selected proteins is: %d\n", len(selected))
 
 }

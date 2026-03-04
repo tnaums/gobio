@@ -1,3 +1,4 @@
+# dna.go
 package dna // import "github.com/tnaums/gobio/internal/dna"
 
 Package dna provides a Dna type to store DNA sequence information and provides
@@ -81,7 +82,7 @@ func (o Orf) String() string
     Orf.String prints the sequence of the orf in fasta format
 ```
 
-## protein.go
+# protein.go
 package protein // import "github.com/tnaums/gobio/internal/protein"
 
 Package protein provides a protein type to store protein sequence information

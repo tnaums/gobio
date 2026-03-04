@@ -10,10 +10,12 @@ import (
 )
 
 // Contains header and amino acid sequence, parsed from
-// fasta file.
+// fasta file. Mass can be calculated from AminoAcid by
+// calling calculateMass(aaSequence)
 type Protein struct {
 	Header    string
 	AminoAcid string
+	Mass      float64
 }
 
 // NewProteinFromFasta creates a slice of type Protein from a fasta file
@@ -30,6 +32,7 @@ func NewProteinFromFasta(filename string) ([]Protein, error) {
 		newProtein := Protein{
 			Header:    data[i],
 			AminoAcid: data[i+1],
+			Mass:      calculateMass(data[i+1]),
 		}
 		returnSlice = append(returnSlice, newProtein)
 	}
@@ -45,7 +48,7 @@ func FastaParser(r io.Reader) (data []string) {
 	sequence := ""
 	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), ">"){
+		if strings.HasPrefix(scanner.Text(), ">") {
 			if !start {
 				data = append(data, sequence)
 				sequence = ""
@@ -72,9 +75,9 @@ func ProteinPipeFasta(r io.Reader, out chan<- Protein) {
 	sequence := ""
 	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), ">"){
+		if strings.HasPrefix(scanner.Text(), ">") {
 			if !start {
-				out <- Protein{name, sequence}
+				out <- Protein{name, sequence, calculateMass(sequence)}
 				sequence = ""
 			}
 			name = scanner.Text()
@@ -84,6 +87,23 @@ func ProteinPipeFasta(r io.Reader, out chan<- Protein) {
 			sequence += scanner.Text()
 		}
 	}
-	out <- Protein{name, sequence}
+	out <- Protein{name, sequence, calculateMass(sequence)}
 	close(out)
+}
+
+// map of amino acid average masses
+var averageMass = map[string]float64{
+	"G": 57.05177, "A": 71.07855, "S": 87.07796, "P": 97.11623,
+	"V": 99.13211, "T": 101.10474, "C": 103.14464, "I": 113.15890,
+	"L": 113.15890, "N": 114.10354, "D": 115.08826, "Q": 128.13032,
+	"K": 128.17358, "E": 129.11504, "M": 131.19820, "H": 137.14062,
+	"F": 147.17571, "R": 156.18707, "Y": 163.17512, "W": 186.21220,
+}
+
+func calculateMass(aa string) (mass float64) {
+	mass = 18.000
+	for _, residue := range aa {
+		mass = mass + averageMass[string(residue)]
+	}
+	return mass / 1000
 }
