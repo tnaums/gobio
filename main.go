@@ -5,7 +5,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"github.com/tnaums/gobio/internal/dna"
+	//	"github.com/tnaums/gobio/internal/dna"
+	"github.com/tnaums/gobio/internal/protein"	
 )
 
 func main() {
@@ -15,16 +16,41 @@ func main() {
 	}
 
 	fileName := os.Args[1]
-	dnaStruct, err := dna.NewDnaFromFasta(fileName)
-	if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
-	}
+	// dnaStruct, err := dna.NewDnaFromFasta(fileName)
+	// if err != nil {
+	// 		fmt.Fprintln(os.Stderr, err)
+	// 		os.Exit(1)
+	// }
 
-	for _, orf := range dnaStruct.Orfs {
-		if len(orf.AminoAcid) > 200 {
-			fmt.Println(orf)
-		}
+	// for _, orf := range dnaStruct.Orfs {
+	// 	if len(orf.AminoAcid) > 200 {
+	// 		fmt.Println(orf)
+	// 	}
+	// }
+
+	// p, err := protein.NewProteinFromFasta("sequences/test_file.fa")
+	// if err != nil {
+	// 	fmt.Fprintln(os.Stderr, err)
+	// 	os.Exit(1)
+	// }
+
+	// for _, protein := range p {
+	// 	fmt.Println(protein.Header)
+	// 	fmt.Println(protein.AminoAcid)
+	// 	fmt.Println()
+	// }
+	proteins := make(chan protein.Protein)
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
+	go protein.ProteinPipeFasta(file, proteins)
+
+	for p := range proteins {
+		fmt.Println(p.Header)
+		fmt.Println(p.AminoAcid)
+		fmt.Println()
+	}	
 
 }
