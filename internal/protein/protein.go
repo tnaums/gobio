@@ -9,16 +9,15 @@ import (
 	"strings"
 )
 
-// This initial version of the Protein struct contains only
-// the protein sequence and the fasta header
+// Contains header and amino acid sequence, parsed from
+// fasta file.
 type Protein struct {
 	Header    string
 	AminoAcid string
 }
 
-// NewProteinFromFasta is a function that creates a
-// slice of type Protein from a fasta file that contains
-// one or more protein sequences
+// NewProteinFromFasta creates a slice of type Protein from a fasta file
+// containing one or more protein sequences.
 func NewProteinFromFasta(filename string) ([]Protein, error) {
 	returnSlice := make([]Protein, 0)
 	file, err := os.Open(filename)
@@ -37,10 +36,9 @@ func NewProteinFromFasta(filename string) ([]Protein, error) {
 	return returnSlice, nil
 }
 
-// The FastaParser function reads a fasta file, extracts
-// the sequence name from the header, and creates a sequence
-// string from the sequence. Returns a slice of strings with
-// header followed by associated sequence.
+// FastaParser reads a fasta file, extracts the sequence name from
+// the header and creates a sequence string from the sequence.
+// Returns a slice of strings with alternating header and sequence.
 func FastaParser(r io.Reader) (data []string) {
 	start := true
 	name := ""

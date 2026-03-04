@@ -1,8 +1,3 @@
-# gobio
-Module gobio provides tools for reading, parsing, and analyzing DNA and protein
-sequences from standard flat file formats.
-
-## dna.go
 package dna // import "github.com/tnaums/gobio/internal/dna"
 
 Package dna provides a Dna type to store DNA sequence information and provides
@@ -29,20 +24,18 @@ var GeneticCode = map[string]byte{
 	"GGT": 'G', "GGC": 'G', "GGG": 'G', "GGA": 'G',
 }
 ```
-    GeneticCode is a map containing the standard genetic code.
+    GeneticCode is a map of the standard genetic code.
 
 
 FUNCTIONS
 ```go
-func FastaParser(filename string) (name, sequence string)
-    The FastaParser function opens a fasta file and extracts the sequence name
-    from the header and creates a sequence string from the sequence.
+func FastaParser(r io.Reader) (name, sequence string)
+    FastaParser reads a fasta file, extracts the sequence name from the header,
+    and creates a sequence string from the sequence.
 
 func ReverseComplement(parent string) (complement string)
-    Function ReverseComplement takes a DNA sequence as a string and returns the
-    complement DNA strand as a string.
+    ReverseComplement creates a complement DNA strand.
 ```
-
 
 TYPES
 ```go
@@ -51,23 +44,71 @@ type Dna struct {
 	Name       string
 	Parent     string
 	Complement string
+	Orfs       []Orf
 }
-```
-    The Dna struct contains the File name of the flat file, the Name of the
-    sequence, the Parent DNA sequence, and the Complement DNA sequence.
-```go
-func NewDnaFromFasta(filename string) Dna`
-    NewDnaFromFasta is a function that creates a type Dna struct from a fasta
-    file that contains a single fasta entry.
+    The Dna struct contains the File name of a fasta file (if present) ,
+    the Name of the sequence (if present), the Parent DNA sequence, and the
+    Complement DNA sequence. The Orfs slice contains all possible open reading
+    frames based solely on translation.
+
+func NewDnaFromFasta(filename string) (Dna, error)
+    NewDnaFromFasta creates a type Dna struct from a fasta file containing a
+    single DNA sequence
 
 func NewDnaFromSequence(sequence string) Dna
     NewDNAFromSequence is a function that creates a type Dna struct from a
     sequence string.
 
 func (d Dna) String() string
-    String is a Dna method for printing the sequence in fasta format.
+    Dna.String prints the sequence of the Parent strand in fasta format.
 
-func (d Dna) Translate() (orfs []string)
-    Translate converts DNA sequences to a slice of strings containing all
+func (d Dna) Translate() (orfs []Orf)
+    Translate converts DNA sequences to a slice of type Orf containing all
     possible open reading frames.
+```
+
+```go
+type Orf struct {
+	Strand    string
+	Frame     int
+	AminoAcid string
+}
+```
+    The Orf struct contains information for a possible open reading frame.
+    
+```go
+func (o Orf) String() string
+    Orf.String prints the sequence of the orf in fasta format
+```
+
+## protein.go
+package protein // import "github.com/tnaums/gobio/internal/protein"
+
+Package protein provides a protein type to store protein sequence information
+
+FUNCTIONS
+```go
+func FastaParser(r io.Reader) (data []string)
+    FastaParser reads a fasta file, extracts the sequence name from the header
+    and creates a sequence string from the sequence. Returns a slice of strings
+    with alternating header and sequence.
+
+func ProteinPipeFasta(r io.Reader, out chan<- Protein)
+    ProteinPipeFasta reads fasta sequences from an io.Reader interface, such
+    as an *os.File returned from os.Open(fileName). Returns stream of Protein
+    structs through the provided go channel. Once the last Protein is sent,
+    closes the channel.
+```
+
+TYPES
+```go
+type Protein struct {
+	Header    string
+	AminoAcid string
+}
+    Contains header and amino acid sequence, parsed from fasta file.
+
+func NewProteinFromFasta(filename string) ([]Protein, error)
+    NewProteinFromFasta creates a slice of type Protein from a fasta file
+    containing one or more protein sequences.
 ```

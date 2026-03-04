@@ -29,8 +29,7 @@ type Orf struct {
 	AminoAcid string
 }
 
-// GeneticCode is a map containing the standard genetic
-// code.
+// GeneticCode is a map of the standard genetic code.
 var GeneticCode = map[string]byte{
 	"TTT": 'F', "TTC": 'F', "TTG": 'L', "TTA": 'L',
 	"TCT": 'S', "TCC": 'S', "TCA": 'S', "TCG": 'S',
@@ -93,12 +92,10 @@ func (d Dna) Translate() (orfs []Orf) {
 			orfs = append(orfs, newOrf)
 		}
 	}
-	fmt.Printf("number of orfs: %d\n\n", len(orfs))
 	return orfs
 }
 
-// Dna.String is a Dna method for printing the sequence in
-// fasta format.
+// Dna.String prints the sequence of the Parent strand in fasta format.
 func (d Dna) String() string {
 	s := ">" + d.Name + "\n"
 	for idx, base := range d.Parent {
@@ -117,8 +114,7 @@ func (d Dna) String() string {
 	return s
 }
 
-// Orf.String is an Orf method for printing the sequence in
-// fasta format.
+// Orf.String prints the sequence of the orf in fasta format
 func (o Orf) String() string {
 	s := fmt.Sprintf(">%s|Frame_%d|Length%d\n", o.Strand, o.Frame, len(o.AminoAcid))
 	for idx, base := range o.AminoAcid {
@@ -137,8 +133,8 @@ func (o Orf) String() string {
 	return s
 }
 
-// NewDNAFromSequence is a function that creates
-// a type Dna struct from a sequence string.
+// NewDNAFromSequence is a function that creates a type Dna struct
+// from a sequence string.
 func NewDnaFromSequence(sequence string) Dna {
 	newDna := Dna{Parent: sequence,
 		Complement: ReverseComplement(sequence),
@@ -147,9 +143,8 @@ func NewDnaFromSequence(sequence string) Dna {
 	return newDna
 }
 
-// NewDnaFromFasta is a function that creates a
-// type Dna struct from a fasta file that contains
-// a single fasta entry.
+// NewDnaFromFasta creates a type Dna struct from a fasta file containing
+// a single DNA sequence
 func NewDnaFromFasta(filename string) (Dna, error) {
 	file, err := os.Open(filename)
 	if err != nil {
@@ -167,9 +162,8 @@ func NewDnaFromFasta(filename string) (Dna, error) {
 	return newDna, nil
 }
 
-// The FastaParser function reads a fasta file, extracts
-// the sequence name from the header, and creates a sequence
-// string from the sequence.
+// FastaParser reads a fasta file, extracts the sequence name from the header,
+// and creates a sequence string from the sequence.
 func FastaParser(r io.Reader) (name, sequence string) {
 	name = ""
 	sequence = ""
@@ -186,8 +180,7 @@ func FastaParser(r io.Reader) (name, sequence string) {
 
 }
 
-// Returns a reversed string. A helper function called by
-// func ReverseComplement.
+// Reverses a string. Called by ReverseComplement.
 func reverse(s string) string {
 	rns := []rune(s) // convert to rune
 	for i, j := 0, len(rns)-1; i < j; i, j = i+1, j-1 {
@@ -201,8 +194,7 @@ func reverse(s string) string {
 	return string(rns)
 }
 
-// Function ReverseComplement takes a DNA sequence as a
-// string and returns the complement DNA strand as a string.
+// ReverseComplement creates a complement DNA strand.
 func ReverseComplement(parent string) (complement string) {
 
 	reverseSeq := reverse(parent)

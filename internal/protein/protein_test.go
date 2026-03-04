@@ -10,7 +10,6 @@ func TestNewProteinFromFasta(t *testing.T) {
 	expectedName := "jgi|Fusve2|1|FVEG_14560T0"
 	expectedSequence := "MRWPFLDLSATALLSTASHAFSETRGSQRYAASTQCYILYMIGYVEGHWTT"
 	gotProtSlice, _ := NewProteinFromFasta(fastaFile)
-	fmt.Println(gotProtSlice)
 	if len(gotProtSlice) != 1 {
 		t.Errorf("expected %d sequences, got %d", 1, len(gotProtSlice))
 	}
@@ -20,4 +19,9 @@ func TestNewProteinFromFasta(t *testing.T) {
 	if gotProtSlice[0].AminoAcid != expectedSequence {
 		t.Errorf("\nexpected sequence %s\n     got %s\n", expectedSequence, gotProtSlice[0].AminoAcid)
 	}
+}
+
+func ExampleProteinPipeFasta() {
+	fmt.Println("This is an example of ProteinPipeFasta")
+	// Output: This is an example of ProteinPipeFasta
 }
