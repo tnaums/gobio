@@ -18,6 +18,15 @@ type Protein struct {
 	Mass      float64
 }
 
+// Holds output of SignalP 6 analysis which predicts
+// probability of protein secretion
+type SignalP struct {
+	NnCutPos  int
+	NnVote    int
+	HmmCutPos int
+	HmmProb   float64
+}
+
 // NewProteinFromFasta creates a slice of type Protein from a fasta file
 // containing one or more protein sequences.
 func NewProteinFromFasta(filename string) ([]Protein, error) {

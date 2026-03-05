@@ -39,6 +39,18 @@ func main() {
 	// 	fmt.Println(protein.AminoAcid)
 	// 	fmt.Println()
 	// }
+
+	// Parse SignalP data from mycocosm
+	// signalPMap := map[int]protein.SignalP{}
+	// sigFile, err := os.Open("genomes/Fusve2/signalp.tab")
+	// if er != nil {
+	// 	fmt.Fprintln(os.Stderr, err)
+	// 	os.Exit(1)
+	// }
+	
+
+	
+	// Create protein pipe from proteome fasta file
 	proteins := make(chan protein.Protein)
 	selected := make([]protein.Protein, 0)
 	
