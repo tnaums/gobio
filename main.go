@@ -5,8 +5,11 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
+
 	//	"github.com/tnaums/gobio/internal/dna"
-	"github.com/tnaums/gobio/internal/protein"	
+	"github.com/tnaums/gobio/internal/eutils"
+	"github.com/tnaums/gobio/internal/protein"
 )
 
 func main() {
@@ -47,13 +50,11 @@ func main() {
 	// 	fmt.Fprintln(os.Stderr, err)
 	// 	os.Exit(1)
 	// }
-	
 
-	
 	// Create protein pipe from proteome fasta file
 	proteins := make(chan protein.Protein)
 	selected := make([]protein.Protein, 0)
-	
+
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -73,4 +74,11 @@ func main() {
 	}
 	fmt.Printf("Number of selected proteins is: %d\n", len(selected))
 
+	eutilsClient := eutils.NewClient(50 * time.Second)
+	qk, we, err := eutilsClient.EPost()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Printf("The QueryKey is %s, and the WebEnv is %s\n", qk, we)
 }
