@@ -19,8 +19,8 @@ type Protein struct {
 	Mass      float64
 }
 
+// String method; Protein can be used as Stringer interface
 func (p Protein) String() string {
-	//	s := ">" + p.Header + "|" + string(p.Mass) + "\n"
 	s := fmt.Sprintf(">%s|%.2fkDa\n", p.Header, p.Mass)
 	for idx, base := range p.AminoAcid {
 		if idx == 0 {
@@ -38,13 +38,13 @@ func (p Protein) String() string {
 	return s
 }
 
-// Holds output of SignalP 6 analysis which predicts
-// probability of protein secretion
-type SignalP struct {
-	NnCutPos  int
-	NnVote    int
-	HmmCutPos int
-	HmmProb   float64
+// Create a Protein struct from header and sequence strings
+func NewProtein(header, sequence string) (Protein) {
+	return Protein{
+		Header: header,
+		AminoAcid: sequence,
+		Mass: calculateMass(sequence),
+	}
 }
 
 // NewProteinFromFasta creates a slice of type Protein from a fasta file
