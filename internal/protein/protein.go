@@ -4,6 +4,7 @@ package protein
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"os"
 	"strings"
@@ -16,6 +17,25 @@ type Protein struct {
 	Header    string
 	AminoAcid string
 	Mass      float64
+}
+
+func (p Protein) String() string {
+	//	s := ">" + p.Header + "|" + string(p.Mass) + "\n"
+	s := fmt.Sprintf(">%s|%.2fkDa\n", p.Header, p.Mass)
+	for idx, base := range p.AminoAcid {
+		if idx == 0 {
+			s += string(base)
+			continue
+		}
+		if idx%60 == 0 {
+			s += "\n"
+			s += string(base)
+			continue
+		}
+		s += string(base)
+
+	}
+	return s
 }
 
 // Holds output of SignalP 6 analysis which predicts
