@@ -5,6 +5,7 @@ package main
 import (
 	"fmt"
 	"os"
+	//	"strings"
 	"time"
 
 	//	"github.com/tnaums/gobio/internal/dna"
@@ -73,12 +74,29 @@ func main() {
 
 	}
 	fmt.Printf("Number of selected proteins is: %d\n", len(selected))
-
+	fmt.Println("----------------------------------------\n")
 	eutilsClient := eutils.NewClient(50 * time.Second)
 	qk, we, err := eutilsClient.EPost()
 	if err != nil {
 		fmt.Println(err)
+		os.Exit(1)
 	}
 
 	fmt.Printf("The QueryKey is %s, and the WebEnv is %s\n", qk, we)
+	resp, err := eutilsClient.EFetch("protein", qk, we)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	defer resp.Body.Close()
+	
+	proteins = make(chan protein.Protein)
+	go protein.ProteinPipeFasta(resp.Body, proteins)
+
+	for p := range proteins {
+		fmt.Println(p.Header)
+		fmt.Println(p.AminoAcid)
+		fmt.Println(p.Mass)
+		fmt.Println()
+	}
 }
