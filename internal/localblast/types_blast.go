@@ -1,3 +1,15 @@
+package localblast
+
+import "encoding/xml"
+
+type lBlast struct {
+	cmd    string
+	query  string
+	db     string
+	outfmt string
+	out    string
+}
+
 // BlastOutput was generated 2026-03-07 16:18:48 by https://xml-to-go.github.io/ in Ukraine.
 type BlastOutput struct {
 	XMLName              xml.Name `xml:"BlastOutput"`
@@ -77,4 +89,4 @@ type BlastOutput struct {
 			} `xml:"Iteration_stat"`
 		} `xml:"Iteration"`
 	} `xml:"BlastOutput_iterations"`
-} 
+}

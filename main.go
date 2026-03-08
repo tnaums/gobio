@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/tnaums/gobio/internal/localblast"
 	"github.com/tnaums/gobio/internal/protein"
 	"github.com/tnaums/gobio/internal/signalp"
 )
@@ -53,11 +54,15 @@ func main() {
 			mSequence := p.AminoAcid[mStart:]
 			mature := protein.NewProtein(mHeader, mSequence)
 			if mature.Mass > 16 && mature.Mass < 19 {
-				selected = append(selected, p)
-				fmt.Println(mature)
 				fmt.Println()
+				blast := localblast.LocalBlast(mature)
+				lengthAlign, _ := strconv.Atoi(blast.BlastOutputIterations.Iteration.IterationHits.Hit[0].HitHsps.Hsp[0].HspAlignLen)
+				percent := float64(lengthAlign) / float64(len(mature.AminoAcid))
+				if percent > 0.9 {
+					selected = append(selected, p)
+					fmt.Println(mature)
+				}
 			}
-
 		}
 	}
 	fmt.Printf("Number of selected proteins is: %d\n", len(selected))
