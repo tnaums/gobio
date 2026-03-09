@@ -39,6 +39,7 @@ func LocalBlast(query protein.Protein) BlastOutput {
 	if err := xml.Unmarshal(out, &blastoutput); err != nil {
 		log.Fatalf("XML parsing failed: %v", err)
 	}
+
 	return blastoutput
 
 }

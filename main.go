@@ -3,7 +3,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -39,7 +41,7 @@ func main() {
 	defer file2.Close()
 
 	signalPMap, _ := signalp.NewSignalPMap(file2)
-	//	fmt.Println(signalPMap)
+
 	// Create go routine with opened fasta file and go channel
 	go protein.ProteinPipeFasta(file, proteins)
 
@@ -55,12 +57,13 @@ func main() {
 			mature := protein.NewProtein(mHeader, mSequence)
 			if mature.Mass > 16 && mature.Mass < 19 {
 				fmt.Println()
-				blast := localblast.LocalBlast(mature)
-				lengthAlign, _ := strconv.Atoi(blast.BlastOutputIterations.Iteration.IterationHits.Hit[0].HitHsps.Hsp[0].HspAlignLen)
-				percent := float64(lengthAlign) / float64(len(mature.AminoAcid))
-				if percent > 0.9 {
+				fmt.Println(mature)				
+				blast := localblast.LocalBlast(p)
+				localblast.ParseBlastp(blast)
+				resp := confirm("Keep this protein", 2)
+				if resp {
 					selected = append(selected, p)
-					fmt.Println(mature)
+
 				}
 			}
 		}
@@ -68,10 +71,7 @@ func main() {
 	fmt.Printf("Number of selected proteins is: %d\n", len(selected))
 	fmt.Println("----------------------------------------\n")
 
-	// toAdd := signalp.SignalP{20, 5, 20, 0.99}
-	// myMap := signalp.SignalPMap{}
-	// myMap[5] = toAdd
-	// fmt.Println(myMap)
+
 	// // Initialize client for api request
 	// eutilsClient := eutils.NewClient(50 * time.Second)
 	// // generate *http.Response from ncbi query
@@ -93,10 +93,28 @@ func main() {
 	// }
 }
 
-// Parse SignalP data from mycocosm
-// signalPMap := map[int]protein.SignalP{}
-// sigFile, err := os.Open("genomes/Fusve2/signalp.tab")
-// if er != nil {
-// 	fmt.Fprintln(os.Stderr, err)
-// 	os.Exit(1)
-// }
+
+// confirm displays a prompt `s` to the user and returns a bool indicating yes / no
+// If the lowercased, trimmed input begins with anything other than 'y', it returns false
+// It accepts an int `tries` representing the number of attempts before returning false
+func confirm(s string, tries int) bool {
+	r := bufio.NewReader(os.Stdin)
+
+	for ; tries > 0; tries-- {
+		fmt.Printf("%s [y/n]: ", s)
+
+		res, err := r.ReadString('\n')
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		// Empty input (i.e. "\n")
+		if len(res) < 2 {
+			continue
+		}
+
+		return strings.ToLower(strings.TrimSpace(res))[0] == 'y'
+	}
+
+	return false
+}
