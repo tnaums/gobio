@@ -10,7 +10,7 @@ import (
 	"github.com/tnaums/gobio/internal/protein"
 )
 
-func LocalBlast(query protein.Protein) BlastOutput {
+func LocalBlast(query protein.Protein, proteome string) BlastOutput {
 
 	f, err := os.Create("blastdb/query.fa")
 	if err != nil {
@@ -18,11 +18,11 @@ func LocalBlast(query protein.Protein) BlastOutput {
 	}
 	defer f.Close()
 	f.WriteString(fmt.Sprintf("%s", query))
-
+	database := "blastdb/" + proteome
 	params := lBlast{
 		cmd:    "blastp",
 		query:  "blastdb/query.fa",
-		db:     "blastdb/Fusgr2.aa.fasta",
+		db:     database,
 		outfmt: "5",
 		out:    "-",
 	}

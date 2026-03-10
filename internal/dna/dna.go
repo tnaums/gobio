@@ -7,15 +7,14 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 )
 
-// The Dna struct contains the File name of a fasta file (if present)
-// , the Name of the sequence (if present), the Parent DNA sequence,
+// The Dna struct contains the sequence header, the Parent DNA sequence,
 // and the Complement DNA sequence. The Orfs slice contains all
 // possible open reading frames based solely on translation.
 type Dna struct {
-	File       string
-	Name       string
+	Header     string
 	Parent     string
 	Complement string
 	Orfs       []Orf
@@ -90,6 +89,7 @@ func (d Dna) Translate() (orfs []Orf) {
 				AminoAcid: current,
 			}
 			orfs = append(orfs, newOrf)
+			current = ""
 		}
 	}
 	return orfs
@@ -97,7 +97,7 @@ func (d Dna) Translate() (orfs []Orf) {
 
 // Dna.String prints the sequence of the Parent strand in fasta format.
 func (d Dna) String() string {
-	s := ">" + d.Name + "\n"
+	s := ">" + d.Header + "\n"
 	for idx, base := range d.Parent {
 		if idx == 0 {
 			s += string(base)
@@ -133,6 +133,46 @@ func (o Orf) String() string {
 	return s
 }
 
+
+// DnaPipeFasta reads fasta sequences from an io.Reader interface,
+// such as an *os.File returned from os.Open(fileName) or an
+// *http.Response. Returns stream of Dna structs through the
+// provided go channel. Once the last Dna is sent, closes the
+// channel.
+func DnaPipeFasta(r io.Reader, out chan<- Dna) {
+	start := true
+	name := ""
+	sequence := ""
+	scanner := bufio.NewScanner(r)
+	for scanner.Scan() {
+		if strings.HasPrefix(scanner.Text(), ">") {
+			if !start {
+				newDna := Dna{
+					Header:       name,
+					Parent:     sequence,
+					Complement: ReverseComplement(sequence),
+				}
+				newDna.Orfs = newDna.Translate()
+				out <- newDna
+				sequence = ""
+			}
+			name = scanner.Text()
+			name = name[1:]
+			start = false
+		} else {
+			sequence += scanner.Text()
+		}
+	}
+	newDna := Dna{
+		Header:       name,
+		Parent:     sequence,
+		Complement: ReverseComplement(sequence),
+	}
+	newDna.Orfs = newDna.Translate()
+	out <- newDna
+	close(out)
+}
+
 // NewDNAFromSequence is a function that creates a type Dna struct
 // from a sequence string.
 func NewDnaFromSequence(sequence string) Dna {
@@ -153,8 +193,7 @@ func NewDnaFromFasta(filename string) (Dna, error) {
 
 	header, sequence := FastaParser(file)
 	newDna := Dna{
-		File:       filename,
-		Name:       header,
+		Header:       header,
 		Parent:     sequence,
 		Complement: ReverseComplement(sequence),
 	}

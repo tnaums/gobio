@@ -7,15 +7,15 @@ import (
 	"regexp"
 )
 
-func (c *Client) EPost() (*http.Response, error) {
+func (c *Client) EPost(accessions string) (*http.Response, error) {
 	// Download protein records corresponding to a list of GI numbers.
 	params := EPost{
 		Database: "protein",
-		IdList:   "194680922,50978626,28558982,9507199,6678417",
+		IdList:   accessions,
 	}
 
 	// Assemble the epost URL
-	post := fmt.Sprintf("epost.fcgi?db=%s&id=%s", params.Database, params.IdList)
+	post := fmt.Sprintf("epost.fcgi?db=%s&idtype=acc&id=%s", params.Database, params.IdList)
 	url := baseURL + post
 
 	req, err := http.NewRequest("POST", url, nil)

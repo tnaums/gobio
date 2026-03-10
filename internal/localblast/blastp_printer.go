@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func ParseBlastp(b BlastOutput) {
+func PrintBlastp(b BlastOutput) {
 	fmt.Println(b.BlastOutputQueryDef)
 	fmt.Println(b.BlastOutputQueryLen)
 

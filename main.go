@@ -16,15 +16,19 @@ import (
 )
 
 func main() {
+	// slice to hold proteins that fit criteria
+	selected := make([]protein.Protein, 0)
+	// Create a channel for sending proteins
+	proteins := make(chan protein.Protein)
+
+	
 	fmt.Println("Welcome to gobio!")
 	if len(os.Args) != 2 {
 		fmt.Println("Usage: go run . <sequence.fa>")
+		os.Exit(1)		
 	}
 	fileName := os.Args[1]
-	selected := make([]protein.Protein, 0)
 
-	// Create protein pipe from proteome fasta file
-	proteins := make(chan protein.Protein)
 	// Open file to create *os.File which implements io.Reader
 	file, err := os.Open(fileName)
 	if err != nil {
@@ -33,6 +37,7 @@ func main() {
 	}
 	defer file.Close()
 
+	// Open signalp file from jgi mycocosm
 	file2, err := os.Open("genomes/Fusve2/signalp.tab")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -40,6 +45,7 @@ func main() {
 	}
 	defer file2.Close()
 
+	// Parse signalp data and create map
 	signalPMap, _ := signalp.NewSignalPMap(file2)
 
 	// Create go routine with opened fasta file and go channel
@@ -50,25 +56,40 @@ func main() {
 		fields := strings.Split(p.Header, "|")
 		number, _ := strconv.Atoi(fields[2])
 		s, ok := signalPMap[number]
-		if ok { // protein is in the signalp list
+
+		// if protein identified by signalp
+		if ok { 
 			mHeader := p.Header + "|secreted"
 			mStart := s.NnCutPos
 			mSequence := p.AminoAcid[mStart:]
-			mature := protein.NewProtein(mHeader, mSequence)
+			mature := protein.NewProtein(mHeader, mSequence) // truncated mature protein
 			if mature.Mass > 16 && mature.Mass < 19 {
+				matches := 0
 				fmt.Println()
-				fmt.Println(mature)				
-				blast := localblast.LocalBlast(p)
-				localblast.ParseBlastp(blast)
-				resp := confirm("Keep this protein", 2)
-				if resp {
-					selected = append(selected, p)
-
+				fmt.Println(mature)
+				proteomes := []string{"graminearum.aa.fasta", "subglutinans.aa.fasta", "proliferatum.aa.fasta"}
+				for _, proteome := range proteomes {
+					blast := localblast.LocalBlast(p, proteome)
+					qlen, _ := strconv.Atoi(blast.BlastOutputQueryLen)
+					alen, _ := strconv.Atoi(blast.BlastOutputIterations.Iteration.IterationHits.Hit[0].HitHsps.Hsp[0].HspAlignLen)
+					hlen, _ := strconv.Atoi(blast.BlastOutputIterations.Iteration.IterationHits.Hit[0].HitLen)
+					fmt.Printf("query length is: %d\n", qlen)
+					fmt.Printf("hit length is: %d\n", hlen)
+					fmt.Printf("alignment length is: %d\n", alen)
+					aPercent := float64(alen) / float64(qlen)
+					hSize := float64(hlen) / float64(qlen)
+					if  aPercent > 0.9 && aPercent < 1.1 && hSize < 1.5 {
+						matches += 1
+					} 
 				}
+				if matches == 3 {selected = append(selected, mature)}
 			}
 		}
 	}
 	fmt.Printf("Number of selected proteins is: %d\n", len(selected))
+	for _, protein := range selected {
+		fmt.Printf("%s\n", protein)
+	}
 	fmt.Println("----------------------------------------\n")
 
 
