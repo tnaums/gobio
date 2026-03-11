@@ -30,6 +30,13 @@ var GeneticCode = map[string]byte{
 
 FUNCTIONS
 ```go
+func DnaPipeFasta(r io.Reader, out chan<- Dna)
+    DnaPipeFasta reads fasta sequences from an io.Reader interface, such as
+    an *os.File returned from os.Open(fileName) or an *http.Response. Returns
+    stream of Dna structs through the provided go channel. Once the last Dna is
+    sent, closes the channel.
+
+```go
 func FastaParser(r io.Reader) (name, sequence string)
     FastaParser reads a fasta file, extracts the sequence name from the header,
     and creates a sequence string from the sequence.
