@@ -40,7 +40,8 @@ func DnaPipeFasta(r io.Reader, out chan<- Dna)
 func FastaParser(r io.Reader) (name, sequence string)
     FastaParser reads a fasta file, extracts the sequence name from the header,
     and creates a sequence string from the sequence.
-
+```
+```go
 func ReverseComplement(parent string) (complement string)
     ReverseComplement creates a complement DNA strand.
 ```
@@ -48,28 +49,30 @@ func ReverseComplement(parent string) (complement string)
 TYPES
 ```go
 type Dna struct {
-	File       string
-	Name       string
+	Header     string
 	Parent     string
 	Complement string
 	Orfs       []Orf
 }
-    The Dna struct contains the File name of a fasta file (if present) ,
-    the Name of the sequence (if present), the Parent DNA sequence, and the
-    Complement DNA sequence. The Orfs slice contains all possible open reading
-    frames based solely on translation.
-
+    The Dna struct contains the sequence header, the Parent DNA sequence,
+    and the Complement DNA sequence. The Orfs slice contains all possible open
+    reading frames based solely on translation.
+```
+```go
 func NewDnaFromFasta(filename string) (Dna, error)
     NewDnaFromFasta creates a type Dna struct from a fasta file containing a
     single DNA sequence
-
+```
+```go
 func NewDnaFromSequence(sequence string) Dna
     NewDNAFromSequence is a function that creates a type Dna struct from a
     sequence string.
-
+```
+```go
 func (d Dna) String() string
     Dna.String prints the sequence of the Parent strand in fasta format.
-
+```
+```go
 func (d Dna) Translate() (orfs []Orf)
     Translate converts DNA sequences to a slice of type Orf containing all
     possible open reading frames.
@@ -100,7 +103,8 @@ func FastaParser(r io.Reader) (data []string)
     FastaParser reads a fasta file, extracts the sequence name from the header
     and creates a sequence string from the sequence. Returns a slice of strings
     with alternating header and sequence.
-
+```
+```go
 func ProteinPipeFasta(r io.Reader, out chan<- Protein)
     ProteinPipeFasta reads fasta sequences from an io.Reader interface, such
     as an *os.File returned from os.Open(fileName). Returns stream of Protein
@@ -113,10 +117,21 @@ TYPES
 type Protein struct {
 	Header    string
 	AminoAcid string
+	Mass      float64
 }
-    Contains header and amino acid sequence, parsed from fasta file.
-
+    Contains header and amino acid sequence, parsed from fasta file. Mass can be
+    calculated from AminoAcid by calling calculateMass(aaSequence)
+```
+```go
+func NewProtein(header, sequence string) Protein
+    Create a Protein struct from header and sequence strings
+```
+```go
 func NewProteinFromFasta(filename string) ([]Protein, error)
     NewProteinFromFasta creates a slice of type Protein from a fasta file
     containing one or more protein sequences.
+```
+```go
+func (p Protein) String() string
+    String method; Protein can be used as Stringer interface
 ```

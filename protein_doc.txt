@@ -1,0 +1,37 @@
+package protein // import "github.com/tnaums/gobio/internal/protein"
+
+Package protein provides a protein type to store protein sequence information
+
+FUNCTIONS
+
+func FastaParser(r io.Reader) (data []string)
+    FastaParser reads a fasta file, extracts the sequence name from the header
+    and creates a sequence string from the sequence. Returns a slice of strings
+    with alternating header and sequence.
+
+func ProteinPipeFasta(r io.Reader, out chan<- Protein)
+    ProteinPipeFasta reads fasta sequences from an io.Reader interface, such
+    as an *os.File returned from os.Open(fileName). Returns stream of Protein
+    structs through the provided go channel. Once the last Protein is sent,
+    closes the channel.
+
+
+TYPES
+
+type Protein struct {
+	Header    string
+	AminoAcid string
+	Mass      float64
+}
+    Contains header and amino acid sequence, parsed from fasta file. Mass can be
+    calculated from AminoAcid by calling calculateMass(aaSequence)
+
+func NewProtein(header, sequence string) Protein
+    Create a Protein struct from header and sequence strings
+
+func NewProteinFromFasta(filename string) ([]Protein, error)
+    NewProteinFromFasta creates a slice of type Protein from a fasta file
+    containing one or more protein sequences.
+
+func (p Protein) String() string
+    String method; Protein can be used as Stringer interface
