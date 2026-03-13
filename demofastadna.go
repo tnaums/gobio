@@ -10,8 +10,8 @@ import (
 )
 
 func main() {
-	// Create a channel for sending Dna
-	dnach := make(chan dna.Dna)
+	// Create a channel for sending DNA
+	dnach := make(chan dna.DNA)
 
 	fmt.Println("Welcome to gobio!")
 
@@ -31,7 +31,7 @@ func main() {
 	defer file.Close()
 
 	// Create go routine with opened fasta file and go channel
-	go dna.DnaPipeFasta(file, dnach)
+	go dna.DNAPipeFasta(file, dnach)
 
 	// Retrieve first sequence and print
 	first :=  <- dnach

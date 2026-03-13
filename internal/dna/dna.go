@@ -1,5 +1,5 @@
-// Package dna provides a Dna type to store DNA
-// sequence information and provides simple Dna methods.
+// Package dna provides a DNA type to store DNA
+// sequence information and provides simple DNA methods.
 package dna
 
 import (
@@ -10,10 +10,10 @@ import (
 	"strings"
 )
 
-// The Dna struct contains the sequence header, the Parent DNA sequence,
+// The DNA struct contains the sequence header, the Parent DNA sequence,
 // and the Complement DNA sequence. The Orfs slice contains all
 // possible open reading frames based solely on translation.
-type Dna struct {
+type DNA struct {
 	Header     string
 	Parent     string
 	Complement string
@@ -50,7 +50,7 @@ var GeneticCode = map[string]byte{
 
 // Translate converts DNA sequences to a slice of type Orf
 // containing all possible open reading frames.
-func (d Dna) Translate() (orfs []Orf) {
+func (d DNA) Translate() (orfs []Orf) {
 	orfs = []Orf{}
 	current := ""
 	complementFlag := true
@@ -95,8 +95,8 @@ func (d Dna) Translate() (orfs []Orf) {
 	return orfs
 }
 
-// Dna.String prints the sequence of the Parent strand in fasta format.
-func (d Dna) String() string {
+// DNA.String prints the sequence of the Parent strand in fasta format.
+func (d DNA) String() string {
 	s := ">" + d.Header + "\n"
 	for idx, base := range d.Parent {
 		if idx == 0 {
@@ -134,12 +134,12 @@ func (o Orf) String() string {
 }
 
 
-// DnaPipeFasta reads fasta sequences from an io.Reader interface,
+// DNAPipeFasta reads fasta sequences from an io.Reader interface,
 // such as an *os.File returned from os.Open(fileName) or an
-// *http.Response. Returns stream of Dna structs through the
-// provided go channel. Once the last Dna is sent, closes the
+// *http.Response. Returns stream of DNA structs through the
+// provided go channel. Once the last DNA is sent, closes the
 // channel.
-func DnaPipeFasta(r io.Reader, out chan<- Dna) {
+func DNAPipeFasta(r io.Reader, out chan<- DNA) {
 	start := true
 	name := ""
 	sequence := ""
@@ -147,13 +147,13 @@ func DnaPipeFasta(r io.Reader, out chan<- Dna) {
 	for scanner.Scan() {
 		if strings.HasPrefix(scanner.Text(), ">") {
 			if !start {
-				newDna := Dna{
+				newDNA := DNA{
 					Header:       name,
 					Parent:     sequence,
 					Complement: ReverseComplement(sequence),
 				}
-				newDna.Orfs = newDna.Translate()
-				out <- newDna
+				newDNA.Orfs = newDNA.Translate()
+				out <- newDNA
 				sequence = ""
 			}
 			name = scanner.Text()
@@ -163,42 +163,42 @@ func DnaPipeFasta(r io.Reader, out chan<- Dna) {
 			sequence += scanner.Text()
 		}
 	}
-	newDna := Dna{
+	newDNA := DNA{
 		Header:       name,
 		Parent:     sequence,
 		Complement: ReverseComplement(sequence),
 	}
-	newDna.Orfs = newDna.Translate()
-	out <- newDna
+	newDNA.Orfs = newDNA.Translate()
+	out <- newDNA
 	close(out)
 }
 
-// NewDNAFromSequence is a function that creates a type Dna struct
+// NewDNAFromSequence is a function that creates a type DNA struct
 // from a sequence string.
-func NewDnaFromSequence(sequence string) Dna {
-	newDna := Dna{Parent: sequence,
+func NewDNAFromSequence(sequence string) DNA {
+	newDNA := DNA{Parent: sequence,
 		Complement: ReverseComplement(sequence),
 	}
-	newDna.Orfs = newDna.Translate()
-	return newDna
+	newDNA.Orfs = newDNA.Translate()
+	return newDNA
 }
 
-// NewDnaFromFasta creates a type Dna struct from a fasta file containing
+// NewDNAFromFasta creates a type DNA struct from a fasta file containing
 // a single DNA sequence
-func NewDnaFromFasta(filename string) (Dna, error) {
+func NewDNAFromFasta(filename string) (DNA, error) {
 	file, err := os.Open(filename)
 	if err != nil {
-		return Dna{}, err
+		return DNA{}, err
 	}
 
 	header, sequence := FastaParser(file)
-	newDna := Dna{
+	newDNA := DNA{
 		Header:       header,
 		Parent:     sequence,
 		Complement: ReverseComplement(sequence),
 	}
-	newDna.Orfs = newDna.Translate()
-	return newDna, nil
+	newDNA.Orfs = newDNA.Translate()
+	return newDNA, nil
 }
 
 // FastaParser reads a fasta file, extracts the sequence name from the header,
