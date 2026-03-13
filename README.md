@@ -1,8 +1,8 @@
 # dna.go
 package dna // import "github.com/tnaums/gobio/internal/dna"
 
-Package dna provides a Dna type to store DNA sequence information and provides
-simple Dna methods.
+Package dna provides a DNA type to store DNA sequence information and provides
+simple DNA methods.
 
 VARIABLES
 ```go
@@ -30,10 +30,10 @@ var GeneticCode = map[string]byte{
 
 FUNCTIONS
 ```go
-func DnaPipeFasta(r io.Reader, out chan<- Dna)
-    DnaPipeFasta reads fasta sequences from an io.Reader interface, such as
+func DNAPipeFasta(r io.Reader, out chan<- DNA)
+    DNAPipeFasta reads fasta sequences from an io.Reader interface, such as
     an *os.File returned from os.Open(fileName) or an *http.Response. Returns
-    stream of Dna structs through the provided go channel. Once the last Dna is
+    stream of DNA structs through the provided go channel. Once the last DNA is
     sent, closes the channel.
 ```
 ```go
@@ -48,32 +48,32 @@ func ReverseComplement(parent string) (complement string)
 
 TYPES
 ```go
-type Dna struct {
+type DNA struct {
 	Header     string
 	Parent     string
 	Complement string
 	Orfs       []Orf
 }
-    The Dna struct contains the sequence header, the Parent DNA sequence,
+    The DNA struct contains the sequence header, the Parent DNA sequence,
     and the Complement DNA sequence. The Orfs slice contains all possible open
     reading frames based solely on translation.
 ```
 ```go
-func NewDnaFromFasta(filename string) (Dna, error)
-    NewDnaFromFasta creates a type Dna struct from a fasta file containing a
+func NewDNAFromFasta(filename string) (DNA, error)
+    NewDNAFromFasta creates a type DNA struct from a fasta file containing a
     single DNA sequence
 ```
 ```go
-func NewDnaFromSequence(sequence string) Dna
-    NewDNAFromSequence is a function that creates a type Dna struct from a
+func NewDNAFromSequence(sequence string) DNA
+    NewDNAFromSequence is a function that creates a type DNA struct from a
     sequence string.
 ```
 ```go
-func (d Dna) String() string
-    Dna.String prints the sequence of the Parent strand in fasta format.
+func (d DNA) String() string
+    DNA.String prints the sequence of the Parent strand in fasta format.
 ```
 ```go
-func (d Dna) Translate() (orfs []Orf)
+func (d DNA) Translate() (orfs []Orf)
     Translate converts DNA sequences to a slice of type Orf containing all
     possible open reading frames.
 ```
@@ -135,7 +135,7 @@ func NewProteinFromFasta(filename string) ([]Protein, error)
 func (p Protein) String() string
     String method; Protein can be used as Stringer interface
 ```
-# Dna Tutorial
+# DNA Tutorial
 ```go
 // This script demonstrates how to work with dna sequences
 // from fasta files containing multiple entries.
@@ -149,8 +149,8 @@ import (
 )
 
 func main() {
-	// Create a channel for sending Dna
-	dnach := make(chan dna.Dna)
+	// Create a channel for sending DNA
+	dnach := make(chan dna.DNA)
 
 	fmt.Println("Welcome to gobio!")
 
@@ -170,7 +170,7 @@ func main() {
 	defer file.Close()
 
 	// Create go routine with opened fasta file and go channel
-	go dna.DnaPipeFasta(file, dnach)
+	go dna.DNAPipeFasta(file, dnach)
 
 	// Retrieve first sequence and print
 	first :=  <- dnach
