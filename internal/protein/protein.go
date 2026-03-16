@@ -39,11 +39,11 @@ func (p Protein) String() string {
 }
 
 // Create a Protein struct from header and sequence strings
-func NewProtein(header, sequence string) (Protein) {
+func NewProtein(header, sequence string) Protein {
 	return Protein{
-		Header: header,
+		Header:    header,
 		AminoAcid: sequence,
-		Mass: calculateMass(sequence),
+		Mass:      calculateMass(sequence),
 	}
 }
 
@@ -118,6 +118,33 @@ func ProteinPipeFasta(r io.Reader, out chan<- Protein) {
 	}
 	out <- Protein{name, sequence, calculateMass(sequence)}
 	close(out)
+}
+
+func ProteinChannelFasta(f io.ReadCloser) <-chan Protein {
+	out := make(chan Protein)
+	go func() {
+		defer f.Close()
+		defer close(out)
+		start := true
+		var name string
+		var sequence string
+		scanner := bufio.NewScanner(f)
+		for scanner.Scan() {
+			if strings.HasPrefix(scanner.Text(), ">") {
+				if !start {
+					out <- Protein{name, sequence, calculateMass(sequence)}
+					sequence = ""
+				}
+				name = scanner.Text()
+				name = name[1:]
+				start = false
+			} else {
+				sequence += scanner.Text()
+			}
+		}
+		out <- Protein{name, sequence, calculateMass(sequence)}
+	}()
+	return out
 }
 
 // map of amino acid average masses

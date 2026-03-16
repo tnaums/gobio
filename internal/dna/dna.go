@@ -133,7 +133,6 @@ func (o Orf) String() string {
 	return s
 }
 
-
 // DNAPipeFasta reads fasta sequences from an io.Reader interface,
 // such as an *os.File returned from os.Open(fileName) or an
 // *http.Response. Returns stream of DNA structs through the
@@ -148,7 +147,7 @@ func DNAPipeFasta(r io.Reader, out chan<- DNA) {
 		if strings.HasPrefix(scanner.Text(), ">") {
 			if !start {
 				newDNA := DNA{
-					Header:       name,
+					Header:     name,
 					Parent:     sequence,
 					Complement: ReverseComplement(sequence),
 				}
@@ -164,13 +163,53 @@ func DNAPipeFasta(r io.Reader, out chan<- DNA) {
 		}
 	}
 	newDNA := DNA{
-		Header:       name,
+		Header:     name,
 		Parent:     sequence,
 		Complement: ReverseComplement(sequence),
 	}
 	newDNA.Orfs = newDNA.Translate()
 	out <- newDNA
 	close(out)
+}
+
+func DNAChannelFasta(f io.ReadCloser) <-chan DNA {
+	out := make(chan DNA)
+	go func() {
+		defer f.Close()
+		defer close(out)
+		start := true
+		name := ""
+		sequence := ""
+		scanner := bufio.NewScanner(f)
+		for scanner.Scan() {
+			if strings.HasPrefix(scanner.Text(), ">") {
+				if !start {
+					newDNA := DNA{
+						Header:     name,
+						Parent:     sequence,
+						Complement: ReverseComplement(sequence),
+					}
+					newDNA.Orfs = newDNA.Translate()
+					out <- newDNA
+					sequence = ""
+				}
+				name = scanner.Text()
+				name = name[1:]
+				start = false
+			} else {
+				sequence += scanner.Text()
+			}
+		}
+		newDNA := DNA{
+			Header:     name,
+			Parent:     sequence,
+			Complement: ReverseComplement(sequence),
+		}
+		newDNA.Orfs = newDNA.Translate()
+		out <- newDNA
+
+	}()
+	return out
 }
 
 // NewDNAFromSequence is a function that creates a type DNA struct
@@ -193,7 +232,7 @@ func NewDNAFromFasta(filename string) (DNA, error) {
 
 	header, sequence := FastaParser(file)
 	newDNA := DNA{
-		Header:       header,
+		Header:     header,
 		Parent:     sequence,
 		Complement: ReverseComplement(sequence),
 	}

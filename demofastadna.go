@@ -10,9 +10,6 @@ import (
 )
 
 func main() {
-	// Create a channel for sending DNA
-	dnach := make(chan dna.DNA)
-
 	fmt.Println("Welcome to gobio!")
 
 	// Get filename from command line
@@ -22,7 +19,7 @@ func main() {
 	}
 	fileName := os.Args[1]
 
-	// Open file to create *os.File which implements io.Reader
+	// Open file to create *os.File which implements io.ReadCloser
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -31,14 +28,14 @@ func main() {
 	defer file.Close()
 
 	// Create go routine with opened fasta file and go channel
-	go dna.DNAPipeFasta(file, dnach)
+	dnas := dna.DNAChannelFasta(file)
 
 	// Retrieve first sequence and print
-	first :=  <- dnach
+	first :=  <- dnas
 	fmt.Println(first)
 
 	// Retrieve second sequence and print
-	second := <- dnach
+	second := <- dnas
 	fmt.Println(second)
 
 	// Iterate over orfs and print if over 100 amino acids
@@ -52,7 +49,7 @@ func main() {
 
 	// Iterate over remaining dna sequences and print the
 	// header line and sequence length
-	for d := range dnach {
+	for d := range dnas {
 		fmt.Println(d.Header)
 		fmt.Printf("Length: %d\n", len(d.Parent))
 	}

@@ -18,9 +18,6 @@ import (
 func main() {
 	// slice to hold proteins that fit criteria
 	selected := make([]protein.Protein, 0)
-	// Create a channel for sending proteins
-	proteins := make(chan protein.Protein)
-
 	
 	fmt.Println("Welcome to gobio!")
 	if len(os.Args) != 2 {
@@ -48,8 +45,8 @@ func main() {
 	// Parse signalp data and create map
 	signalPMap, _ := signalp.NewSignalPMap(file2)
 
-	// Create go routine with opened fasta file and go channel
-	go protein.ProteinPipeFasta(file, proteins)
+	// Create go 
+	proteins := protein.ProteinChannelFasta(file)
 
 	for p := range proteins { // iterate over proteins that are returned from go channel
 		// get protein int from p.Header
