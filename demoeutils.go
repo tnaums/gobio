@@ -14,19 +14,28 @@ func main() {
 	eutilsClient := eutils.NewClient(5 * time.Second)
 	// generate *http.Response from ncbi query
 	resp, err := eutilsClient.EPost("AIZ65945.1,QIR83317.1,194680922,50978626,28558982,9507199,6678417")
+
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 	defer resp.Body.Close()
 
-	// Create a new go channel
-	proteins := make(chan protein.Protein)
-	// start go routine with http response body as io.Reader and proteins channel
-	go protein.ProteinPipeFasta(resp.Body, proteins)
+	// Open a channel of proteins from *http.Response (io.ReadCloser)
+	proteins := protein.ProteinChannelFasta(resp.Body) 
 
-	for p := range proteins { // iterate over proteins returned from go channel
-		fmt.Println(p)
+	// Print first protein
+	fmt.Println(<-proteins)
+	fmt.Println()
+
+	// Print sequence from second protein
+	p2 := <-proteins
+	fmt.Println(p2.AminoAcid)
+	fmt.Println()
+
+	// For remaining proteins, print header, mass, sequence length
+	for p := range proteins { 
+		fmt.Printf(">%s|%.2fkDa|%daa", p.Header, p.Mass, len(p.AminoAcid))
 		fmt.Println()
 	}
 }

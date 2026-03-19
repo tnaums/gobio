@@ -119,7 +119,10 @@ func ProteinPipeFasta(r io.Reader, out chan<- Protein) {
 	out <- Protein{name, sequence, calculateMass(sequence)}
 	close(out)
 }
-
+// ProteinChannelFasta reads fasta sequences from an io.ReadCloser interface,
+// such as an *os.File returned from os.Open(fileName). Returns channel of
+// type Protein and initiates go routine that creates Proteins and adds
+// to channel.
 func ProteinChannelFasta(f io.ReadCloser) <-chan Protein {
 	out := make(chan Protein)
 	go func() {
