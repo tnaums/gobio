@@ -1,3 +1,7 @@
+// Demonstrates use of eutils.EPost for retrieving protein fasta
+// sequences from NCBI. The response body is then sent to
+// protein.ProteinChannelFasta where the seqeunces are returned as
+// protein.Protein type through a go channel.
 package main
 
 import (

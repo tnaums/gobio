@@ -27,7 +27,7 @@ func main() {
 	}
 	defer file.Close()
 
-	// Create go routine with opened fasta file and go channel
+	// Create channel of DNA from io.ReadCloser interface
 	dnas := dna.DNAChannelFasta(file)
 
 	// Retrieve first sequence and print

@@ -133,9 +133,6 @@ import (
 )
 
 func main() {
-	// Create a channel for sending DNA
-	dnach := make(chan dna.DNA)
-
 	fmt.Println("Welcome to gobio!")
 
 	// Get filename from command line
@@ -145,7 +142,7 @@ func main() {
 	}
 	fileName := os.Args[1]
 
-	// Open file to create *os.File which implements io.Reader
+	// Open file to create *os.File which implements io.ReadCloser
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -153,15 +150,15 @@ func main() {
 	}
 	defer file.Close()
 
-	// Create go routine with opened fasta file and go channel
-	go dna.DNAPipeFasta(file, dnach)
+	// Create channel of DNA from io.ReadCloser interface
+	dnas := dna.DNAChannelFasta(file)
 
 	// Retrieve first sequence and print
-	first :=  <- dnach
+	first :=  <- dnas
 	fmt.Println(first)
 
 	// Retrieve second sequence and print
-	second := <- dnach
+	second := <- dnas
 	fmt.Println(second)
 
 	// Iterate over orfs and print if over 100 amino acids
@@ -175,9 +172,118 @@ func main() {
 
 	// Iterate over remaining dna sequences and print the
 	// header line and sequence length
-	for d := range dnach {
+	for d := range dnas {
 		fmt.Println(d.Header)
 		fmt.Printf("Length: %d\n", len(d.Parent))
+	}
+}
+```
+# Protein Tutorial
+```go
+// Demonstrates use of protein.ProteinChannelFasta for
+// reading proteins from a fasta file containing one
+// or more sequences.
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/tnaums/gobio/internal/protein"
+)
+
+func main() {
+	fmt.Println("Welcome to gobio!")
+	if len(os.Args) != 2 {
+		fmt.Println("Usage: go run . <sequence.fa>")
+		os.Exit(1)
+	}
+	fileName := os.Args[1]
+
+	// Open file to create *os.File which is an io.ReadCloser
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+	defer file.Close()
+
+	// Create a channel of Proteins
+	proteins := protein.ProteinChannelFasta(file)
+
+        // Read first protein from channel
+	protein, ok := <-proteins
+	if ok {
+		fmt.Println(protein)
+	} else {
+		fmt.Println("Protein channel is empty.")
+	}
+
+        // Read second protein
+	protein, ok = <-proteins
+	if ok {
+		fmt.Println(protein)
+	} else {
+		fmt.Println("Protein channel is empty.")
+	}	
+
+        // Read all remaining proteins. Print header of proteins over 200 kDa
+	var count int
+	for protein := range proteins {
+		if protein.Mass > 200 {
+			fmt.Println(protein.Header)
+			fmt.Println()
+			count++
+		}
+	}
+	fmt.Printf("Found %d proteins larger than 20 kDa\n", count)
+}
+```
+# eutils Tutorial
+```go
+// Demonstrates use of eutils.EPost for retrieving protein fasta
+// sequences from NCBI. The response body is then sent to
+// protein.ProteinChannelFasta where the seqeunces are returned as
+// protein.Protein type through a go channel.
+package main
+
+import (
+	"fmt"
+	"os"
+	"time"
+
+	"github.com/tnaums/gobio/internal/eutils"
+	"github.com/tnaums/gobio/internal/protein"
+)
+
+func main() {
+	// Initialize client for api request
+	eutilsClient := eutils.NewClient(5 * time.Second)
+	// generate *http.Response from ncbi query
+	resp, err := eutilsClient.EPost("AIZ65945.1,QIR83317.1,194680922,50978626,28558982,9507199,6678417")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	defer resp.Body.Close()
+
+	// Open a channel of proteins from *http.Response (io.ReadCloser)
+	proteins := protein.ProteinChannelFasta(resp.Body) 
+
+	// Print first protein
+	fmt.Println(<-proteins)
+	fmt.Println()
+
+	// Print sequence from second protein
+	p2 := <-proteins
+	fmt.Println(p2.AminoAcid)
+	fmt.Println()
+
+	// For remaining proteins, print header, mass, sequence length
+	for p := range proteins { 
+		fmt.Printf(">%s|%.2fkDa|%daa", p.Header, p.Mass, len(p.AminoAcid))
+		fmt.Println()
 	}
 }
 ```
