@@ -133,45 +133,10 @@ func (o Orf) String() string {
 	return s
 }
 
-// DNAPipeFasta reads fasta sequences from an io.Reader interface,
-// such as an *os.File returned from os.Open(fileName) or an
-// *http.Response. Returns stream of DNA structs through the
-// provided go channel. Once the last DNA is sent, closes the
-// channel.
-func DNAPipeFasta(r io.Reader, out chan<- DNA) {
-	start := true
-	name := ""
-	sequence := ""
-	scanner := bufio.NewScanner(r)
-	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), ">") {
-			if !start {
-				newDNA := DNA{
-					Header:     name,
-					Parent:     sequence,
-					Complement: ReverseComplement(sequence),
-				}
-				newDNA.Orfs = newDNA.Translate()
-				out <- newDNA
-				sequence = ""
-			}
-			name = scanner.Text()
-			name = name[1:]
-			start = false
-		} else {
-			sequence += scanner.Text()
-		}
-	}
-	newDNA := DNA{
-		Header:     name,
-		Parent:     sequence,
-		Complement: ReverseComplement(sequence),
-	}
-	newDNA.Orfs = newDNA.Translate()
-	out <- newDNA
-	close(out)
-}
-
+// DNAChannelFasta reads fasta sequences from an io.ReadCloser interface,
+// such as an *os.File returned from os.Open(fileName). Returns channel of
+// type DNA and initiates a go routine that creates DNAs and adds them
+// to the channel.
 func DNAChannelFasta(f io.ReadCloser) <-chan DNA {
 	out := make(chan DNA)
 	go func() {
@@ -187,7 +152,7 @@ func DNAChannelFasta(f io.ReadCloser) <-chan DNA {
 					newDNA := DNA{
 						Header:     name,
 						Parent:     sequence,
-						Complement: ReverseComplement(sequence),
+						Complement: reverseComplement(sequence),
 					}
 					newDNA.Orfs = newDNA.Translate()
 					out <- newDNA
@@ -203,7 +168,7 @@ func DNAChannelFasta(f io.ReadCloser) <-chan DNA {
 		newDNA := DNA{
 			Header:     name,
 			Parent:     sequence,
-			Complement: ReverseComplement(sequence),
+			Complement: reverseComplement(sequence),
 		}
 		newDNA.Orfs = newDNA.Translate()
 		out <- newDNA
@@ -214,51 +179,66 @@ func DNAChannelFasta(f io.ReadCloser) <-chan DNA {
 
 // NewDNAFromSequence is a function that creates a type DNA struct
 // from a sequence string.
-func NewDNAFromSequence(sequence string) DNA {
-	newDNA := DNA{Parent: sequence,
-		Complement: ReverseComplement(sequence),
+func NewDNAFromSequence(header, sequence string) DNA {
+	newDNA := DNA{
+		Header:     header,
+		Parent:     sequence,
+		Complement: reverseComplement(sequence),
 	}
 	newDNA.Orfs = newDNA.Translate()
 	return newDNA
 }
 
-// NewDNAFromFasta creates a type DNA struct from a fasta file containing
-// a single DNA sequence
-func NewDNAFromFasta(filename string) (DNA, error) {
+// NewDNAFromFasta creates a slice of type DNA from a fasta file containing
+// one or more DNA sequences. You probably want
+// DNACHannelFasta.
+func NewDNAFromFasta(filename string) ([]DNA, error) {
+	returnSlice := make([]DNA, 0)
 	file, err := os.Open(filename)
 	if err != nil {
-		return DNA{}, err
+		return []DNA{}, err
 	}
 
-	header, sequence := FastaParser(file)
-	newDNA := DNA{
-		Header:     header,
-		Parent:     sequence,
-		Complement: ReverseComplement(sequence),
+	data := fastaParser(file)
+	for i := 0; i < len(data); i = i + 2 {
+		newDNA := DNA{
+			Header:     data[i],
+			Parent:     data[i+1],
+			Complement: reverseComplement(data[i+1]),
+		}
+		newDNA.Orfs = newDNA.Translate()
+		returnSlice = append(returnSlice, newDNA)
 	}
-	newDNA.Orfs = newDNA.Translate()
-	return newDNA, nil
+	return returnSlice, nil
 }
 
 // FastaParser reads a fasta file, extracts the sequence name from the header,
-// and creates a sequence string from the sequence.
-func FastaParser(r io.Reader) (name, sequence string) {
-	name = ""
-	sequence = ""
+// and creates a sequence string from the sequence. Returns a slice of strings
+// with alternating header and sequence.
+func fastaParser(r io.Reader) (data []string) {
+	start := true
+	name := ""
+	sequence := ""
 	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
-		if name == "" {
+		if strings.HasPrefix(scanner.Text(), ">") {
+			if !start {
+				data = append(data, sequence)
+				sequence = ""
+			}
 			name = scanner.Text()
-			name = name[1:]
+			data = append(data, name[1:])
+			start = false
 		} else {
 			sequence += scanner.Text()
 		}
 	}
-	return name, sequence
+	data = append(data, sequence)
+	return data
 
 }
 
-// Reverses a string. Called by ReverseComplement.
+// Reverses a string. Called by reverseComplement.
 func reverse(s string) string {
 	rns := []rune(s) // convert to rune
 	for i, j := 0, len(rns)-1; i < j; i, j = i+1, j-1 {
@@ -272,8 +252,8 @@ func reverse(s string) string {
 	return string(rns)
 }
 
-// ReverseComplement creates a complement DNA strand.
-func ReverseComplement(parent string) (complement string) {
+// reverseComplement
+func reverseComplement(parent string) (complement string) {
 
 	reverseSeq := reverse(parent)
 	for _, base := range reverseSeq {
