@@ -19,7 +19,8 @@ type Protein struct {
 	Mass      float64
 }
 
-// String method; Protein can be used as Stringer interface
+// String method; Protein implements Stringer interface
+// for example: fmt.Println(protein) prints 'protein' in fasta format
 func (p Protein) String() string {
 	s := fmt.Sprintf(">%s|%.2fkDa\n", p.Header, p.Mass)
 	for idx, base := range p.AminoAcid {
@@ -48,7 +49,8 @@ func NewProtein(header, sequence string) Protein {
 }
 
 // NewProteinFromFasta creates a slice of type Protein from a fasta file
-// containing one or more protein sequences.
+// containing one or more protein sequences. You probably want
+// ProteinChannelFasta.
 func NewProteinFromFasta(filename string) ([]Protein, error) {
 	returnSlice := make([]Protein, 0)
 	file, err := os.Open(filename)
@@ -56,7 +58,7 @@ func NewProteinFromFasta(filename string) ([]Protein, error) {
 		return []Protein{}, err
 	}
 
-	data := FastaParser(file)
+	data := fastaParser(file)
 	for i := 0; i < len(data); i = i + 2 {
 		newProtein := Protein{
 			Header:    data[i],
@@ -68,10 +70,10 @@ func NewProteinFromFasta(filename string) ([]Protein, error) {
 	return returnSlice, nil
 }
 
-// FastaParser reads a fasta file, extracts the sequence name from
+// fastaParser reads a fasta file, extracts the sequence name from
 // the header and creates a sequence string from the sequence.
 // Returns a slice of strings with alternating header and sequence.
-func FastaParser(r io.Reader) (data []string) {
+func fastaParser(r io.Reader) (data []string) {
 	start := true
 	name := ""
 	sequence := ""
@@ -94,31 +96,6 @@ func FastaParser(r io.Reader) (data []string) {
 
 }
 
-// ProteinPipeFasta reads fasta sequences from an io.Reader interface,
-// such as an *os.File returned from os.Open(fileName).
-// Returns stream of Protein structs through the provided go channel.
-// Once the last Protein is sent, closes the channel.
-func ProteinPipeFasta(r io.Reader, out chan<- Protein) {
-	start := true
-	name := ""
-	sequence := ""
-	scanner := bufio.NewScanner(r)
-	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), ">") {
-			if !start {
-				out <- Protein{name, sequence, calculateMass(sequence)}
-				sequence = ""
-			}
-			name = scanner.Text()
-			name = name[1:]
-			start = false
-		} else {
-			sequence += scanner.Text()
-		}
-	}
-	out <- Protein{name, sequence, calculateMass(sequence)}
-	close(out)
-}
 // ProteinChannelFasta reads fasta sequences from an io.ReadCloser interface,
 // such as an *os.File returned from os.Open(fileName). Returns channel of
 // type Protein and initiates go routine that creates Proteins and adds
@@ -159,6 +136,8 @@ var averageMass = map[string]float64{
 	"F": 147.17571, "R": 156.18707, "Y": 163.17512, "W": 186.21220,
 }
 
+
+// returns average mass for a peptide or protein in kDa
 func calculateMass(aa string) (mass float64) {
 	mass = 18.000
 	for _, residue := range aa {

@@ -30,20 +30,10 @@ var GeneticCode = map[string]byte{
 
 FUNCTIONS
 ```go
-func DNAPipeFasta(r io.Reader, out chan<- DNA)
-    DNAPipeFasta reads fasta sequences from an io.Reader interface, such as
-    an *os.File returned from os.Open(fileName) or an *http.Response. Returns
-    stream of DNA structs through the provided go channel. Once the last DNA is
-    sent, closes the channel.
-```
-```go
-func FastaParser(r io.Reader) (name, sequence string)
-    FastaParser reads a fasta file, extracts the sequence name from the header,
-    and creates a sequence string from the sequence.
-```
-```go
-func ReverseComplement(parent string) (complement string)
-    ReverseComplement creates a complement DNA strand.
+func DNAChannelFasta(f io.ReadCloser) <-chan DNA
+    DNAChannelFasta reads fasta sequences from an io.ReadCloser interface, such
+    as an *os.File returned from os.Open(fileName). Returns channel of type DNA
+    and initiates a go routine that creates DNAs and adds them to the channel.
 ```
 
 TYPES
@@ -59,12 +49,12 @@ type DNA struct {
     reading frames based solely on translation.
 ```
 ```go
-func NewDNAFromFasta(filename string) (DNA, error)
-    NewDNAFromFasta creates a type DNA struct from a fasta file containing a
-    single DNA sequence
+func NewDNAFromFasta(filename string) ([]DNA, error)
+    NewDNAFromFasta creates a slice of type DNA from a fasta file containing one
+    or more DNA sequences.
 ```
 ```go
-func NewDNAFromSequence(sequence string) DNA
+func NewDNAFromSequence(header, sequence string) DNA
     NewDNAFromSequence is a function that creates a type DNA struct from a
     sequence string.
 ```
@@ -99,17 +89,10 @@ Package protein provides a protein type to store protein sequence information
 
 FUNCTIONS
 ```go
-func FastaParser(r io.Reader) (data []string)
-    FastaParser reads a fasta file, extracts the sequence name from the header
-    and creates a sequence string from the sequence. Returns a slice of strings
-    with alternating header and sequence.
-```
-```go
-func ProteinPipeFasta(r io.Reader, out chan<- Protein)
-    ProteinPipeFasta reads fasta sequences from an io.Reader interface, such
-    as an *os.File returned from os.Open(fileName). Returns stream of Protein
-    structs through the provided go channel. Once the last Protein is sent,
-    closes the channel.
+func ProteinChannelFasta(f io.ReadCloser) <-chan Protein
+    ProteinChannelFasta reads fasta sequences from an io.ReadCloser interface,
+    such as an *os.File returned from os.Open(fileName). Returns channel of type
+    Protein and initiates go routine that creates Proteins and adds to channel.
 ```
 
 TYPES
@@ -133,7 +116,8 @@ func NewProteinFromFasta(filename string) ([]Protein, error)
 ```
 ```go
 func (p Protein) String() string
-    String method; Protein can be used as Stringer interface
+    String method; Protein can be used as Stringer interface;
+    for example: fmt.Println(protein) prints 'protein' in fasta format
 ```
 # DNA Tutorial
 ```go

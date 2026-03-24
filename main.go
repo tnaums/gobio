@@ -64,7 +64,7 @@ func main() {
 				matches := 0
 				fmt.Println()
 				fmt.Println(mature)
-				proteomes := []string{"graminearum.aa.fasta", "subglutinans.aa.fasta", "proliferatum.aa.fasta"}
+				proteomes := []string{"graminearum.aa.fasta", "subglutinans.aa.fasta", "proliferatum.aa.fasta", "Ccarb.aa.fasta"}
 				for _, proteome := range proteomes {
 					blast := localblast.LocalBlast(p, proteome)
 					qlen, _ := strconv.Atoi(blast.BlastOutputQueryLen)
@@ -79,7 +79,7 @@ func main() {
 						matches += 1
 					} 
 				}
-				if matches == 3 {selected = append(selected, mature)}
+				if matches == 4 {selected = append(selected, mature)}
 			}
 		}
 	}
