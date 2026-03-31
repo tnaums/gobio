@@ -14,8 +14,9 @@ func PrintBlastp(b BlastOutput) {
 		fmt.Println()
 		fmt.Printf("Hit %s\n", hit.HitNum)
 		fmt.Println("Description:")
-		fmt.Printf("    ID:%s", hit.HitID)
-		fmt.Printf("  Accession:%s", hit.HitAccession)
+		//		fmt.Printf("    ID:%s", hit.HitID)
+		fmt.Printf("   Def:%s", hit.HitDef)
+		//		fmt.Printf("  Accession:%s", hit.HitAccession)
 		fmt.Printf("  Length:%s\n", hit.HitLen)
 		for _, hsp := range hit.HitHsps.Hsp {
 			fmt.Printf("Hsp: %s\n", hsp.HspNum)
