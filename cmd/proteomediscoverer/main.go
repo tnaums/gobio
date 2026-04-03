@@ -1,15 +1,9 @@
 package main
 
 import (
-	//"bufio"
 	"fmt"
 	"os"
-	//	"strconv"
 	"time"
-
-	//"time"
-
-	//"strings"
 
 	"github.com/tnaums/gobio/internal/eutils"
 	"github.com/tnaums/gobio/internal/localblast"
