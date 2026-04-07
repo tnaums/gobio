@@ -100,10 +100,10 @@ func fastaParser(r io.Reader) (data []string) {
 // such as an *os.File returned from os.Open(fileName). Returns channel of
 // type Protein and initiates go routine that creates Proteins and adds
 // to channel.
-func ProteinChannelFasta(f io.ReadCloser) <-chan Protein {
+func ProteinChannelFasta(f io.Reader) <-chan Protein {
 	out := make(chan Protein)
 	go func() {
-		defer f.Close()
+		//		defer f.Close()
 		defer close(out)
 		start := true
 		var name string

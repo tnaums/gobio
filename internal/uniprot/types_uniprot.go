@@ -1,8 +1,44 @@
 package uniprot
 
+import (
+	"fmt"
+
+	"github.com/tnaums/gobio/internal/protein"
+)
+
 type UniprotAPI struct {
 	ResponseType string
 	IdList       string
+}
+
+type UniprotComplete struct {
+	JSON     UniprotRecord
+	Flatfile []byte
+}
+
+func (u UniprotComplete) GetFasta() protein.Protein {
+	header := fmt.Sprintf("%s|%s|%s", u.JSON.Accession, u.JSON.Organism.Names[0].Value, u.JSON.Protein.RecommendedName.FullName.Value)
+	protein := protein.NewProtein(header, u.JSON.Sequence.Sequence)
+	return protein
+}
+
+func (u UniprotComplete) GetFlatFile() []byte {
+	return u.Flatfile
+}
+
+func (u UniprotComplete) PrintFeatures() {
+	for _, feature := range u.JSON.Features {
+		fmt.Printf("Type:\t%s\n", feature.Type)
+		fmt.Printf("Category:\t%s\n", feature.Category)
+		fmt.Printf("Description:\t%s\n", feature.Description)
+		fmt.Printf("Begin:\t%s\n", feature.Begin)
+		fmt.Printf("End:\t%s\n", feature.End)
+		fmt.Printf("Molecule:\t %s\n", feature.Molecule)
+		fmt.Printf("Evidences:\t%s\n", feature.Evidences)
+		fmt.Println()
+	}
+
+	return
 }
 
 type UniprotRecord struct {

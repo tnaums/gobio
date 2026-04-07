@@ -32,7 +32,7 @@ func main() {
 
 	// Second example: generate *http.Response from uniprot query
 	// for complete flatfile.  
-	resp, err = uniprotClient.GetAccession("A0A0A7LRQ7", "text/x-flatfile")
+	resp, err = uniprotClient.GetAccession("Q8NID8", "text/x-flatfile")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -53,7 +53,7 @@ func main() {
 	// to get full record in json format. Information is then unmarshalled
 	// into a uniprot.UniprotRecord struct.
 	//resp, err = uniprotClient.GetAccession("A0A0A7LRQ7", "application/json")
-	resp, err = uniprotClient.GetAccession("Q8NID8", "application/json")	
+	resp, err = uniprotClient.GetAccession("A0A0A7LRQ7", "application/json")	
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -89,6 +89,10 @@ func main() {
 
 	// create protein.Protein struct
 	p := protein.NewProtein(record.Accession, record.Sequence.Sequence)
+	// print in fasta format
 	fmt.Println(p)
+	fmt.Println()
+
+	fmt.Printf("%#v\n", p)
 
 }
