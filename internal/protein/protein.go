@@ -22,22 +22,24 @@ type Protein struct {
 // String method; Protein implements Stringer interface
 // for example: fmt.Println(protein) prints 'protein' in fasta format
 func (p Protein) String() string {
-	s := fmt.Sprintf(">%s|%.2fkDa\n", p.Header, p.Mass)
+	builder := strings.Builder{}
+	builder.WriteString(fmt.Sprintf(">%s|%.2fkDa\n", p.Header, p.Mass))
 	for idx, base := range p.AminoAcid {
 		if idx == 0 {
-			s += string(base)
+			builder.WriteRune(base)
 			continue
 		}
 		if idx%60 == 0 {
-			s += "\n"
-			s += string(base)
+			builder.WriteString("\n")
+			builder.WriteRune(base)
 			continue
 		}
-		s += string(base)
+		builder.WriteRune(base)
 
 	}
-	return s
+	return builder.String()
 }
+
 
 // Create a Protein struct from header and sequence strings
 func NewProtein(header, sequence string) Protein {
@@ -107,22 +109,22 @@ func ProteinChannelFasta(f io.Reader) <-chan Protein {
 		defer close(out)
 		start := true
 		var name string
-		var sequence string
+		var sequence strings.Builder
 		scanner := bufio.NewScanner(f)
 		for scanner.Scan() {
 			if strings.HasPrefix(scanner.Text(), ">") {
 				if !start {
-					out <- Protein{name, sequence, calculateMass(sequence)}
-					sequence = ""
+					out <- Protein{name, sequence.String(), calculateMass(sequence.String())}
+					sequence.Reset()
 				}
 				name = scanner.Text()
 				name = name[1:]
 				start = false
 			} else {
-				sequence += scanner.Text()
+				sequence.WriteString(scanner.Text())
 			}
 		}
-		out <- Protein{name, sequence, calculateMass(sequence)}
+		out <- Protein{name, sequence.String(), calculateMass(sequence.String())}
 	}()
 	return out
 }

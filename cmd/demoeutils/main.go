@@ -17,8 +17,8 @@ func main() {
 	// Initialize client for api request
 	eutilsClient := eutils.NewClient(5 * time.Second)
 	// generate *http.Response from ncbi query
-	//resp, err := eutilsClient.EPost("AIZ65945.1,QIR83317.1,194680922,50978626,28558982,9507199,6678417,")
-	resp, err := eutilsClient.EPost("XP_018744610.1")
+	resp, err := eutilsClient.EPost("AIZ65945.1,QIR83317.1,194680922,50978626,28558982,9507199,6678417,")
+	//resp, err := eutilsClient.EPost("XP_018744610.1")
 
 	if err != nil {
 		fmt.Println(err)

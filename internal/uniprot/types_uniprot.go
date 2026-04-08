@@ -28,13 +28,13 @@ func (u UniprotComplete) GetFlatFile() []byte {
 
 func (u UniprotComplete) PrintFeatures() {
 	for _, feature := range u.JSON.Features {
-		fmt.Printf("Type:\t%s\n", feature.Type)
-		fmt.Printf("Category:\t%s\n", feature.Category)
-		fmt.Printf("Description:\t%s\n", feature.Description)
-		fmt.Printf("Begin:\t%s\n", feature.Begin)
-		fmt.Printf("End:\t%s\n", feature.End)
-		fmt.Printf("Molecule:\t %s\n", feature.Molecule)
-		fmt.Printf("Evidences:\t%s\n", feature.Evidences)
+		fmt.Printf("       Type: %s\n", feature.Type)
+		fmt.Printf("   Category: %s\n", feature.Category)
+		fmt.Printf("Description: %s\n", feature.Description)
+		fmt.Printf("      Begin: %s\n", feature.Begin)
+		fmt.Printf("        End: %s\n", feature.End)
+		fmt.Printf("   Molecule:  %s\n", feature.Molecule)
+		fmt.Printf("  Evidences: %s\n", feature.Evidences)
 		fmt.Println()
 	}
 

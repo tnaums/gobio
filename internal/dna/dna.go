@@ -97,40 +97,42 @@ func (d DNA) Translate() (orfs []Orf) {
 
 // DNA.String prints the sequence of the Parent strand in fasta format.
 func (d DNA) String() string {
-	s := ">" + d.Header + "\n"
+	builder := strings.Builder{}
+	builder.WriteString(fmt.Sprintf(">%s\n", d.Header))
 	for idx, base := range d.Parent {
 		if idx == 0 {
-			s += string(base)
+			builder.WriteRune(base)
 			continue
 		}
 		if idx%60 == 0 {
-			s += "\n"
-			s += string(base)
+			builder.WriteString("\n")
+			builder.WriteRune(base)
 			continue
 		}
-		s += string(base)
+		builder.WriteRune(base)
 
 	}
-	return s
+	return builder.String()
 }
 
 // Orf.String prints the sequence of the orf in fasta format
 func (o Orf) String() string {
-	s := fmt.Sprintf(">%s|Frame_%d|Length%d\n", o.Strand, o.Frame, len(o.AminoAcid))
+	builder := strings.Builder{}
+	builder.WriteString(fmt.Sprintf(">%s|Frame_%d|Length%d\n", o.Strand, o.Frame, len(o.AminoAcid)))
 	for idx, base := range o.AminoAcid {
 		if idx == 0 {
-			s += string(base)
+			builder.WriteRune(base)
 			continue
 		}
 		if idx%60 == 0 {
-			s += "\n"
-			s += string(base)
+			builder.WriteString("\n")
+			builder.WriteRune(base)
 			continue
 		}
-		s += string(base)
+		builder.WriteRune(base)
 
 	}
-	return s
+	return builder.String()
 }
 
 // DNAChannelFasta reads fasta sequences from an io.ReadCloser interface,
