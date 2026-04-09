@@ -8,7 +8,8 @@ import (
 )
 
 func (c *Client) EPost(accessions string) (*http.Response, error) {
-	// Download protein records corresponding to a list of GI numbers.
+	// Download protein records corresponding to a list of GI or
+	// accession numbers. "accession1,accession2,accession3"
 	params := EPost{
 		Database: "protein",
 		IdList:   accessions,
@@ -21,20 +22,19 @@ func (c *Client) EPost(accessions string) (*http.Response, error) {
 	req, err := http.NewRequest("POST", url, nil)
 	if err != nil {
 		fmt.Printf("Error creating request: %s\n", err)
-		return &http.Response{}, err
+		return nil, fmt.Errorf("Error creating request: %s", err)
 	}
 
 	// Post the epost URL
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
-		fmt.Printf("Error making request: %s\n", err)
-		return &http.Response{}, err		
+		return nil, fmt.Errorf("Error making request: %s", err)
 	}
 	defer resp.Body.Close()
 	
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return &http.Response{}, err
+		return nil, fmt.Errorf("Error reading response body: %s", err)
 	}
 
 	// Parse WebEnv and QueryKey
@@ -50,14 +50,13 @@ func (c *Client) EPost(accessions string) (*http.Response, error) {
 
 	req, err = http.NewRequest("POST", url, nil)
 	if err != nil {
-		fmt.Printf("Error creating req: %s", err)
-		return &http.Response{}, err
+		return nil, fmt.Errorf("Error creating req: %s", err)
 	}
 	// Post the efetch URL
 	resp, err = c.httpClient.Do(req)
 	if err != nil {
 		fmt.Printf("Error making request: %s\n", err)
-		return &http.Response{}, err
+		return nil, fmt.Errorf("Error making request: %s", err)
 	}
 	
 	return resp, nil

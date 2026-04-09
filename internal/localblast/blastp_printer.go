@@ -37,6 +37,8 @@ func PrintBlastp(b BlastOutput) {
 				scanner.Text()
 				break
 			}
+			fmt.Print("\033[H\033[2J")  // clears screen and prints at top
+			                            // probably only works on linux
 		}
 	}
 

@@ -1,8 +1,6 @@
 package proteomediscoverer
 
 import (
-	//"io"
-	//	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
