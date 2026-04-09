@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	//"io"
 	"log"
 	"os/exec"
 
@@ -10,7 +9,7 @@ import (
 )
 
 func main() {
-	cmd := exec.Command("pymol", "-p", "-K", "cif/9172_0.cif")
+	cmd := exec.Command("pymol", "-p", "-K", "cif/cocca.cif")
 	stdin, err := cmd.StdinPipe()
 
 	if err != nil {

@@ -7,25 +7,27 @@ import (
 )
 
 func CustomizeCartoon(r io.Writer) {
-	io.WriteString(r, "set cartoon_color, 0x4C62D2, %fwk\n")
-	io.WriteString(r, "set cartoon_transparency, 0.6, %fwk\n")
-	io.WriteString(r, "set cartoon_transparency, 0.8, not %fwk\n")
-
+	builder := strings.Builder{}
+	builder.WriteString(fmt.Sprintf("set cartoon_color, 0x4C62D2, %fwk\n"))
+	builder.WriteString(fmt.Sprintf("set cartoon_transparency, 0.6, %fwk\n"))
+	builder.WriteString(fmt.Sprintf("set cartoon_transparency, 0.8, not %fwk\n"))
+	io.WriteString(r, builder.String())
 	return
 }
 
 func SetLighting(r io.Writer) {
-	io.WriteString(r, "bg white\n")
-	io.WriteString(r, "set ambient, 0.05\n")
-	io.WriteString(r, "set direct, 0.2\n")
-	io.WriteString(r, "set spec_direct, 0\n")
-	io.WriteString(r, "set shininess, 10.\n")
-	io.WriteString(r, "set reflect, 0.5\n")
-	io.WriteString(r, "set spec_count, -1\n")
-	io.WriteString(r, "set spec_reflect, -1.\n")
-	io.WriteString(r, "set specular, 1\n")
-	io.WriteString(r, "set specular_intensity, 0.5\n")
-
+	builder := strings.Builder{}
+	builder.WriteString(fmt.Sprintf("bg white\n"))
+	builder.WriteString(fmt.Sprintf("set ambient, 0.05\n"))
+	builder.WriteString(fmt.Sprintf("set direct, 0.2\n"))
+	builder.WriteString(fmt.Sprintf("set spec_direct, 0\n"))
+	builder.WriteString(fmt.Sprintf("set shininess, 10.\n"))
+	builder.WriteString(fmt.Sprintf("set reflect, 0.5\n"))
+	builder.WriteString(fmt.Sprintf("set spec_count, -1\n"))
+	builder.WriteString(fmt.Sprintf("set spec_reflect, -1.\n"))
+	builder.WriteString(fmt.Sprintf("set specular, 1\n"))
+	builder.WriteString(fmt.Sprintf("set specular_intensity, 0.5\n"))
+	io.WriteString(r, builder.String())
 	return
 }
 
