@@ -12,15 +12,16 @@ import (
 )
 
 func main() {
+	cif := "cif/9172_0.cif"
 	// launch pymol and create StdinPipe writer to communicate with pymol
-	cmd := exec.Command("pymol", "-p", "-K", "cif/cocca.cif")
+	cmd := exec.Command("pymol", "-p", "-K", cif)
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// open file to find motif
-	file, err := os.Open("cif/cocca.cif")
+	file, err := os.Open(cif)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
@@ -47,6 +48,13 @@ func main() {
 	motifEnd := chainBMap[list[1]].IDEnd
 	for i := list[0] + 1; i <= list[1]; i++ {
 		fmt.Printf("%v\n", chainBMap[i])
+	}
+
+	// reset file position and generate Structure map
+	file.Seek(0, 0)
+	structure := pymol.NewStructure(file)
+	for i := motifStart; i <= motifEnd; i++ {
+		fmt.Printf("%v\n", structure[i])
 	}
 
 	go func() {

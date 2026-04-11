@@ -50,7 +50,9 @@ type Residue struct {
 	IDEnd     int
 }
 
-func NewChainMap(r io.Reader, chain string) map[int]Residue{
+type ChainMap map[int]Residue
+
+func NewChainMap(r io.Reader, chain string) ChainMap{
 	scanner := bufio.NewScanner(r)
 	currentResidue := 0
 	id := 0
@@ -87,4 +89,18 @@ func NewChainMap(r io.Reader, chain string) map[int]Residue{
 	residue.IDEnd = id
 	m[currentResidue] = residue
 	return m
+}
+
+type Structure map[int]Atom
+
+func NewStructure(r io.Reader) Structure {
+	scanner := bufio.NewScanner(r)
+	structure := make(Structure, 0)
+	for scanner.Scan() {
+		if strings.HasPrefix(scanner.Text(), "ATOM") {
+			atom := NewAtom(scanner.Text())
+			structure[atom.ID] = atom
+		}
+	}
+	return structure
 }
