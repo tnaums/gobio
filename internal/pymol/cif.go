@@ -1,4 +1,4 @@
-package structure2
+package pymol
 
 import (
 	"bufio"
@@ -52,7 +52,7 @@ type Residue struct {
 
 func NewChainMap(r io.Reader, chain string) map[int]Residue{
 	scanner := bufio.NewScanner(r)
-	currentResidue := 1
+	currentResidue := 0
 	id := 0
 	var residue Residue
 	m := make(map[int]Residue)
@@ -63,7 +63,8 @@ func NewChainMap(r io.Reader, chain string) map[int]Residue{
 				seqid, _ := strconv.Atoi(fields[8])
 				id, _ = strconv.Atoi(fields[1])
 				// if it is the first one
-				if seqid == 1 {
+				if currentResidue == 0 {
+					currentResidue += 1
 					residue = Residue{
 						AminoAcid: fields[5],
 						Position:  currentResidue,

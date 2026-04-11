@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"os"
+	"regexp"
 
-	"github.com/tnaums/gobio/internal/structure2"
+	"github.com/tnaums/gobio/internal/protein"
+	"github.com/tnaums/gobio/internal/pymol"
 )
 
 func main() {
@@ -15,7 +17,19 @@ func main() {
 	}
 	defer file.Close()
 
-	sequence := structure2.SequenceFromCIF(file)
-	fmt.Println(sequence)
+	buf := pymol.SequenceFromCIF(file)
+	proteins := protein.ProteinChannelFasta(buf)
+	_ = <-proteins
+	chainB := <-proteins
+	fmt.Println(chainB)
+
+	r, _ := regexp.Compile("DRSG(M)GQG")
+	list := r.FindStringIndex(chainB.AminoAcid)
+	fmt.Println(list)
+	file.Seek(0, 0)
+	chainBMap := pymol.NewChainMap(file, "B")
+	for i := list[0] + 1; i <= list[1]; i++ {
+		fmt.Printf("%v\n", chainBMap[i])
+	}
 
 }
