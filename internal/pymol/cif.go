@@ -9,6 +9,9 @@ import (
 	"strings"
 )
 
+// Map that converts the 3 letter amino acid codes found in
+// ATOM records to single amino acid codes. Used to create
+// fasta protein sequences from cif files.
 var ThreeToOne = map[string]byte{
 	"ALA": 'A', "LEU": 'L',
 	"ARG": 'R', "LYS": 'K',
@@ -22,6 +25,9 @@ var ThreeToOne = map[string]byte{
 	"ILE": 'I', "VAL": 'V',
 }
 
+// Function that creates protein fasta files for each chain
+// in a cif file. The returned bytes.Buffer reference can
+// be passed to protein.ProteinChannelFasta as the io.Reader.
 func SequenceFromCIF(r io.Reader) *bytes.Buffer {
 	buf := bytes.Buffer{}
 	scanner := bufio.NewScanner(r)
@@ -43,6 +49,7 @@ func SequenceFromCIF(r io.Reader) *bytes.Buffer {
 	return &buf
 }
 
+// Residue contains information for a single amino acid.
 type Residue struct {
 	AminoAcid string
 	Position  int
@@ -50,8 +57,12 @@ type Residue struct {
 	IDEnd     int
 }
 
+// ChainMap keys are sequence number for an amino acid in a chain.
+// Values are Residue struct for that amino acid. Useful for converting
+// from amino acid number to atom id numbers.
 type ChainMap map[int]Residue
 
+// Create a ChainMap from the ATOM field of a cif file.
 func NewChainMap(r io.Reader, chain string) ChainMap{
 	scanner := bufio.NewScanner(r)
 	currentResidue := 0
@@ -91,8 +102,11 @@ func NewChainMap(r io.Reader, chain string) ChainMap{
 	return m
 }
 
+// Keys are atom id. Values are the Atom struct containing all 17 fields of
+// information parsed from ATOM lines of cif file.
 type Structure map[int]Atom
 
+// Creates a new Structure map from a cif file.
 func NewStructure(r io.Reader) Structure {
 	scanner := bufio.NewScanner(r)
 	structure := make(Structure, 0)

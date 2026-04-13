@@ -1,3 +1,13 @@
+// The pymol package supports control of the pymol protein structure
+// viewer from go. In main:
+//	cmd := exec.Command("pymol", "-p", "-K", cif)
+//	stdin, err := cmd.StdinPipe()
+//
+// stdin communicates with pymol, and is as an argument of type io.Writer
+// in functions in the pymol package.
+//
+// This package was inspired by the python package 'pymolPy3' available
+// at https://github.com/carbonscott/pymolPy3/tree/main
 package pymol
 
 import (
@@ -31,6 +41,8 @@ func SetLighting(r io.Writer) {
 	return
 }
 
+// Makes a pymol selection based on start and end atom id, sets the selection color,
+// and optionally shows sticks. 
 func SelectByID(r io.Writer, name string, color string, idstart int, idend int, showsticks bool) {
 	builder := strings.Builder{}
 	builder.WriteString(fmt.Sprintf("select %s, id %d-%d\n", name, idstart, idend))
@@ -42,6 +54,8 @@ func SelectByID(r io.Writer, name string, color string, idstart int, idend int, 
 	return
 }
 
+// Makes a pymol selection based on chain, sets the selection color, and
+// optionally shows sticks.
 func SelectByChain(r io.Writer, name string, color string, chain string, showsticks bool) {
 	builder := strings.Builder{}
 	builder.WriteString(fmt.Sprintf("select %s, chain %s\n", name, chain))

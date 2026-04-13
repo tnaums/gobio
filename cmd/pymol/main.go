@@ -12,7 +12,9 @@ import (
 )
 
 func main() {
+	//cif := "cif/1465415.cif"
 	cif := "cif/9172_0.cif"
+
 	// launch pymol and create StdinPipe writer to communicate with pymol
 	cmd := exec.Command("pymol", "-p", "-K", cif)
 	stdin, err := cmd.StdinPipe()
@@ -51,6 +53,8 @@ func main() {
 	}
 
 	// reset file position and generate Structure map
+	// index is atom id, value is an atom struct that
+	// contains all info from ATOM line in cif file
 	file.Seek(0, 0)
 	structure := pymol.NewStructure(file)
 	for i := motifStart; i <= motifEnd; i++ {
@@ -59,6 +63,7 @@ func main() {
 
 	go func() {
 		defer stdin.Close()
+		// change some pymol settings from default
 		pymol.CustomizeCartoon(stdin)
 		pymol.SetLighting(stdin)
 
@@ -71,7 +76,7 @@ func main() {
 		// Select Chain B, change color
 		pymol.SelectByChain(stdin, "B", "red", "B", false)
 
-		// Select motif
+		// Select motif that was identified by regular expression pattern match
 		pymol.SelectByID(stdin, "DRSGMGQG", "blue", motifStart, motifEnd, true)
 	}()
 

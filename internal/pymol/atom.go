@@ -17,6 +17,7 @@ type Atom struct {
 	PDBX       PDBX
 }
 
+// Label portion of atom
 type Label struct {
 	AtomID   string
 	AltID    string
@@ -26,17 +27,20 @@ type Label struct {
 	SeqID    int
 }
 
+// Cartesian portion of atom
 type Cartesian struct {
 	X float64
 	Y float64
 	Z float64
 }
 
+// Author portion of atom
 type Author struct {
 	SeqID  int
 	AsymID string
 }
 
+// PDBX portion of atom
 type PDBX struct {
 	InsCode     string
 	PDBModelNum int
@@ -45,7 +49,9 @@ type PDBX struct {
 // NewAtom parses information from an ATOM line in a cif
 // protein structure file and returns an Atom struct.
 func NewAtom(entry string) Atom {
+	// split line into 17 values
 	fields := strings.Fields(entry)
+	// convert integer and float values from strings
 	id, _ := strconv.Atoi(fields[1])
 	eid, _ := strconv.Atoi(fields[7])
 	sid, _ := strconv.Atoi(fields[8])
@@ -56,6 +62,7 @@ func NewAtom(entry string) Atom {
 	b, _ := strconv.ParseFloat(fields[14], 64)
 	sid2, _ := strconv.Atoi(fields[15])
 	pdbx, _ := strconv.Atoi(fields[17])
+	// create Atom entry
 	a := Atom{
 		ID:         id,
 		TypeSymbol: fields[2],
