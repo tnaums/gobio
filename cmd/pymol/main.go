@@ -43,7 +43,7 @@ func main() {
 	list := r.FindStringIndex(chainB.AminoAcid)
 	fmt.Println(list)
 
-	// reset file position and generate map[seqid]Residue
+	// reset file position and generate Chainmap map[seqid]Residue
 	file.Seek(0, 0)
 	chainBMap := pymol.NewChainMap(file, "B")
 	motifStart := chainBMap[list[0] + 1].IDStart
@@ -67,7 +67,8 @@ func main() {
 		pymol.CustomizeCartoon(stdin)
 		pymol.SetLighting(stdin)
 
-		// Select and modify Q49,C55,H187,N208
+		// Select and modify Q49,C55,H187,N208 from ChainA. These
+		// residue ids were determined manually and hard-coded.
 		pymol.SelectByID(stdin, "Q", "blue", 379, 387, true)
 		pymol.SelectByID(stdin, "C", "red", 419, 424, true)
 		pymol.SelectByID(stdin, "H", "blue", 1419, 1428, true)
@@ -76,10 +77,11 @@ func main() {
 		// Select Chain B, change color
 		pymol.SelectByChain(stdin, "B", "red", "B", false)
 
-		// Select motif that was identified by regular expression pattern match
+		// Select motif that was identified by regular expression pattern match.
 		pymol.SelectByID(stdin, "DRSGMGQG", "blue", motifStart, motifEnd, true)
 	}()
 
+	// When pymol exits, the output is captured and printed to the command line.
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		log.Fatal(err)

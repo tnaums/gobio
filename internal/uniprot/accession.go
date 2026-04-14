@@ -8,6 +8,9 @@ import (
 	"net/http"
 )
 
+// For given accession, retrieves both a complete record as json
+// that is unmarshalled into a go struct and complete record as
+// flatfile that is saved for printing.
 func (c *Client) GetAccession(accession string) (*UniprotComplete, error) {
 	// Assemble the URL
 	url := baseURL + accession
