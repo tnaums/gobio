@@ -70,7 +70,7 @@ func (d DNA) Translate() (orfs []Orf) {
 				second := string(sequence[i+1])
 				third := string(sequence[i+2])
 				codon := first + second + third
-				aa := string(GeneticCode[codon])
+				aa := string(GeneticCode[strings.ToUpper(codon)])
 				current += aa
 				if aa == "*" {
 					newOrf := Orf{
