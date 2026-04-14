@@ -139,10 +139,9 @@ func (o Orf) String() string {
 // such as an *os.File returned from os.Open(fileName). Returns channel of
 // type DNA and initiates a go routine that creates DNAs and adds them
 // to the channel.
-func DNAChannelFasta(f io.ReadCloser) <-chan DNA {
+func DNAChannelFasta(f io.Reader) <-chan DNA {
 	out := make(chan DNA)
 	go func() {
-		defer f.Close()
 		defer close(out)
 		start := true
 		name := ""
