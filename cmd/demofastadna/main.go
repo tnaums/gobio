@@ -19,7 +19,7 @@ func main() {
 	}
 	fileName := os.Args[1]
 
-	// Open file to create *os.File which implements io.ReadCloser
+	// Open file to create *os.File which implements io.Reader
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -27,7 +27,7 @@ func main() {
 	}
 	defer file.Close()
 
-	// Create channel of DNA from io.ReadCloser interface
+	// Create channel of DNA from io.Reader interface
 	dnas := dna.DNAChannelFasta(file)
 
 	// Retrieve first sequence and print

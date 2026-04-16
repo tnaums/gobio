@@ -1,8 +1,21 @@
+# gobio
+
+## Description
+
+### Science Background
+
+### Motivation
+
+### How gobio works
+
+## Installation
+
+## Usage
+
 # dna.go
 package dna // import "github.com/tnaums/gobio/internal/dna"
 
-Package dna provides a DNA type to store DNA sequence information and provides
-simple DNA methods.
+Package dna provides a DNA type to store DNA sequence information.
 
 VARIABLES
 ```go
@@ -31,7 +44,7 @@ var GeneticCode = map[string]byte{
 FUNCTIONS
 ```go
 func DNAChannelFasta(f io.ReadCloser) <-chan DNA
-    DNAChannelFasta reads fasta sequences from an io.ReadCloser interface, such
+    DNAChannelFasta reads fasta sequences from an io.Reader interface, such
     as an *os.File returned from os.Open(fileName). Returns channel of type DNA
     and initiates a go routine that creates DNAs and adds them to the channel.
 ```
@@ -79,18 +92,18 @@ type Orf struct {
 ```    
 ```go
 func (o Orf) String() string
-    Orf.String prints the sequence of the orf in fasta format
+    Orf.String prints the sequence of an orf in fasta format.
 ```
 
 # protein.go
 package protein // import "github.com/tnaums/gobio/internal/protein"
 
-Package protein provides a protein type to store protein sequence information
+Package protein provides a protein type to store protein sequence information.
 
 FUNCTIONS
 ```go
-func ProteinChannelFasta(f io.ReadCloser) <-chan Protein
-    ProteinChannelFasta reads fasta sequences from an io.ReadCloser interface,
+func ProteinChannelFasta(f io.Reader) <-chan Protein
+    ProteinChannelFasta reads fasta sequences from an io.Reader interface,
     such as an *os.File returned from os.Open(fileName). Returns channel of type
     Protein and initiates go routine that creates Proteins and adds to channel.
 ```
