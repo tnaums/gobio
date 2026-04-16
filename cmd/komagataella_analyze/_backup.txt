@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/tnaums/gobio/internal/komagataella"
+)
+
+func main() {
+
+	file, err := os.Open("sequences/pTAN213.fa")
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+	defer file.Close()
+
+	dna := dna.DNAChannelFasta(file)
+
+	d := <-dna
+	for _, o := range d.Orfs {
+		if len(o.AminoAcid) > 200 {
+			fmt.Println(o)
+		}
+	}
+}

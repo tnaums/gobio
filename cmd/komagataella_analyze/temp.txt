@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	plasmids := []string{"sequences/pTAN288.fa", "sequences/pTAN218.fa", "sequences/pTAN160.fa"}
+	plasmids := []string{"sequences/pTAN288.fa", "sequences/pTAN213.fa", "sequences/pTAN160.fa"}
 	for _, plasmid := range plasmids {
 		file, err := os.Open(plasmid)
 		if err != nil {
