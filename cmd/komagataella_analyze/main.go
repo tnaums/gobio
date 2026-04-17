@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/tnaums/gobio/internal/komagataella2"
+	"github.com/tnaums/gobio/internal/komagataella"
 )
 
 func main() {
@@ -15,13 +15,12 @@ func main() {
 	}
 	defer file.Close()
 
-	k, err := komagataella2.NewKomagataella(file)
+	k, err := komagataella.NewKomagataella(file)
 	if err != nil {
 		fmt.Println(os.Stderr, err)
 		os.Exit(1)
 	}
 
-	fmt.Println(k.Protein)
-	fmt.Println(k.Promoter)
+	fmt.Println(k)
 
 }

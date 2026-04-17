@@ -1,4 +1,4 @@
-package komagataella2
+package komagataella
 
 import (
 	"fmt"
@@ -21,14 +21,34 @@ type Komagataella struct {
 	SSS      string
 }
 
+func (k Komagataella) String() string {
+	builder := strings.Builder{}
+	builder.WriteString(k.Plasmid.Header)
+	builder.WriteString("\n")
+	builder.WriteString(fmt.Sprintf("Promoter: %s\n", k.Promoter))
+	builder.WriteString(fmt.Sprintf("Secretion Signal Sequence: %s\n", k.SSS))
+	builder.WriteString(fmt.Sprintf("Length of plasmid sequence: %d\n", len(k.Plasmid.Parent)))	
+	builder.WriteString(fmt.Sprintf("Length of coding sequence: %d\n", len(k.Coding.Parent)))
+	builder.WriteString(fmt.Sprintf("%s\n", k.Protein))
+	return builder.String()
+}
+
 func NewKomagataella(r io.Reader) (Komagataella, error) {
 	dnas := dna.DNAChannelFasta(r)
 	dna, ok := <-dnas
 	if !ok {
 		return Komagataella{}, fmt.Errorf("error retrieving DNA from reader")
 	}
-	promoter, _ := GetPromoter(dna)
-	coding, _ := GetCoding(dna, promoter)
+	
+	promoter, err := GetPromoter(dna)
+	if err != nil {
+		return Komagataella{}, fmt.Errorf("error getting promoter sequence")
+	}
+	coding, err := GetCoding(dna, promoter)
+	if err != nil {
+		return Komagataella{}, fmt.Errorf("error defining coding region: %v", err)
+	}
+	
 	protein, sss := GetRecombinant(coding)
 
 	return Komagataella{
@@ -71,18 +91,18 @@ func GetCoding(d dna.DNA, promoter string) (dna.DNA, error) {
 		codingDNA := dna.NewDNAFromSequence("coding", adjusted)
 		return codingDNA, nil
 	}
-	return dna.DNA{}, nil
+	return dna.DNA{}, fmt.Errorf("unable to get coding sequence for unknown promoter")
 }
 
 func GetRecombinant(dna dna.DNA) (protein.Protein, string) {
 	proteinString := dna.Orfs[0].AminoAcid
 	if strings.HasPrefix(proteinString, alpha) {
 		sequence := strings.TrimPrefix(proteinString[:len(proteinString)-1], alpha)
-		return protein.NewProtein("alpha|mature", sequence), "alpha"
+		return protein.NewProtein("alpha", sequence), "alpha"
 	}
 	if strings.HasPrefix(proteinString, ost1) {
 		sequence := strings.TrimPrefix(proteinString[:len(proteinString)-1], ost1)
-		return protein.NewProtein("ost1|mature", sequence), "ost1"
+		return protein.NewProtein("ost1", sequence), "ost1"
 	}
 	return protein.NewProtein("cytoplasmic", proteinString[:len(proteinString)-1]), "cytoplasmic"
 }
