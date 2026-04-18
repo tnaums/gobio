@@ -1,0 +1,64 @@
+LOCUS       GQ856537                1000 bp    DNA     linear   PLN 13-JUL-2011
+DEFINITION  Zea mays chitinase (chiA) gene, complete cds.
+ACCESSION   GQ856537
+VERSION     GQ856537.1
+KEYWORDS    .
+SOURCE      Zea mays
+  ORGANISM  Zea mays
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliopsida; Liliopsida; Poales; Poaceae; PACMAD
+            clade; Panicoideae; Andropogonodae; Andropogoneae; Tripsacinae;
+            Zea.
+REFERENCE   1  (bases 1 to 1000)
+  AUTHORS   Naumann,T.A. and Wicklow,D.T.
+  TITLE     Allozyme-specific modification of a maize seed chitinase by a
+            protein secreted by the fungal pathogen Stenocarpella maydis
+  JOURNAL   Phytopathology 100 (7), 645-654 (2010)
+   PUBMED   20528182
+REFERENCE   2  (bases 1 to 1000)
+  AUTHORS   Naumann,T.A. and Wicklow,D.T.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (28-AUG-2009) Mycotoxin Research Unit, USDA-ARS-NCAUR,
+            1815 N. University St., Peoria, IL 61604, USA
+FEATURES             Location/Qualifiers
+     source          1..1000
+                     /organism="Zea mays"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:4577"
+                     /note="inbred line LH82"
+     gene            <37..>968
+                     /gene="chiA"
+     mRNA            join(<37..469,565..>968)
+                     /gene="chiA"
+                     /product="chitinase"
+     CDS             join(37..469,565..968)
+                     /gene="chiA"
+                     /codon_start=1
+                     /product="chitinase"
+                     /protein_id="ACX37090.1"
+                     /translation="MANAPRILALGLLLALLCAAAGPAAAQNCGCQPNFCCSKFGYCG
+                     TTDDYCGDGCQSGPCRSGGGGGGGGGGGSGGANVANVVSDAFFNGIKNQAGSGCEGKN
+                     FYTRSAFLSAVNKYPGFAHGGTEVEGKREIAAFFAHVTHETGHFCYISEINKSNAYCD
+                     ASNRQWPCAAGQKYYGRGPLQISWNYNYGPAGRDIGFNGLADPNRVAQDAVIAFKTAL
+                     WFWMNNVHRLMPQGFGATIRAINGALECNGNNPAQMNARVGYYKQYCQQLRVDPGPNL
+                     TC"
+ORIGIN      
+        1 cagaacgaag ctgaagtagt tcgttgtgaa cccagtatgg caaacgcgcc gaggatcctg
+       61 gccctcggcc tgctgctagc gctcctgtgc gctgccgccg gcccggccgc cgcgcagaac
+      121 tgcggctgcc agcctaactt ctgctgcagc aagttcggct actgcggcac gaccgacgac
+      181 tactgcggcg acgggtgcca gtcgggcccg tgccgctcgg gcggcggcgg cggcggcggc
+      241 ggaggcggag gcagtggcgg tgcgaacgtg gctaacgtgg tcagcgacgc gttcttcaac
+      301 ggcatcaaga accaggccgg gagcgggtgc gagggcaaga acttctacac ccggagcgcg
+      361 ttcctgagcg ccgtcaacaa gtacccgggc ttcgcccatg gcgggacgga ggtggagggc
+      421 aagcgcgaga tcgccgcctt cttcgcgcac gtcacgcacg agaccggacg taagttatta
+      481 acacctaaca atacggaact agcatgcagg acctttgatc tgaccgaccg atcatcgtca
+      541 tgctgaccat gcatttttta tcagatttct gctacatcag cgagatcaac aagagcaacg
+      601 cctactgcga cgcaagcaac aggcagtggc cgtgcgcggc ggggcagaag tactacgggc
+      661 gcggcccgct gcagatctcg tggaactaca actacgggcc cgccgggagg gacatcggct
+      721 tcaacgggct cgccgacccc aacagggtgg cgcaggacgc cgtgatcgcg ttcaagacgg
+      781 cgctctggtt ctggatgaac aacgtgcacc gcctgatgcc gcagggcttc ggcgccacca
+      841 tcagggccat caacggcgcc ctcgagtgca acgggaacaa ccccgcccag atgaacgcgc
+      901 gcgtcggcta ctacaagcag tactgccagc agctccgcgt cgacccaggg cccaacctca
+      961 cttgctaggc cagcagctcc tgctagctcg tccacaataa
+//
+

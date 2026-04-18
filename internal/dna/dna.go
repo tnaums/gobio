@@ -181,10 +181,11 @@ func DNAChannelFasta(f io.Reader) <-chan DNA {
 // NewDNAFromSequence is a function that creates a type DNA struct
 // from header and sequence strings.
 func NewDNAFromSequence(header, sequence string) DNA {
+	s := strings.ToUpper(sequence)
 	newDNA := DNA{
 		Header:     header,
-		Parent:     sequence,
-		Complement: reverseComplement(sequence),
+		Parent:     s,
+		Complement: reverseComplement(s),
 	}
 	newDNA.Orfs = newDNA.Translate()
 	return newDNA

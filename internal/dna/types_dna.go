@@ -3,7 +3,7 @@ package dna
 import "time"
 
 // This type is not yet implemented.
-type GenBank struct {
+type GenBank2 struct {
 	Meta struct {
 		Format struct {
 			Name    string `json:"name"`
