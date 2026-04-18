@@ -1,3 +1,6 @@
+// Package for analysis of pPICZ plasmids that are used for expression
+// of recombinant proteins in Komagataella pfaffii, also known as
+// Pichia pastoris.
 package komagataella
 
 import (
@@ -21,6 +24,7 @@ type Komagataella struct {
 	SSS      string
 }
 
+
 func (k Komagataella) String() string {
 	builder := strings.Builder{}
 	builder.WriteString(k.Plasmid.Header)
@@ -33,6 +37,7 @@ func (k Komagataella) String() string {
 	return builder.String()
 }
 
+// Factory function that creates Komagataella struct from a fasta file.
 func NewKomagataella(r io.Reader) (Komagataella, error) {
 	dnas := dna.DNAChannelFasta(r)
 	dna, ok := <-dnas
@@ -60,6 +65,7 @@ func NewKomagataella(r io.Reader) (Komagataella, error) {
 	}, nil
 }
 
+// Determines promoter type, either inducible aox1, or constitutive gap.
 func GetPromoter(d dna.DNA) (string, error) {
 	aox1, _ := regexp.Compile("AGATCTAACATC.{916}TTATTCGAAACG")
 	gap, _ := regexp.Compile("AGATCTTTTTTG.{459}TTGAACAACTAT")
@@ -72,6 +78,7 @@ func GetPromoter(d dna.DNA) (string, error) {
 	return "unknown", fmt.Errorf("promoter not found")
 }
 
+// Extracts protein coding sequence from the plasmid sequence.
 func GetCoding(d dna.DNA, promoter string) (dna.DNA, error) {
 	aox1, _ := regexp.Compile("TTATTCGAAACG(.*)GTTTGTAGCCTT")
 	gap, _ := regexp.Compile("TATTTCGAAACG(.*)GTTTTAGCCTTA")
@@ -94,6 +101,8 @@ func GetCoding(d dna.DNA, promoter string) (dna.DNA, error) {
 	return dna.DNA{}, fmt.Errorf("unable to get coding sequence for unknown promoter")
 }
 
+// Determines protein sequence from DNA coding sequence. Also,
+// returns secretion signal sequence or cytoplasmic.
 func GetRecombinant(dna dna.DNA) (protein.Protein, string) {
 	proteinString := dna.Orfs[0].AminoAcid
 	if strings.HasPrefix(proteinString, alpha) {

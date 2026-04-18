@@ -2,15 +2,22 @@
 
 ## Description
 
-### Science Background
+The gobio module is being developed by a protein scientist using go to
+accomplish everyday tasks. It was designed to get things done rather
+than to be feature rich. Packages like `dna` and `protein` are useful in
+many situations, while others like `signalp` and `komagataella` are more
+specialized. gobio also contains packages for retrieving dna and
+protein sequences from ncbi (`eutils`) and uniprot databases, performing
+local blast searches and printing the results, and interacting with
+the pymol molecular structure viewer.
 
-### Motivation
+## Examples
 
-### How gobio works
-
-## Installation
-
-## Usage
+The `gobio/cmd/` directory contains example scripts demonstrating how
+each package works. They can be run from the root directory:
+`go run ./cmd/pymol`
+or
+`go run ./cmd/demoeutils`
 
 # dna.go
 package dna // import "github.com/tnaums/gobio/internal/dna"
@@ -46,7 +53,7 @@ FUNCTIONS
 func DNAChannelFasta(f io.ReadCloser) <-chan DNA
     DNAChannelFasta reads fasta sequences from an io.Reader interface, such
     as an *os.File returned from os.Open(fileName). Returns channel of type DNA
-    and initiates a go routine that creates DNAs and adds them to the channel.
+    and initiates a go routine that creates DNA structs and adds them to the channel.
 ```
 
 TYPES
@@ -116,7 +123,7 @@ type Protein struct {
 	Mass      float64
 }
     Contains header and amino acid sequence, parsed from fasta file. Mass can be
-    calculated from AminoAcid by calling calculateMass(aaSequence)
+    calculated from AminoAcid by calling calculateMass(aaSequence).
 ```
 ```go
 func NewProtein(header, sequence string) Protein
@@ -129,7 +136,7 @@ func NewProteinFromFasta(filename string) ([]Protein, error)
 ```
 ```go
 func (p Protein) String() string
-    String method; Protein can be used as Stringer interface;
+    String method that satisfies the Stringer interface;
     for example: fmt.Println(protein) prints 'protein' in fasta format
 ```
 # DNA Tutorial
@@ -155,7 +162,7 @@ func main() {
 	}
 	fileName := os.Args[1]
 
-	// Open file to create *os.File which implements io.ReadCloser
+	// Open file to create *os.File which implements io.Reader
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -213,7 +220,7 @@ func main() {
 	}
 	fileName := os.Args[1]
 
-	// Open file to create *os.File which is an io.ReadCloser
+	// Open file to create *os.File which is an io.Reader
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -281,7 +288,7 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	// Open a channel of proteins from *http.Response (io.ReadCloser)
+	// Open a channel of proteins from *http.Response.Body (io.Reader)
 	proteins := protein.ProteinChannelFasta(resp.Body) 
 
 	// Print first protein
@@ -298,5 +305,96 @@ func main() {
 		fmt.Printf(">%s|%.2fkDa|%daa", p.Header, p.Mass, len(p.AminoAcid))
 		fmt.Println()
 	}
+}
+```
+# uniprot Tutorial
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+	"time"
+
+	"github.com/tnaums/gobio/internal/localblast"
+	"github.com/tnaums/gobio/internal/uniprot"
+)
+
+func main() {
+	// Initialize client for api request
+	uniprotClient := uniprot.NewClient(15 * time.Second)
+
+	// Returns UniprotComplete which contains both unmarshaled info
+	// from json and formatted x-flatfile for display
+	record, err := uniprotClient.GetAccession("A0A0A7LRQ7")
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	// Print features from record
+	record.PrintFeatures()
+
+	// Print fasta record
+	fmt.Println(record.GetFasta())
+
+	// Print complete flatfile
+	fmt.Println(string(record.GetFlatFile()))
+
+	// Create a list of accession numbers and retrieve
+	accessions := []string{"Q8NID8", "Q876W5", "I1S3A5", "I1RPD9"}
+	for _, accession := range accessions {
+		fmt.Println()
+		record, err := uniprotClient.GetAccession(accession)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+
+		// Create protein.Protein
+		p := record.GetFasta()
+		// Print fasta sequence
+		fmt.Println(p)
+		// Print features from record
+		record.PrintFeatures()
+
+		// perform local blast
+		blast := localblast.LocalBlast(p, "graminearum.ncbi.aa.fasta")
+
+		// print results
+		localblast.PrintBlastp(blast)
+	}
+}
+
+```
+# komagataella Tutorial
+```go
+// Creates a Komagatealla type from a DNA fasta file containing
+// a pPICZ plasmid sequence. Prints the extracted data.
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/tnaums/gobio/internal/komagataella"
+)
+
+func main() {
+	file, err := os.Open("sequences/pTAN254.fa")
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+	defer file.Close()
+
+	k, err := komagataella.NewKomagataella(file)
+	if err != nil {
+		fmt.Println(os.Stderr, err)
+		os.Exit(1)
+	}
+
+	fmt.Println(k)
+
 }
 ```

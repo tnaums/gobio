@@ -1,3 +1,5 @@
+// Creates a Komagatealla type from a DNA fasta file containing
+// a pPICZ plasmid sequence. Prints the extracted data.
 package main
 
 import (
