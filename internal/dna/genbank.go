@@ -3,6 +3,7 @@ package dna
 import (
 	"bufio"
 	"bytes"
+	//	"fmt"
 	"io"
 	"strings"
 )
@@ -25,6 +26,7 @@ const (
 
 type GenBank struct {
 	Sequence DNA
+	Features []byte
 	state    genBankState
 }
 
@@ -32,21 +34,30 @@ func NewGenBank(r io.Reader) GenBank {
 	g := GenBank{
 		state: genbankStateNone,
 	}
-	builder := strings.Builder{}
+	buf := bytes.Buffer{}
+	features := bytes.Buffer{}
 	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
 		if strings.HasPrefix(scanner.Text(), "ORIGIN") {
 			g.state = genbankStateOrigin
+			g.Features = features.Bytes()
 			continue
 		}
 		if strings.HasPrefix(scanner.Text(), "//") {
 			g.state = genbankStateDone
-			sequence := strings.Join(strings.Fields(builder.String()), "")
+			sequence := strings.Join(strings.Fields(buf.String()), "")
 			g.Sequence = NewDNAFromSequence("genbank", sequence)
+		}
+		if strings.HasPrefix(scanner.Text(), "FEATURES") {
+			g.state = genbankStateFeatures
 		}
 		if g.state == genbankStateOrigin {
 			trimmed := bytes.Trim(scanner.Bytes(), " 0123456789")
-			builder.Write(trimmed)
+			buf.Write(trimmed)
+		}
+		if g.state == genbankStateFeatures {
+			features.Write(scanner.Bytes())
+			features.Write([]byte("\n"))
 		}
 	}
 	return g
