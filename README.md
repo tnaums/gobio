@@ -19,7 +19,7 @@ from the root directory: `go run ./cmd/pymol` or `go run
 ./cmd/demoeutils`
 
 
-Each
+
 # dna.go
 package dna // import "github.com/tnaums/gobio/internal/dna"
 
@@ -154,7 +154,9 @@ func (p Protein) String() string
     for example: fmt.Println(protein) prints 'protein' in fasta format
 ```
 
-# pymol The pymol package supports control of the pymol structure
+# pymol
+
+The pymol package supports control of the pymol structure
 viewer from go.
 ```go
 cmd := exec.Command("pymol", "-p", "-K", cif)
@@ -162,24 +164,28 @@ stdin, err := cmd.StdinPipe()
 ```
 
 The package also includes functions to parse cif files into go data
-structures. In the ./cmd/demopymol example, the cif files attempt to
+structures. In the `./cmd/demopymol` example, the cif files attempt to
 describe the interaction between a plant chitinase and a fungal
 protease that cleaves it.  The program locates peptide motifs within
-each protein, determines the atom id range for each motif, and
+each protein, determines the atom id range, and
 instructs pymol to select each motif, set the color, and show these
 regions as sticks. In this example, a substrate protein with a
 targeted polyglycine sequence (ChitA, chain A) is modeled with fungal
 proteases. Both the polyglycine target and protease active site motifs
-are highlighted, enabling easy analysis of the co-structure predicted
+are highlighted, enabling easy analysis of co-structures predicted
 by alphafold3. In all three cases, the structures fail to show the
 polyglycine in proximity to the protease active site.
+
+<img src="pictures/chita_bzcmp.png">
+<img src="pictures/chita_escmp.png">
+<img src="pictures/chita_fvancmp.png">
 
 This package was inspired by the python package 'pymolPy3':
     https://github.com/carbonscott/pymolPy3/tree/main
 
-```go
-VARIABLES
 
+VARIABLES
+```go
 var ThreeToOne = map[string]byte{
 	"ALA": 'A', "LEU": 'L',
 	"ARG": 'R', "LYS": 'K',
@@ -195,28 +201,33 @@ var ThreeToOne = map[string]byte{
     Map that converts the 3 letter amino acid codes found in ATOM records to
     single amino acid codes. Used to create fasta protein sequences from cif
     files.
-
+```
 
 FUNCTIONS
-
+```go
 func CustomizeCartoon(r io.Writer)
+```
+```go
 func SelectByChain(r io.Writer, name string, color string, chain string, showsticks bool)
     Makes a pymol selection based on chain, sets the selection color, and
     optionally shows sticks.
-
+```
+```go
 func SelectByID(r io.Writer, name string, color string, idstart int, idend int, showsticks bool)
     Makes a pymol selection based on start and end atom id, sets the selection
     color, and optionally shows sticks.
-
+```
+```go
 func SequenceFromCIF(r io.Reader) *bytes.Buffer
     Function that creates protein fasta files for each chain in a cif file.
     The returned *bytes.Buffer can be passed to protein.ProteinChannelFasta as
     the io.Reader.
-
+```
+```go
 func SetLighting(r io.Writer)
-
+```
 TYPES
-
+```go
 type Atom struct {
 	ID         int
 	TypeSymbol string
@@ -228,32 +239,40 @@ type Atom struct {
 	PDBX       PDBX
 }
     Atom holds complete information parsed from ATOM line in cif file
-
+```
+```go
 func NewAtom(entry string) Atom
     NewAtom parses information from an ATOM line in a cif protein structure file
     and returns an Atom struct.
-
+```
+```go
 type Author struct {
 	SeqID  int
 	AsymID string
 }
+```
     Author portion of Atom
 
+```go
 type Cartesian struct {
 	X float64
 	Y float64
 	Z float64
 }
+```
     Cartesian portion of Atom
 
+```go
 type ChainMap map[int]Residue
+```
     ChainMap keys are sequence number for an amino acid in a chain. Values are
     Residue struct for that amino acid. Used to convert amino acid numbers to
     atom id numbers.
-
+```go
 func NewChainMap(r io.Reader, chain string) ChainMap
+```
     Create a ChainMap from the ATOM field of a cif file.
-
+```go
 type Label struct {
 	AtomID   string
 	AltID    string
@@ -262,26 +281,31 @@ type Label struct {
 	EntityID int
 	SeqID    int
 }
+```
     Label portion of Atom
 
+```go
 type PDBX struct {
 	InsCode     string
 	PDBModelNum int
 }
+```
     PDBX portion of Atom
-
+```go
 type Residue struct {
 	AminoAcid string
 	Position  int
 	IDStart   int
 	IDEnd     int
 }
+```
     Residue contains information for an amino acid.
-
+```go
 type Structure map[int]Atom
+```
     Keys are atom id. Values are the Atom struct containing all 17 fields of
     information parsed from ATOM lines of cif file.
-
+```go
 func NewStructure(r io.Reader) Structure
-    Creates a new Structure map from a cif file.
 ```
+    Creates a new Structure map from a cif file.
