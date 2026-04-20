@@ -1,0 +1,122 @@
+package pymol // import "github.com/tnaums/gobio/internal/pymol"
+
+The pymol package supports control of the pymol protein structure viewer from
+go. In main:
+
+    cmd := exec.Command("pymol", "-p", "-K", cif)
+    stdin, err := cmd.StdinPipe()
+
+stdin communicates with pymol, and is as an argument of type io.Writer in
+functions in the pymol package.
+
+This package was inspired by the python package 'pymolPy3':
+
+    https://github.com/carbonscott/pymolPy3/tree/main
+
+VARIABLES
+
+var ThreeToOne = map[string]byte{
+	"ALA": 'A', "LEU": 'L',
+	"ARG": 'R', "LYS": 'K',
+	"ASN": 'N', "MET": 'M',
+	"ASP": 'D', "PHE": 'F',
+	"CYS": 'C', "PRO": 'P',
+	"GLN": 'Q', "SER": 'S',
+	"GLU": 'E', "THR": 'T',
+	"GLY": 'G', "TRP": 'W',
+	"HIS": 'H', "TYR": 'Y',
+	"ILE": 'I', "VAL": 'V',
+}
+    Map that converts the 3 letter amino acid codes found in ATOM records to
+    single amino acid codes. Used to create fasta protein sequences from cif
+    files.
+
+
+FUNCTIONS
+
+func CustomizeCartoon(r io.Writer)
+func SelectByChain(r io.Writer, name string, color string, chain string, showsticks bool)
+    Makes a pymol selection based on chain, sets the selection color, and
+    optionally shows sticks.
+
+func SelectByID(r io.Writer, name string, color string, idstart int, idend int, showsticks bool)
+    Makes a pymol selection based on start and end atom id, sets the selection
+    color, and optionally shows sticks.
+
+func SequenceFromCIF(r io.Reader) *bytes.Buffer
+    Function that creates protein fasta files for each chain in a cif file.
+    The returned *bytes.Buffer can be passed to protein.ProteinChannelFasta as
+    the io.Reader.
+
+func SetLighting(r io.Writer)
+
+TYPES
+
+type Atom struct {
+	ID         int
+	TypeSymbol string
+	Label      Label
+	Cartesian  Cartesian
+	Occupancy  float64
+	B          float64
+	Author     Author
+	PDBX       PDBX
+}
+    Atom holds complete information parsed from ATOM line in cif file
+
+func NewAtom(entry string) Atom
+    NewAtom parses information from an ATOM line in a cif protein structure file
+    and returns an Atom struct.
+
+type Author struct {
+	SeqID  int
+	AsymID string
+}
+    Author portion of Atom
+
+type Cartesian struct {
+	X float64
+	Y float64
+	Z float64
+}
+    Cartesian portion of Atom
+
+type ChainMap map[int]Residue
+    ChainMap keys are sequence number for an amino acid in a chain. Values are
+    Residue struct for that amino acid. Used to convert amino acid numbers to
+    atom id numbers.
+
+func NewChainMap(r io.Reader, chain string) ChainMap
+    Create a ChainMap from the ATOM field of a cif file.
+
+type Label struct {
+	AtomID   string
+	AltID    string
+	CompID   string
+	AsymID   string
+	EntityID int
+	SeqID    int
+}
+    Label portion of Atom
+
+type PDBX struct {
+	InsCode     string
+	PDBModelNum int
+}
+    PDBX portion of Atom
+
+type Residue struct {
+	AminoAcid string
+	Position  int
+	IDStart   int
+	IDEnd     int
+}
+    Residue contains information for an amino acid.
+
+type Structure map[int]Atom
+    Keys are atom id. Values are the Atom struct containing all 17 fields of
+    information parsed from ATOM lines of cif file.
+
+func NewStructure(r io.Reader) Structure
+    Creates a new Structure map from a cif file.
+

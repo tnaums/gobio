@@ -25,9 +25,9 @@ var ThreeToOne = map[string]byte{
 	"ILE": 'I', "VAL": 'V',
 }
 
-// Function that creates protein fasta files for each chain
-// in a cif file. The returned bytes.Buffer reference can
-// be passed to protein.ProteinChannelFasta as the io.Reader.
+// Function that creates protein fasta files for each chain in a cif
+// file. The returned *bytes.Buffer can be passed to
+// protein.ProteinChannelFasta as the io.Reader.
 func SequenceFromCIF(r io.Reader) *bytes.Buffer {
 	buf := bytes.Buffer{}
 	scanner := bufio.NewScanner(r)
@@ -49,7 +49,7 @@ func SequenceFromCIF(r io.Reader) *bytes.Buffer {
 	return &buf
 }
 
-// Residue contains information for a single amino acid.
+// Residue contains information for an amino acid.
 type Residue struct {
 	AminoAcid string
 	Position  int
@@ -58,8 +58,8 @@ type Residue struct {
 }
 
 // ChainMap keys are sequence number for an amino acid in a chain.
-// Values are Residue struct for that amino acid. Useful for converting
-// from amino acid number to atom id numbers.
+// Values are Residue struct for that amino acid. Used to convert
+// amino acid numbers to atom id numbers.
 type ChainMap map[int]Residue
 
 // Create a ChainMap from the ATOM field of a cif file.

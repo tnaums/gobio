@@ -13,12 +13,13 @@ the pymol molecular structure viewer.
 
 ## Examples
 
-The `gobio/cmd/` directory contains example scripts demonstrating how
-each package works. They can be run from the root directory:
-`go run ./cmd/pymol`
-or
-`go run ./cmd/demoeutils`
+The `gobio/cmd/` directory contains example programs demonstrating how
+each package works. The `main.go` files are commented and can be run
+from the root directory: `go run ./cmd/pymol` or `go run
+./cmd/demoeutils`
 
+
+Each
 # dna.go
 package dna // import "github.com/tnaums/gobio/internal/dna"
 
@@ -152,377 +153,135 @@ func (p Protein) String() string
     String method that satisfies the Stringer interface;
     for example: fmt.Println(protein) prints 'protein' in fasta format
 ```
-# DNA Tutorial
+
+# pymol The pymol package supports control of the pymol structure
+viewer from go.
 ```go
-// This script demonstrates how to work with dna sequences
-// from fasta files containing multiple entries.
-package main
-
-import (
-	"fmt"
-	"os"
-
-	"github.com/tnaums/gobio/internal/dna"
-)
-
-func main() {
-	fmt.Println("Welcome to gobio!")
-
-	// Get filename from command line
-	if len(os.Args) != 2 {
-		fmt.Println("Usage: go run . <sequence.fa>")
-		os.Exit(1)
-	}
-	fileName := os.Args[1]
-
-	// Open file to create *os.File which implements io.Reader
-	file, err := os.Open(fileName)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-	defer file.Close()
-
-	// Create channel of DNA from io.ReadCloser interface
-	dnas := dna.DNAChannelFasta(file)
-
-	// Retrieve first sequence and print
-	first :=  <- dnas
-	fmt.Println(first)
-
-	// Retrieve second sequence and print
-	second := <- dnas
-	fmt.Println(second)
-
-	// Iterate over orfs and print if over 100 amino acids
-	for idx, orf := range second.Orfs {
-		if len(orf.AminoAcid) > 100 {
-			fmt.Println(idx)
-			fmt.Println(orf)
-			fmt.Println()
-		}
-	}
-
-	// Iterate over remaining dna sequences and print the
-	// header line and sequence length
-	for d := range dnas {
-		fmt.Println(d.Header)
-		fmt.Printf("Length: %d\n", len(d.Parent))
-	}
-}
+cmd := exec.Command("pymol", "-p", "-K", cif)
+stdin, err := cmd.StdinPipe()
 ```
-# Protein Tutorial
+
+The package also includes functions to parse cif files into go data
+structures. In the ./cmd/demopymol example, the cif files attempt to
+describe the interaction between a plant chitinase and a fungal
+protease that cleaves it.  The program locates peptide motifs within
+each protein, determines the atom id range for each motif, and
+instructs pymol to select each motif, set the color, and show these
+regions as sticks. In this example, a substrate protein with a
+targeted polyglycine sequence (ChitA, chain A) is modeled with fungal
+proteases. Both the polyglycine target and protease active site motifs
+are highlighted, enabling easy analysis of the co-structure predicted
+by alphafold3. In all three cases, the structures fail to show the
+polyglycine in proximity to the protease active site.
+
+This package was inspired by the python package 'pymolPy3':
+    https://github.com/carbonscott/pymolPy3/tree/main
+
 ```go
-// Demonstrates use of protein.ProteinChannelFasta for
-// reading proteins from a fasta file containing one
-// or more sequences.
-package main
+VARIABLES
 
-import (
-	"fmt"
-	"os"
-
-	"github.com/tnaums/gobio/internal/protein"
-)
-
-func main() {
-	fmt.Println("Welcome to gobio!")
-	if len(os.Args) != 2 {
-		fmt.Println("Usage: go run . <sequence.fa>")
-		os.Exit(1)
-	}
-	fileName := os.Args[1]
-
-	// Open file to create *os.File which is an io.Reader
-	file, err := os.Open(fileName)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-	defer file.Close()
-
-	// Create a channel of Proteins
-	proteins := protein.ProteinChannelFasta(file)
-
-        // Read first protein from channel
-	protein, ok := <-proteins
-	if ok {
-		fmt.Println(protein)
-	} else {
-		fmt.Println("Protein channel is empty.")
-	}
-
-        // Read second protein
-	protein, ok = <-proteins
-	if ok {
-		fmt.Println(protein)
-	} else {
-		fmt.Println("Protein channel is empty.")
-	}	
-
-        // Read all remaining proteins. Print header of proteins over 200 kDa
-	var count int
-	for protein := range proteins {
-		if protein.Mass > 200 {
-			fmt.Println(protein.Header)
-			fmt.Println()
-			count++
-		}
-	}
-	fmt.Printf("Found %d proteins larger than 20 kDa\n", count)
+var ThreeToOne = map[string]byte{
+	"ALA": 'A', "LEU": 'L',
+	"ARG": 'R', "LYS": 'K',
+	"ASN": 'N', "MET": 'M',
+	"ASP": 'D', "PHE": 'F',
+	"CYS": 'C', "PRO": 'P',
+	"GLN": 'Q', "SER": 'S',
+	"GLU": 'E', "THR": 'T',
+	"GLY": 'G', "TRP": 'W',
+	"HIS": 'H', "TYR": 'Y',
+	"ILE": 'I', "VAL": 'V',
 }
-```
-# eutils Tutorial
-```go
-// Demonstrates use of eutils.EPost for retrieving protein fasta
-// sequences from NCBI. The response body is then sent to
-// protein.ProteinChannelFasta where the seqeunces are returned as
-// type protein.Protein through a go channel.
-package main
+    Map that converts the 3 letter amino acid codes found in ATOM records to
+    single amino acid codes. Used to create fasta protein sequences from cif
+    files.
 
-import (
-	"fmt"
-	"os"
-	"time"
 
-	"github.com/tnaums/gobio/internal/eutils"
-	"github.com/tnaums/gobio/internal/protein"
-)
+FUNCTIONS
 
-func main() {
-	// Initialize client for api request
-	eutilsClient := eutils.NewClient(5 * time.Second)
-	// generate *http.Response from ncbi query
-	resp, err := eutilsClient.EPost("AIZ65945.1,QIR83317.1,194680922,50978626,28558982,9507199,6678417")
+func CustomizeCartoon(r io.Writer)
+func SelectByChain(r io.Writer, name string, color string, chain string, showsticks bool)
+    Makes a pymol selection based on chain, sets the selection color, and
+    optionally shows sticks.
 
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	defer resp.Body.Close()
+func SelectByID(r io.Writer, name string, color string, idstart int, idend int, showsticks bool)
+    Makes a pymol selection based on start and end atom id, sets the selection
+    color, and optionally shows sticks.
 
-	// Open a channel of proteins from *http.Response.Body (io.Reader)
-	proteins := protein.ProteinChannelFasta(resp.Body) 
+func SequenceFromCIF(r io.Reader) *bytes.Buffer
+    Function that creates protein fasta files for each chain in a cif file.
+    The returned *bytes.Buffer can be passed to protein.ProteinChannelFasta as
+    the io.Reader.
 
-	// Print first protein
-	fmt.Println(<-proteins)
-	fmt.Println()
+func SetLighting(r io.Writer)
 
-	// Print sequence from second protein
-	p2 := <-proteins
-	fmt.Println(p2.AminoAcid)
-	fmt.Println()
+TYPES
 
-	// For remaining proteins, print header, mass, sequence length
-	for p := range proteins { 
-		fmt.Printf(">%s|%.2fkDa|%daa", p.Header, p.Mass, len(p.AminoAcid))
-		fmt.Println()
-	}
+type Atom struct {
+	ID         int
+	TypeSymbol string
+	Label      Label
+	Cartesian  Cartesian
+	Occupancy  float64
+	B          float64
+	Author     Author
+	PDBX       PDBX
 }
-```
-# uniprot Tutorial
-```go
-package main
+    Atom holds complete information parsed from ATOM line in cif file
 
-import (
-	"fmt"
-	"os"
-	"time"
+func NewAtom(entry string) Atom
+    NewAtom parses information from an ATOM line in a cif protein structure file
+    and returns an Atom struct.
 
-	"github.com/tnaums/gobio/internal/localblast"
-	"github.com/tnaums/gobio/internal/uniprot"
-)
-
-func main() {
-	// Initialize client for api request
-	uniprotClient := uniprot.NewClient(15 * time.Second)
-
-	// Returns UniprotComplete which contains both unmarshaled info
-	// from json and formatted x-flatfile for display
-	record, err := uniprotClient.GetAccession("A0A0A7LRQ7")
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-
-	// Print features from record
-	record.PrintFeatures()
-
-	// Print fasta record
-	fmt.Println(record.GetFasta())
-
-	// Print complete flatfile
-	fmt.Println(string(record.GetFlatFile()))
-
-	// Create a list of accession numbers and retrieve
-	accessions := []string{"Q8NID8", "Q876W5", "I1S3A5", "I1RPD9"}
-	for _, accession := range accessions {
-		fmt.Println()
-		record, err := uniprotClient.GetAccession(accession)
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-
-		// Create protein.Protein
-		p := record.GetFasta()
-		// Print fasta sequence
-		fmt.Println(p)
-		// Print features from record
-		record.PrintFeatures()
-
-		// perform local blast
-		blast := localblast.LocalBlast(p, "graminearum.ncbi.aa.fasta")
-
-		// print results
-		localblast.PrintBlastp(blast)
-	}
+type Author struct {
+	SeqID  int
+	AsymID string
 }
+    Author portion of Atom
 
-```
-# komagataella Tutorial
-```go
-// Creates a Komagatealla type from a DNA fasta file containing
-// a pPICZ plasmid sequence. Prints the extracted data.
-package main
-
-import (
-	"fmt"
-	"os"
-
-	"github.com/tnaums/gobio/internal/komagataella"
-)
-
-func main() {
-	file, err := os.Open("sequences/pTAN254.fa")
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-	defer file.Close()
-
-	k, err := komagataella.NewKomagataella(file)
-	if err != nil {
-		fmt.Println(os.Stderr, err)
-		os.Exit(1)
-	}
-
-	fmt.Println(k)
-
+type Cartesian struct {
+	X float64
+	Y float64
+	Z float64
 }
-```
-# A more complex example -> go run ./cmd/mce genomes/Fusve2/proteome.fa
-```go
-// Module gobio provides tools biological research, with
-// emphasis on protein chemistry.
-//
-// This program demonstrates use of localblast, protein, and
-// signalp packages to analyze a fungal proteome, selecting
-// secreted proteins between 16 and 19 kDa that have homologs
-// in four other fungal proteomes.
-package main
+    Cartesian portion of Atom
 
-import (
-	"bufio"
-	"fmt"
-	"log"
-	"os"
-	"strconv"
-	"strings"
+type ChainMap map[int]Residue
+    ChainMap keys are sequence number for an amino acid in a chain. Values are
+    Residue struct for that amino acid. Used to convert amino acid numbers to
+    atom id numbers.
 
-	"github.com/tnaums/gobio/internal/localblast"
-	"github.com/tnaums/gobio/internal/protein"
-	"github.com/tnaums/gobio/internal/signalp"
-)
+func NewChainMap(r io.Reader, chain string) ChainMap
+    Create a ChainMap from the ATOM field of a cif file.
 
-func main() {
-	// slice to hold proteins that fit criteria
-	selected := make([]protein.Protein, 0)
-
-	// Fungal proteome file is specified from the command line
-	fmt.Println("Welcome to gobio!")
-	if len(os.Args) != 2 {
-		fmt.Println("Usage: go run . <sequence.fa>")
-		os.Exit(1)		
-	}
-	fileName := os.Args[1]
-
-	// Open file to create *os.File which implements io.Reader
-	file, err := os.Open(fileName)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-	defer file.Close()
-
-	// Open signalp file from jgi mycocosm. This file summarizes
-	// data for all proteins that were predicted to be secreted by
-	// signalp.
-	//
-	// https://services.healthtech.dtu.dk/services/SignalP-6.0/
-	// https://mycocosm.jgi.doe.gov/mycocosm/home
-	
-	file2, err := os.Open("genomes/Fusve2/signalp.tab")
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-	defer file2.Close()
-
-	// Parse signalp data and create map
-	signalPMap, _ := signalp.NewSignalPMap(file2)
-
-	// Create go channel that returns protein.Protein from proteome sequence file
-	proteins := protein.ProteinChannelFasta(file)
-
-	for p := range proteins { // iterate over proteins that are returned from go channel
-		// get protein int from p.Header and search signalp map to see if it is present
-		fields := strings.Split(p.Header, "|")
-		number, _ := strconv.Atoi(fields[2])
-		s, ok := signalPMap[number]
-
-		// if protein was identified by signalp as a secreted protein
-		if ok {
-			// create a new protein.Protein for the secreted protein, which
-			// has the secretion signal sequence removed from the amino terminus
-			mHeader := p.Header + "|secreted"
-			mStart := s.NnCutPos
-			mSequence := p.AminoAcid[mStart:]
-			mature := protein.NewProtein(mHeader, mSequence) // truncated mature protein
-			// select only proteins with desired mature mass 
-			if mature.Mass > 16 && mature.Mass < 19 {
-				matches := 0
-				fmt.Println()
-				fmt.Println(mature)
-				// Choose genomes for local blast. For
-				// each secreted protein in Fusarium
-				// verticillioides with mature mass in
-				// selected range we will perform localblast
-				// against four other fungal proteomes
-				// and only keep those that have
-				// homologs in all four.
-				proteomes := []string{"graminearum.aa.fasta", "subglutinans.aa.fasta", "proliferatum.aa.fasta", "Ccarb.aa.fasta"}
-				for _, proteome := range proteomes {
-					blast := localblast.LocalBlast(p, proteome)
-					qlen, _ := strconv.Atoi(blast.BlastOutputQueryLen)
-					alen, _ := strconv.Atoi(blast.BlastOutputIterations.Iteration.IterationHits.Hit[0].HitHsps.Hsp[0].HspAlignLen)
-					hlen, _ := strconv.Atoi(blast.BlastOutputIterations.Iteration.IterationHits.Hit[0].HitLen)
-
-					aPercent := float64(alen) / float64(qlen)
-					hSize := float64(hlen) / float64(qlen)
-					// chosen criteria for defining what is a 'homolog'
-					if  aPercent > 0.9 && aPercent < 1.1 && hSize < 1.5 {
-						matches += 1
-					} 
-				}
-				if matches == 4 {selected = append(selected, mature)}
-			}
-		}
-	}
-	fmt.Printf("Number of selected proteins is: %d\n", len(selected))
-	for _, protein := range selected {
-		fmt.Printf("%s\n", protein)
-	}
-
+type Label struct {
+	AtomID   string
+	AltID    string
+	CompID   string
+	AsymID   string
+	EntityID int
+	SeqID    int
 }
+    Label portion of Atom
+
+type PDBX struct {
+	InsCode     string
+	PDBModelNum int
+}
+    PDBX portion of Atom
+
+type Residue struct {
+	AminoAcid string
+	Position  int
+	IDStart   int
+	IDEnd     int
+}
+    Residue contains information for an amino acid.
+
+type Structure map[int]Atom
+    Keys are atom id. Values are the Atom struct containing all 17 fields of
+    information parsed from ATOM lines of cif file.
+
+func NewStructure(r io.Reader) Structure
+    Creates a new Structure map from a cif file.
 ```

@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Atom holds information parsed from ATOM line in cif file
+// Atom holds complete information parsed from ATOM line in cif file
 type Atom struct {
 	ID         int
 	TypeSymbol string
@@ -17,7 +17,7 @@ type Atom struct {
 	PDBX       PDBX
 }
 
-// Label portion of atom
+// Label portion of Atom
 type Label struct {
 	AtomID   string
 	AltID    string
@@ -27,20 +27,20 @@ type Label struct {
 	SeqID    int
 }
 
-// Cartesian portion of atom
+// Cartesian portion of Atom
 type Cartesian struct {
 	X float64
 	Y float64
 	Z float64
 }
 
-// Author portion of atom
+// Author portion of Atom
 type Author struct {
 	SeqID  int
 	AsymID string
 }
 
-// PDBX portion of atom
+// PDBX portion of Atom
 type PDBX struct {
 	InsCode     string
 	PDBModelNum int
