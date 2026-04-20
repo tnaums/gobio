@@ -13,9 +13,9 @@ import (
 
 func main() {
 	//cif := "cif/1465415.cif"
-	//cif := "cif/9172_0.cif"
+	cif := "cif/9172_0.cif"
 	// cif := "cif/cocca.cif"
-	cif := "cif/1465415.cif"
+	//cif := "cif/1465415.cif"
 	
 	// launch pymol and create StdinPipe writer to communicate with pymol
 	cmd := exec.Command("pymol", "-p", "-K", cif)

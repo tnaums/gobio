@@ -15,7 +15,7 @@ the pymol molecular structure viewer.
 
 The `gobio/cmd/` directory contains example programs demonstrating how
 each package works. The `main.go` files are commented and can be run
-from the root directory: `go run ./cmd/pymol` or `go run
+from the root directory: `go run ./cmd/demopymol` or `go run
 ./cmd/demoeutils`
 
 
@@ -307,3 +307,41 @@ type Structure map[int]Atom
 func NewStructure(r io.Reader) Structure
     Creates a new Structure map from a cif file.
 ```    
+# komagataella
+package komagataella // import "github.com/tnaums/gobio/internal/komagataella"
+
+Package for analysis of pPICZ plasmids that are used for expression of
+recombinant proteins in Komagataella pfaffii, also known as Pichia pastoris.
+
+FUNCTIONS
+```go
+func GetCoding(d dna.DNA, promoter string) (dna.DNA, error)
+    Extracts protein coding sequence from the plasmid sequence.
+```
+```go
+func GetPromoter(d dna.DNA) (string, error)
+    Determines promoter type, either inducible aox1, or constitutive gap.
+```
+```go
+func GetRecombinant(dna dna.DNA) (protein.Protein, string)
+    Determines protein sequence from DNA coding sequence. Also, returns
+    secretion signal sequence or cytoplasmic.
+```
+
+TYPES
+```go
+type Komagataella struct {
+	Plasmid  dna.DNA
+	Promoter string
+	Coding   dna.DNA
+	Protein  protein.Protein
+	SSS      string
+}
+```
+```go
+func NewKomagataella(r io.Reader) (Komagataella, error)
+    Factory function that creates Komagataella struct from a fasta file.
+```
+```go
+func (k Komagataella) String() string
+```

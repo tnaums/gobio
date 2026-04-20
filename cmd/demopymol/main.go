@@ -12,7 +12,10 @@ import (
 )
 
 func main() {
-	cif := "cif/chita_bzcmp.cif"
+
+	cif := "cmd/demopymol/chita_bzcmp.cif"
+	//	cif := "cmd/demopymol/chita_escmp.cif"
+	//	cif := "cmd/demopymol/chita_fvancmp.cif"
 
 	// launch pymol and create StdinPipe writer to communicate with pymol
 	cmd := exec.Command("pymol", "-p", "-K", cif)
