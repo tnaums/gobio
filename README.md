@@ -1,26 +1,74 @@
 # gobio
 
-## Description
+## description
 
-The gobio module is being developed by a protein scientist using go to
-accomplish everyday tasks. It was designed to get things done rather
-than to be feature rich. Packages like `dna` and `protein` are useful in
-many situations, while others like `signalp` and `komagataella` are more
-specialized. gobio also contains packages for retrieving dna and
-protein sequences from ncbi (`eutils`) and uniprot databases, performing
-local blast searches and printing the results, and interacting with
-the pymol molecular structure viewer.
+The gobio module contains a series of go packages (libraries) to
+facilitate biological research with an emphasis on protein science.
 
-## Examples
+## Motivation
 
+As a protein scientist and coding enthusiast I enjoy writing computer
+programs that support and empower laboratory science. Having
+discovered the go programming language, I found it interesting that go
+was not a popular choice for biological research. The more I learned
+go, the more I wanted to code in go. I developed gobio as an outlet
+for learning and enjoying go while building tools to support
+my daily research.
+
+## Quick Start
+
+This assumes you already have a working Go environment, if not please see
+[this page](https://golang.org/doc/install) first.
+
+```sh
+go get github.com/tnaums/gobio
+```
+
+Import the package into your project.
+
+```go
+import "github.com/tnaums/gobio"
+```
+
+Packages like `dna` and `protein` are useful in many situations, while
+others like `signalp` and `komagataella` are more specialized--useful
+to scientists studying secreted fungal proteins or expressing
+recombinant proteins in yeast. gobio also contains packages for
+retrieving dna and protein sequences from ncbi and uniprot
+databases, performing local blast searches and viewing the results,
+and interacting with the pymol molecular structure viewer.
+
+## Usage
 The `gobio/cmd/` directory contains example programs demonstrating how
-each package works. The `main.go` files are commented and can be run
-from the root directory: `go run ./cmd/demopymol` or `go run
+packages work. The `main.go` files are commented and can be run
+from the root directory: `go run ./cmd/demofastaprotein` or `go run
 ./cmd/demoeutils`
 
+## 🤝 Contributing
 
+### Clone the repo
 
-# dna.go
+```bash
+git clone https://github.com/tnaums/gobio
+cd gobio
+```
+
+### Run an example program
+
+```bash
+go run ./cmd/demofastadna
+```
+
+```bash
+go run ./cmd/demopymol
+```
+*requires pymol molecular structure viewer*
+
+### Submit a pull request
+
+If you'd like to contribute, please fork the repository and open a pull request to the `main` branch.
+
+# dna
 package dna // import "github.com/tnaums/gobio/internal/dna"
 
 Package dna provides a DNA type to store DNA sequence information.
@@ -116,7 +164,7 @@ func (o Orf) String() string
     Orf.String prints the sequence of an orf in fasta format.
 ```
 
-# protein.go
+# protein
 package protein // import "github.com/tnaums/gobio/internal/protein"
 
 Package protein provides a protein type to store protein sequence information.
