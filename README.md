@@ -250,8 +250,8 @@ type Author struct {
 	SeqID  int
 	AsymID string
 }
-```
     Author portion of Atom
+```    
 
 ```go
 type Cartesian struct {
@@ -259,19 +259,18 @@ type Cartesian struct {
 	Y float64
 	Z float64
 }
-```
     Cartesian portion of Atom
-
+```
 ```go
 type ChainMap map[int]Residue
-```
     ChainMap keys are sequence number for an amino acid in a chain. Values are
     Residue struct for that amino acid. Used to convert amino acid numbers to
     atom id numbers.
+```
 ```go
 func NewChainMap(r io.Reader, chain string) ChainMap
-```
     Create a ChainMap from the ATOM field of a cif file.
+```    
 ```go
 type Label struct {
 	AtomID   string
@@ -281,16 +280,15 @@ type Label struct {
 	EntityID int
 	SeqID    int
 }
-```
     Label portion of Atom
-
+```
 ```go
 type PDBX struct {
 	InsCode     string
 	PDBModelNum int
 }
-```
     PDBX portion of Atom
+```    
 ```go
 type Residue struct {
 	AminoAcid string
@@ -298,14 +296,14 @@ type Residue struct {
 	IDStart   int
 	IDEnd     int
 }
-```
     Residue contains information for an amino acid.
+```    
 ```go
 type Structure map[int]Atom
-```
     Keys are atom id. Values are the Atom struct containing all 17 fields of
     information parsed from ATOM lines of cif file.
+```
 ```go
 func NewStructure(r io.Reader) Structure
-```
     Creates a new Structure map from a cif file.
+```    
