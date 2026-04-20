@@ -8,18 +8,19 @@ facilitate biological research with an emphasis on protein science.
 ## Motivation
 
 As a protein scientist and coding enthusiast I enjoy writing computer
-programs that support and empower laboratory science. Having
-discovered the go programming language, I found it interesting that go
-was not a popular choice for biological research. The more I learned
-go, the more I wanted to code in go. I developed gobio as an outlet
-for learning and enjoying go while building tools to support
-my daily research.
+programs that support and empower laboratory science. One day I
+discovered the go programming language. The more I learned go, the
+more I wanted to code in go. I developed gobio as a way to
+learn and enjoy go while building tools to support my daily
+research.
 
 ## Quick Start
 
 This assumes you already have a working Go environment, if not please see
 [this page](https://golang.org/doc/install) first.
 
+
+Inside a go module:
 ```sh
 go get github.com/tnaums/gobio
 ```
@@ -44,7 +45,7 @@ packages work. The `main.go` files are commented and can be run
 from the root directory: `go run ./cmd/demofastaprotein` or `go run
 ./cmd/demoeutils`
 
-## 🤝 Contributing
+## Contributing
 
 ### Clone the repo
 
@@ -62,7 +63,7 @@ go run ./cmd/demofastadna
 ```bash
 go run ./cmd/demopymol
 ```
-*requires pymol molecular structure viewer*
+requires pymol molecular structure viewer
 
 ### Submit a pull request
 
