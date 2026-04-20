@@ -32,6 +32,7 @@ type GenBank struct {
 	state    genBankState
 }
 
+// Parses a GenBank file containing a single dna sequence and returns a GenBank struct.
 func NewGenBank(r io.Reader) GenBank {
 	g := GenBank{
 		state: genbankStateNone,

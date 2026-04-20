@@ -1,0 +1,132 @@
+package dna // import "github.com/tnaums/gobio/internal/dna"
+
+Package dna provides a DNA type to store DNA sequence information and provides
+simple DNA methods.
+
+VARIABLES
+
+var GeneticCode = map[string]byte{
+	"TTT": 'F', "TTC": 'F', "TTG": 'L', "TTA": 'L',
+	"TCT": 'S', "TCC": 'S', "TCA": 'S', "TCG": 'S',
+	"TAT": 'Y', "TAC": 'Y', "TAG": '*', "TAA": '*',
+	"TGT": 'C', "TGC": 'C', "TGG": 'W', "TGA": '*',
+	"CTT": 'L', "CTC": 'L', "CTG": 'L', "CTA": 'L',
+	"CCT": 'P', "CCC": 'P', "CCA": 'P', "CCG": 'P',
+	"CAT": 'H', "CAC": 'H', "CAG": 'Q', "CAA": 'Q',
+	"CGT": 'R', "CGC": 'R', "CGG": 'R', "CGA": 'R',
+	"ATT": 'I', "ATC": 'I', "ATG": 'M', "ATA": 'I',
+	"ACT": 'T', "ACC": 'T', "ACA": 'T', "ACG": 'T',
+	"AAT": 'N', "AAC": 'N', "AAG": 'K', "AAA": 'K',
+	"AGT": 'S', "AGC": 'S', "AGG": 'R', "AGA": 'R',
+	"GTT": 'V', "GTC": 'V', "GTG": 'V', "GTA": 'V',
+	"GCT": 'A', "GCC": 'A', "GCA": 'A', "GCG": 'A',
+	"GAT": 'D', "GAC": 'D', "GAG": 'E', "GAA": 'E',
+	"GGT": 'G', "GGC": 'G', "GGG": 'G', "GGA": 'G',
+}
+    GeneticCode is a map of the standard genetic code.
+
+
+FUNCTIONS
+
+func DNAChannelFasta(f io.Reader) <-chan DNA
+    DNAChannelFasta reads fasta sequences from an io.Reader interface, such as
+    an *os.File returned from os.Open(fileName). Returns channel of type DNA and
+    initiates a go routine that creates DNAs and adds them to the channel.
+
+
+TYPES
+
+type DNA struct {
+	Header     string
+	Parent     string
+	Complement string
+	Orfs       []Orf
+}
+    The DNA struct contains the sequence header, the Parent DNA sequence,
+    and the Complement DNA sequence. The Orfs slice contains all possible open
+    reading frames based solely on translation.
+
+func NewDNAFromFasta(filename string) ([]DNA, error)
+    NewDNAFromFasta creates a slice of type DNA from a fasta file containing one
+    or more DNA sequences. You probably want DNACHannelFasta.
+
+func NewDNAFromSequence(header, sequence string) DNA
+    NewDNAFromSequence is a function that creates a type DNA struct from header
+    and sequence strings.
+
+func (d DNA) String() string
+    DNA.String prints the sequence of the Parent strand in fasta format.
+
+func (d DNA) Translate() (orfs []Orf)
+    Translate converts DNA sequences to a slice of type Orf containing all
+    possible open reading frames.
+
+type GenBank struct {
+	Sequence   DNA
+	Features   []byte
+	Accession  string
+	Definition string
+	// Has unexported fields.
+}
+
+func NewGenBank(r io.Reader) GenBank
+    Parses a GenBank file containing a single dna sequence and returns a GenBank
+    struct.
+
+type GenBank2 struct {
+	Meta struct {
+		Format struct {
+			Name    string `json:"name"`
+			Version string `json:"version"`
+			URL     string `json:"url"`
+		} `json:"format"`
+		Circular   bool      `json:"circular"`
+		Locus      string    `json:"locus"`
+		Length     int       `json:"length"`
+		Datetime   time.Time `json:"datetime"`
+		References []struct {
+			Title   string `json:"title"`
+			Index   int    `json:"index"`
+			Range   []int  `json:"range"`
+			Authors string `json:"authors"`
+			Journal string `json:"journal"`
+		} `json:"references"`
+		Definition string `json:"definition"`
+		Accession  string `json:"accession"`
+		Version    string `json:"version"`
+		Keywords   string `json:"keywords"`
+		Source     struct {
+			Range        []int  `json:"range"`
+			Strain       string `json:"strain"`
+			DbXref       string `json:"db_xref"`
+			Organism     string `json:"organism"`
+			IdentifiedBy string `json:"identified_by"`
+			MolType      string `json:"mol_type"`
+		} `json:"source"`
+		Organism string `json:"organism"`
+	} `json:"meta"`
+	Features []struct {
+		ID          string `json:"id"`
+		Type        string `json:"type"`
+		Range       []int  `json:"range"`
+		Product     string `json:"product"`
+		Note        string `json:"note,omitempty"`
+		CodonStart  string `json:"codon_start,omitempty"`
+		ProteinID   string `json:"protein_id,omitempty"`
+		Function    string `json:"function,omitempty"`
+		Translation string `json:"translation,omitempty"`
+	} `json:"features"`
+	Origin string `json:"origin"`
+}
+    This type is not yet implemented.
+
+type Orf struct {
+	Strand    string
+	Frame     int
+	AminoAcid string
+}
+    The Orf struct contains information for a possible open reading frame.
+
+func (o Orf) String() string
+    Orf.String prints the sequence of the orf in fasta format
+
