@@ -22,7 +22,6 @@ type Protein struct {
 
 type Tryptic struct {
 	Sequence   string
-	Identified bool
 }
 
 func (p *Protein) CreateTrypticPeptides() {
