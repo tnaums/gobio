@@ -17,6 +17,64 @@ type Protein struct {
 	Header    string
 	AminoAcid string
 	Mass      float64
+	Peptides  []Tryptic
+}
+
+type Tryptic struct {
+	Sequence   string
+	Identified bool
+}
+
+func (p *Protein) CreateTrypticPeptides() {
+	results := make([]Tryptic, 0)
+	sequence := p.AminoAcid
+	for {
+		if len(sequence) == 0 {
+			break
+		}
+		indexArgenine := strings.Index(sequence, "R")
+		indexLysine := strings.Index(sequence, "K")
+		if indexArgenine == -1 && indexLysine == -1 {
+			peptide := Tryptic{
+				Sequence: sequence,
+			}
+			results = append(results, peptide)
+			break
+		}
+		if indexArgenine == -1 {
+			// Just cut at lysine
+			peptide := Tryptic{
+				Sequence: sequence[:indexLysine+1],
+			}
+			results = append(results, peptide)
+			sequence = sequence[indexLysine+1:]
+			continue
+		}
+		if indexLysine == -1 {
+			// Just cut at argenine
+			peptide := Tryptic{
+				Sequence: sequence[:indexArgenine+1],
+			}
+			results = append(results, peptide)
+			sequence = sequence[indexArgenine+1:]
+			continue
+		}
+		if indexArgenine < indexLysine {
+			peptide := Tryptic{
+				Sequence: sequence[:indexArgenine+1],
+			}
+			results = append(results, peptide)
+			sequence = sequence[indexArgenine+1:]
+			continue
+		}
+		// Lysine must be the next site
+		peptide := Tryptic{
+			Sequence: sequence[:indexLysine+1],
+		}
+		results = append(results, peptide)
+		sequence = sequence[indexLysine+1:]
+	}
+	p.Peptides = results
 }
 
 // String method; Protein implements Stringer interface
@@ -39,7 +97,6 @@ func (p Protein) String() string {
 	}
 	return builder.String()
 }
-
 
 // Create a Protein struct from header and sequence strings
 func NewProtein(header, sequence string) Protein {
@@ -114,7 +171,11 @@ func ProteinChannelFasta(f io.Reader) <-chan Protein {
 		for scanner.Scan() {
 			if strings.HasPrefix(scanner.Text(), ">") {
 				if !start {
-					out <- Protein{name, sequence.String(), calculateMass(sequence.String())}
+					out <- Protein{
+						Header: name,
+						AminoAcid: sequence.String(),
+						Mass: calculateMass(sequence.String()),
+					}
 					sequence.Reset()
 				}
 				name = scanner.Text()
@@ -124,7 +185,11 @@ func ProteinChannelFasta(f io.Reader) <-chan Protein {
 				sequence.WriteString(scanner.Text())
 			}
 		}
-		out <- Protein{name, sequence.String(), calculateMass(sequence.String())}
+		out <- Protein{
+			Header: name,
+			AminoAcid: sequence.String(),
+			Mass: calculateMass(sequence.String()),
+		}
 	}()
 	return out
 }
@@ -137,7 +202,6 @@ var averageMass = map[string]float64{
 	"K": 128.17358, "E": 129.11504, "M": 131.19820, "H": 137.14062,
 	"F": 147.17571, "R": 156.18707, "Y": 163.17512, "W": 186.21220,
 }
-
 
 // returns average mass for a peptide or protein in kDa
 func calculateMass(aa string) (mass float64) {
