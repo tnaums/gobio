@@ -28,7 +28,7 @@ func main() {
 	defer file.Close()
 
 	// Get slice of records
-	records, _ := proteomediscoverer.ParseCSV(file)
+	records, _ := proteomediscoverer.ParseCSVWithPeptides(file)
 
 	// Assemble accessions for sequence retireval
 	accessions := ""
@@ -46,7 +46,7 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	// Open a channel of proteins from *http.Response (io.ReadCloser)
+	// Open a channel of proteins from *http.Response (io.Reader)
 	proteins := protein.ProteinChannelFasta(resp.Body)
 	var sliceProteins []protein.Protein
 	for protein := range proteins {
