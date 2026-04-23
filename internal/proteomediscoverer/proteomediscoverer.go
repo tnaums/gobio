@@ -6,37 +6,43 @@ import (
 	"encoding/csv"
 	"fmt"
 	"io"
+	"os"
 	"regexp"
+	"slices"
 	"strings"
+	"time"
 
+	"github.com/tnaums/gobio/internal/eutils"
 	"github.com/tnaums/gobio/internal/protein"
 )
 
-type ProteomeDiscoverer struct {
-	Accession string
+type Manager struct {
+	Records []ProteomeDiscoverer
 }
 
-type PDWithPeptides struct {
+type ProteomeDiscoverer struct {
 	Accession string
+	Protein   protein.Protein
 	Peptides  map[string]int
 }
 
-// Prints protein sequence and sequence with identified amino acids
-// converted to 'x'.
-func (p PDWithPeptides) PrintSummary(protein protein.Protein) {
-	resultString := protein.AminoAcid
-	resultBytes := []byte(protein.AminoAcid)
-	fmt.Println(protein)
+// Prints sequence in fasta format with only mapped peptides visible
+func (p ProteomeDiscoverer) String() string {
+	resultString := p.Protein.AminoAcid
+	spaces := []byte{32}
+	withSpaces := slices.Repeat(spaces, len(resultString))
+
 	for key, _ := range p.Peptides {
 		re, _ := regexp.Compile(key)
 		bounds := re.FindStringIndex(resultString)
 		for i := bounds[0]; i < bounds[1]; i++ {
-			resultBytes[i] = 120 // change to 'x'
+			withSpaces[i] = resultString[i]
 		}
 	}
+
 	builder := strings.Builder{}
 	builder.WriteString(">mapped_peptides\n")
-	for idx, base := range string(resultBytes) {
+	for idx, base := range string(withSpaces) {
 		if idx == 0 {
 			builder.WriteRune(base)
 			continue
@@ -49,25 +55,16 @@ func (p PDWithPeptides) PrintSummary(protein protein.Protein) {
 		builder.WriteRune(base)
 
 	}
-	fmt.Println(builder.String())
-}
-
-
-func GetAccession(entry string) (ProteomeDiscoverer, error) {
-	columns := strings.Split(entry, ",")
-	fmt.Println(len(columns))
-	return ProteomeDiscoverer{
-		Accession: columns[3],
-	}, nil
+	return builder.String()
 }
 
 // Parses proteome discoverer summary that contains identified peptide
-// information.
-func ParseCSVWithPeptides(f io.Reader) ([]PDWithPeptides, error) {
+// information. Includes downloading of protein sequences from NCBI.
+func ParseCSV(f io.Reader) (Manager, error) {
 	start := true
 	r := csv.NewReader(f)
-	var records []PDWithPeptides
-	current := PDWithPeptides{
+	var manager Manager
+	current := ProteomeDiscoverer{
 		Accession: "",
 		Peptides:  make(map[string]int),
 	}
@@ -77,51 +74,51 @@ func ParseCSVWithPeptides(f io.Reader) ([]PDWithPeptides, error) {
 			break
 		}
 		if err != nil {
-			return records, err
+			return manager, err
 		}
-		if record[0] == "Checked" {
-			// header line to discard
+		if record[0] == "Checked" {  // header line to discard
 			continue
 		}
-		if record[0] == "FALSE" {
-			// indicates new protein or first protein
+		if record[0] == "FALSE" {  // indicates new protein or first protein
 			if start {
 				current.Accession = record[3]
 				start = false
 				continue
 			}
-			records = append(records, current)
+			manager.Records = append(manager.Records, current)
 			current.Peptides = make(map[string]int)
 			current.Accession = record[3]
 		}
-		if record[1] == "FALSE" {
+		if record[1] == "FALSE" {  // Peptide information
 			peptide := record[3][4 : len(record[3])-4]
 			current.Peptides[peptide] += 1
 		}
 	}
-	return records, nil
-}
 
-// Parses simple summary that does not have peptide information
-func ParseCSV(f io.Reader) ([]ProteomeDiscoverer, error) {
-	r := csv.NewReader(f)
-	var records []ProteomeDiscoverer
-	for {
-		record, err := r.Read()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			return records, err
-		}
-		if record[0] == "Checked" {
-			continue
-		}
+	// Initialize client for api request
+	eutilsClient := eutils.NewClient(5 * time.Second)
 
-		pd := ProteomeDiscoverer{
-			Accession: record[3],
-		}
-		records = append(records, pd)
+	// Build string with all accession numbers for ncbi request
+	builder := strings.Builder{}
+	for _, record := range manager.Records {
+		builder.WriteString(fmt.Sprintf("%s,", record.Accession))
 	}
-	return records, nil
+
+	// generate *http.Response from ncbi query
+	resp, err := eutilsClient.EPost(builder.String())
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	defer resp.Body.Close()
+
+	// Open a channel of proteins from *http.Response.Body (io.Reader)
+	proteins := protein.ProteinChannelFasta(resp.Body)
+
+	// Add proteins
+	for i := 0; i < len(manager.Records); i++ {
+		manager.Records[i].Protein = <-proteins
+	}
+
+	return manager, nil
 }

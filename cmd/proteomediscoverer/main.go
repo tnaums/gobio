@@ -3,11 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"time"
 
-	"github.com/tnaums/gobio/internal/eutils"
 	"github.com/tnaums/gobio/internal/localblast"
-	"github.com/tnaums/gobio/internal/protein"
 	"github.com/tnaums/gobio/internal/proteomediscoverer"
 )
 
@@ -28,37 +25,13 @@ func main() {
 	defer file.Close()
 
 	// Get slice of records
-	records, _ := proteomediscoverer.ParseCSVWithPeptides(file)
-
-	// Assemble accessions for sequence retireval
-	accessions := ""
-	for _, record := range records {
-		accessions += fmt.Sprintf("%s,", record.Accession)
-	}
-
-	// Initialize client for ncbi eutils api request
-	eutilsClient := eutils.NewClient(5 * time.Second)
-	// generate *http.Response from ncbi query
-	resp, err := eutilsClient.EPost(accessions)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	defer resp.Body.Close()
-
-	// Open a channel of proteins from *http.Response (io.Reader)
-	proteins := protein.ProteinChannelFasta(resp.Body)
-	var sliceProteins []protein.Protein
-	for protein := range proteins {
-		sliceProteins = append(sliceProteins, protein)
-	}
-	fmt.Println(sliceProteins[4])
+	manager, _ := proteomediscoverer.ParseCSV(file)
 
 	// run localblast for selected protein against 3 databases
-	proteomes := []string{"verticillioides.aa.fasta","graminearum.aa.fasta", "subglutinans.aa.fasta", "proliferatum.aa.fasta", "Vdahliae.aa.fasta", "Cgram.fasta", "Ccarb.aa.fasta"}
+	proteomes := []string{"verticillioides.aa.fasta", "graminearum.aa.fasta", "subglutinans.aa.fasta", "proliferatum.aa.fasta", "Vdahliae.aa.fasta", "Cgram.fasta", "Ccarb.aa.fasta"}
 	for idx, proteome := range proteomes {
 		fmt.Printf(" %.2d. Performing blastp against %s\n", idx, proteome)
-		blast := localblast.LocalBlast(sliceProteins[4], proteome)
+		blast := localblast.LocalBlast(manager.Records[4].Protein, proteome)
 		localblast.PrintBlastp(blast)
 	}
 }
