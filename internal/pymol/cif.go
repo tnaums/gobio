@@ -28,6 +28,33 @@ var ThreeToOne = map[string]byte{
 // Function that creates protein fasta files for each chain in a cif
 // file. The returned *bytes.Buffer can be passed to
 // protein.ProteinChannelFasta as the io.Reader.
+func SequenceFromPDB(r io.Reader) *bytes.Buffer {
+	buf := bytes.Buffer{}
+	scanner := bufio.NewScanner(r)
+	currentChain := ""
+	currentAA := "0"
+	for scanner.Scan() {
+		if strings.HasPrefix(scanner.Text(), "ATOM") {
+			residue := scanner.Text()[17:20]
+			chain := scanner.Text()[21:22]
+			number := scanner.Text()[23:26]
+
+			if chain != currentChain {
+				buf.WriteString(fmt.Sprintf("\n>Chain%s\n", chain))
+				currentChain = chain
+			}
+			if number != currentAA {
+				buf.WriteByte(ThreeToOne[residue])
+				currentAA = number
+			}
+		}
+	}
+			return &buf
+}
+
+// Function that creates protein fasta files for each chain in a cif
+// file. The returned *bytes.Buffer can be passed to
+// protein.ProteinChannelFasta as the io.Reader.
 func SequenceFromCIF(r io.Reader) *bytes.Buffer {
 	buf := bytes.Buffer{}
 	scanner := bufio.NewScanner(r)
@@ -37,7 +64,7 @@ func SequenceFromCIF(r io.Reader) *bytes.Buffer {
 		if strings.HasPrefix(scanner.Text(), "ATOM") {
 			fields := strings.Fields(scanner.Text())
 			if fields[6] != currentChain {
-				buf.WriteString(fmt.Sprintf("\n>%s\n", fields[6]))
+				buf.WriteString(fmt.Sprintf("\n>Chain%s\n", fields[6]))
 				currentChain = fields[6]
 			}
 			if fields[8] != currentAA {
