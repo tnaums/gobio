@@ -45,6 +45,11 @@ packages work. The `main.go` files are commented and can be run
 from the root directory: `go run ./cmd/demofastaprotein` or `go run
 ./cmd/demoeutils`
 
+Not all ./cmd/ examples will run because I the data files are not all
+included in the repository--like folders of genome sequences and local
+blast databases. The comments inbeded in the main.go files should,
+however, demonstrate the API for the libraries.
+
 ## Contributing
 
 ### Clone the repo
@@ -206,7 +211,7 @@ func (p Protein) String() string
 # pymol
 
 The pymol package supports control of the pymol structure
-viewer from go.
+viewer from go. See `gobio/cmd/demopymol/main.go` 
 ```go
 cmd := exec.Command("pymol", "-p", "-K", cif)
 stdin, err := cmd.StdinPipe()
