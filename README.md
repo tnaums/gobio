@@ -39,16 +39,75 @@ retrieving dna and protein sequences from ncbi and uniprot
 databases, performing local blast searches and viewing the results,
 and interacting with the pymol molecular structure viewer.
 
+As an example, we can open a protein fasta file from disk and create a protein.Protein type. First, we open a file to create an *os.File
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/tnaums/gobio/internal/protein"
+)
+
+	// Open file to create *os.File which is an io.Reader
+	file, err := os.Open("sequences/C7YS44.1.fasta")
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+	defer file.Close()
+
+```
+We next create a go channel. Since the function uses the io.Reader interface, an *http.Response.Body can also be used as as argument. Any io.Reader containing protein fasta sequences will work.
+```go
+	// Create a channel of Proteins
+	proteins := protein.ProteinChannelFasta(file)
+
+```
+Proteins can then be read through the channel.
+```go
+	protein, ok := <-proteins
+	if ok {
+		fmt.Println(protein)
+	} else {
+		fmt.Println("Protein channel is empty.")
+	}
+       	fmt.Println(protein)    
+```
+This prints the protein in fasta format. Since the file only had one protein sequence, a second call to the channel will not return a Protein.
+```go
+	protein, ok = <-proteins
+	if ok {
+		fmt.Println(protein)
+	} else {
+		fmt.Println("Protein channel is empty.")
+	}	
+```
+>sp|C7YS44.1|PGH_FUSV7|70.41kDa
+MHSLSLRRLLTSVLSLCSCSSALPNQRRSNVTSHVETYYSVDGATHAEKSKALKADGYRI
+VSLSSYGSPDSANYAAIWVQEEGPSFEIIHDADEATYNSWLQTWKSRGYVSTQVSATGPA
+ENAVFAGVMENINVANWFQSCELENPWAFSNTTGNVDVVVKGFRMFGTPEERRYCILGHE
+NVGNEQTTIQYSTPSFTVNFASTFEAETTKRFWRPSRLFLSEDHIITPSFADTSVGKWSH
+AVDLTKAELKEKIETERAKGLYPIDIQGGGSGSSERFTVVFAERTSPKPRQWNVRGEITG
+FEDNKAAEEEVDSIMRRFMEKNGVRQAQFAVALEGKTIAERSYTWAEDDRAIVEPDDIFL
+LASVSKMFLHASIDWLVSHDMLNFSTPVYDLLGYKPADSRANDINVQHLLDHSAGYDRSM
+SGDPSFMFREIAQSLPTKGAKAATLRDVIEYVVAKPLDFTPGDYSAYSNYCPMLLSYVVT
+NITGVPYLDFLEKNILDGLNVRLYETAASKHTEDRIVQESKNTGQDPVHPQSAKLVPGPH
+GGDGAVKEECAGTFAMAASASSLAKFIGSHAVWGTGGRVSSNRDGSLSGARAYVESRGTI
+DWALTLNTREYISETEFDELRWYSLPDFLSAFPIAG
+Protein channel is empty.
+
 ## Usage
 The `gobio/cmd/` directory contains example programs demonstrating how
 packages work. The `main.go` files are commented and can be run
 from the root directory: `go run ./cmd/demofastaprotein` or `go run
 ./cmd/demoeutils`
 
-Not all ./cmd/ examples will run because I the data files are not all
+Not all ./cmd/ examples will run because the data files are not all
 included in the repository--like folders of genome sequences and local
 blast databases. The comments inbeded in the main.go files should,
-however, demonstrate the API for the libraries.
+however, explain the API.
 
 ## Contributing
 
