@@ -96,7 +96,79 @@ SGDPSFMFREIAQSLPTKGAKAATLRDVIEYVVAKPLDFTPGDYSAYSNYCPMLLSYVVT
 NITGVPYLDFLEKNILDGLNVRLYETAASKHTEDRIVQESKNTGQDPVHPQSAKLVPGPH
 GGDGAVKEECAGTFAMAASASSLAKFIGSHAVWGTGGRVSSNRDGSLSGARAYVESRGTI
 DWALTLNTREYISETEFDELRWYSLPDFLSAFPIAG
+
 Protein channel is empty.
+
+Alternately, load entire proteome.
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/tnaums/gobio/internal/protein"
+)
+
+func main() {
+	fmt.Println("Welcome to gobio!")
+	if len(os.Args) != 2 {
+		fmt.Println("Usage: go run . <sequence.fa>")
+		os.Exit(1)
+	}
+	fileName := os.Args[1]
+
+	// Open file to create *os.File which is an io.Reader
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+	defer file.Close()
+
+	// Create a channel of Proteins
+	proteins := protein.ProteinChannelFasta(file)
+
+	var count int
+
+        // iterate over the entire proteome looking form large proteins
+	for protein := range proteins {
+		if protein.Mass > 300 {
+			fmt.Println(protein.Header)
+			fmt.Println()
+			count++
+		}
+	}
+	fmt.Printf("Found %d proteins larger than 20 kDa\n", count)
+```
+Welcome to gobio!
+jgi|Fusve2|126|FVEG_00094T0
+jgi|Fusve2|844|FVEG_00563T0
+jgi|Fusve2|1851|FVEG_01180T0
+jgi|Fusve2|4404|FVEG_09123T0
+jgi|Fusve2|4405|FVEG_09123T1
+jgi|Fusve2|5568|FVEG_16695T0
+jgi|Fusve2|6384|FVEG_10547T0
+jgi|Fusve2|6655|FVEG_10756T0
+jgi|Fusve2|7062|FVEG_11086T0
+jgi|Fusve2|7068|FVEG_11092T0
+jgi|Fusve2|8053|FVEG_11762T0
+jgi|Fusve2|8269|FVEG_11932T0
+jgi|Fusve2|8523|FVEG_17172T0
+jgi|Fusve2|8995|FVEG_12503T0
+jgi|Fusve2|10843|FVEG_12610T0
+jgi|Fusve2|13175|FVEG_15132T0
+jgi|Fusve2|13845|FVEG_03249T0
+jgi|Fusve2|14868|FVEG_03990T0
+jgi|Fusve2|15073|FVEG_04129T0
+jgi|Fusve2|15135|FVEG_15418T0
+jgi|Fusve2|15947|FVEG_04724T2
+jgi|Fusve2|15948|FVEG_04724T1
+jgi|Fusve2|15949|FVEG_04724T0
+jgi|Fusve2|16992|FVEG_05323T0
+jgi|Fusve2|19341|FVEG_06977T0
+Found 25 proteins larger than 300 kDa
+----------------------------------------
 
 ## Usage
 The `gobio/cmd/` directory contains example programs demonstrating how

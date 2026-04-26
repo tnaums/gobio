@@ -11,15 +11,15 @@ import (
 )
 
 func main() {
-	// fmt.Println("Welcome to gobio!")
-	// if len(os.Args) != 2 {
-	// 	fmt.Println("Usage: go run . <sequence.fa>")
-	// 	os.Exit(1)
-	// }
-	// fileName := os.Args[1]
+	fmt.Println("Welcome to gobio!")
+	if len(os.Args) != 2 {
+		fmt.Println("Usage: go run . <sequence.fa>")
+		os.Exit(1)
+	}
+	fileName := os.Args[1]
 
 	// Open file to create *os.File which is an io.Reader
-	file, err := os.Open("sequences/C7YS44.1.fasta")
+	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
@@ -35,7 +35,7 @@ func main() {
 	} else {
 		fmt.Println("Protein channel is empty.")
 	}
-	
+
 	protein, ok = <-proteins
 	if ok {
 		fmt.Println(protein)
@@ -44,5 +44,15 @@ func main() {
 	}	
 
 
+	var count int
+	for protein := range proteins {
+		if protein.Mass > 200 {
+			fmt.Println(protein.Header)
+			fmt.Println()
+			count++
+		}
+	}
+	fmt.Printf("Found %d proteins larger than 20 kDa\n", count)
+	fmt.Println("----------------------------------------\n")
 
 }
