@@ -84,6 +84,7 @@ This prints the protein in fasta format. Since the file only had one protein seq
 		fmt.Println("Protein channel is empty.")
 	}	
 ```
+```console
 >sp|C7YS44.1|PGH_FUSV7|70.41kDa
 MHSLSLRRLLTSVLSLCSCSSALPNQRRSNVTSHVETYYSVDGATHAEKSKALKADGYRI
 VSLSSYGSPDSANYAAIWVQEEGPSFEIIHDADEATYNSWLQTWKSRGYVSTQVSATGPA
@@ -98,8 +99,10 @@ GGDGAVKEECAGTFAMAASASSLAKFIGSHAVWGTGGRVSSNRDGSLSGARAYVESRGTI
 DWALTLNTREYISETEFDELRWYSLPDFLSAFPIAG
 
 Protein channel is empty.
+```
 
 Alternately, load entire proteome.
+
 ```go
 package main
 
@@ -139,8 +142,10 @@ func main() {
 			count++
 		}
 	}
-	fmt.Printf("Found %d proteins larger than 20 kDa\n", count)
+	fmt.Printf("Found %d proteins larger than 300 kDa\n", count)
 ```
+
+```console
 Welcome to gobio!
 jgi|Fusve2|126|FVEG_00094T0
 jgi|Fusve2|844|FVEG_00563T0
@@ -167,8 +172,10 @@ jgi|Fusve2|15948|FVEG_04724T1
 jgi|Fusve2|15949|FVEG_04724T0
 jgi|Fusve2|16992|FVEG_05323T0
 jgi|Fusve2|19341|FVEG_06977T0
+
 Found 25 proteins larger than 300 kDa
 ----------------------------------------
+```
 
 ## Usage
 The `gobio/cmd/` directory contains example programs demonstrating how
