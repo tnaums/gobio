@@ -129,6 +129,47 @@ func NewChainMap(r io.Reader, chain string) ChainMap{
 	return m
 }
 
+// Create a ChainMap from the ATOM field of a pdb file. Created for
+// use with esmfold structures; enables automatic finding of motifs
+// and their IDStart and IDStop.
+func NewChainMapPDB(r io.Reader, chain string) ChainMap{
+	scanner := bufio.NewScanner(r)
+	currentResidue := 0
+	id := 0
+	var residue Residue
+	m := make(map[int]Residue)
+	for scanner.Scan() {
+		if strings.HasPrefix(scanner.Text(), "ATOM") {
+			if scanner.Text()[21:22] == chain {
+				seqid, _ := strconv.Atoi(strings.TrimLeft(scanner.Text()[23:26], " "))
+				id, _ = strconv.Atoi(strings.TrimLeft(scanner.Text()[7:11], " "))
+				// if it is the first one
+				if currentResidue == 0 {
+					currentResidue += 1
+					residue = Residue{
+						AminoAcid: scanner.Text()[17:20],
+						Position:  currentResidue,
+						IDStart:   id,
+					}
+				}
+				if seqid != currentResidue {
+					residue.IDEnd = id - 1
+					m[currentResidue] = residue
+					currentResidue += 1
+					residue = Residue{
+						AminoAcid: scanner.Text()[17:20],
+						Position:  currentResidue,
+						IDStart:   id,
+					}
+				}
+			}
+		}
+	}
+	residue.IDEnd = id
+	m[currentResidue] = residue
+	return m
+}
+
 // Keys are atom id. Values are the Atom struct containing all 17 fields of
 // information parsed from ATOM lines of cif file.
 type Structure map[int]Atom

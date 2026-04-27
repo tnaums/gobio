@@ -73,7 +73,6 @@ Proteins can then be read through the channel.
 	} else {
 		fmt.Println("Protein channel is empty.")
 	}
-       	fmt.Println(protein)    
 ```
 This prints the protein in fasta format. Since the file only had one protein sequence, a second call to the channel will not return a Protein.
 ```go

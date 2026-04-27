@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"regexp"
 	"time"
 
 	"github.com/tnaums/gobio/internal/esmfold"
@@ -51,12 +52,27 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	// create protein.Protein from info in cif file
+	// create protein.Protein from info in pdb file
 	buf := pymol.SequenceFromPDB(file)
 	proteins = protein.ProteinChannelFasta(buf)
 	chainA := <-proteins
 	fmt.Println(chainA)
 	fmt.Println()
+
+	// use regular expression to locate motif
+	r, _ := regexp.Compile("DRSGMGQG")
+	list := r.FindStringIndex(chainA.AminoAcid)
+	fmt.Println(list)
+
+	// reset file position and generate Chainmap map[seqid]Residue
+	file.Seek(0, 0)
+	chainAMap := pymol.NewChainMapPDB(file, "A")
+	motifStart := chainAMap[list[0] + 1].IDStart
+	motifEnd := chainAMap[list[1]].IDEnd
+	for i := list[0] + 1; i <= list[1]; i++ {
+		fmt.Printf("%v\n", chainAMap[i])
+	}
+	
 
 	// launch pymol and create StdinPipe writer to communicate with pymol
 	cmd := exec.Command("pymol", "-p", "-K", "cmd/esmandpymol/esmfold.pdb")
@@ -73,6 +89,9 @@ func main() {
 
 		// Set color
 		pymol.SelectByChain(stdin, "chainA", "forest", "A", false)
+
+		// Select motif that was identified by regular expression pattern match.
+		pymol.SelectByID(stdin, "DRSGMGQG", "yellow", motifStart, motifEnd, true)		
 
 	}()
 	// When pymol exits, the output is captured and printed to the command line.
