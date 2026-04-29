@@ -49,7 +49,7 @@ func SequenceFromPDB(r io.Reader) *bytes.Buffer {
 			}
 		}
 	}
-			return &buf
+	return &buf
 }
 
 // Function that creates protein fasta files for each chain in a cif
@@ -90,7 +90,7 @@ type Residue struct {
 type ChainMap map[int]Residue
 
 // Create a ChainMap from the ATOM field of a cif file.
-func NewChainMap(r io.Reader, chain string) ChainMap{
+func NewChainMap(r io.Reader, chain string) ChainMap {
 	scanner := bufio.NewScanner(r)
 	currentResidue := 0
 	id := 0
@@ -129,10 +129,11 @@ func NewChainMap(r io.Reader, chain string) ChainMap{
 	return m
 }
 
+
 // Create a ChainMap from the ATOM field of a pdb file. Created for
 // use with esmfold structures; enables automatic finding of motifs
 // and their IDStart and IDStop.
-func NewChainMapPDB(r io.Reader, chain string) ChainMap{
+func NewChainMapPDB(r io.Reader, chain string) ChainMap {
 	scanner := bufio.NewScanner(r)
 	currentResidue := 0
 	id := 0

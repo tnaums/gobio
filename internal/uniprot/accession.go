@@ -1,7 +1,6 @@
 package uniprot
 
 import (
-	//"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -64,59 +63,3 @@ func (c *Client) GetAccession(accession string) (*UniprotComplete, error) {
 		Flatfile: data,
 	}, nil
 }
-
-// func (c *Client) GetAccession(accession, responseType string) (*http.Response, error) {
-// 	// Download sequence in requested format for one uniprot accession
-// 	params := UniprotAPI{
-// 		ResponseType: responseType,
-// 	}
-
-// 	// Assemble the URL
-// 	url := baseURL + accession
-
-// 	req, err := http.NewRequest("GET", url, nil)
-// 	if err != nil {
-// 		fmt.Printf("Error creating request: %s\n", err)
-// 		return &http.Response{}, err
-// 	}
-
-// 	req.Header.Set("Accept", params.ResponseType)
-// 	resp, err := c.httpClient.Do(req)
-// 	if err != nil {
-// 		fmt.Printf("Error making request: %s\n", err)
-// 		return &http.Response{}, err
-// 	}
-
-// 	return resp, nil
-// }
-
-// func (c *Client) GetAccessions(accessions []string, responseType string) (*bytes.Buffer, error) {
-// 	// Download sequences in requested format for list of accession numbers
-// 	params := UniprotAPI{
-// 		ResponseType: responseType,
-// 	}
-
-// 	// Create an empty bytes.Buffer
-// 	var buf bytes.Buffer
-// 	for _, accession := range accessions {
-// 		// Assemble the URL
-// 		url := baseURL + accession
-
-// 		req, err := http.NewRequest("GET", url, nil)
-// 		if err != nil {
-// 			fmt.Printf("Error creating request: %s\n", err)
-// 			return nil, err
-// 		}
-
-// 		req.Header.Set("Accept", params.ResponseType)
-// 		resp, err := c.httpClient.Do(req)
-// 		if err != nil {
-// 			fmt.Printf("Error making request: %s\n", err)
-// 			return nil, err
-// 		}
-// 		data, _ := io.ReadAll(resp.Body)
-// 		buf.Write(data)
-// 	}
-
-// 	return &buf, nil
-// }

@@ -52,7 +52,7 @@ func main() {
 			count++
 		}
 	}
-	fmt.Printf("Found %d proteins larger than 20 kDa\n", count)
+	fmt.Printf("Found %d proteins larger than 200 kDa\n", count)
 	fmt.Println("----------------------------------------\n")
 
 }
