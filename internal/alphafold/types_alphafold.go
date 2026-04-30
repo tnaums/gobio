@@ -1,6 +1,8 @@
 package alphafold
 
-type alphafoldSummary []struct {
+import "time"
+
+type AlphafoldSummary []struct {
 	ToolUsed                   string    `json:"toolUsed"`
 	ProviderID                 string    `json:"providerId"`
 	EntityType                 string    `json:"entityType"`
