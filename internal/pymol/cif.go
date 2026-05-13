@@ -9,9 +9,9 @@ import (
 	"strings"
 )
 
-// Map that converts the 3 letter amino acid codes found in
-// ATOM records to single amino acid codes. Used to create
-// fasta protein sequences from cif files.
+// ThreeToOne maps 3 letter amino acid codes found in ATOM records to
+// single amino acid codes. Used to create fasta protein sequences
+// from cif files.
 var ThreeToOne = map[string]byte{
 	"ALA": 'A', "LEU": 'L',
 	"ARG": 'R', "LYS": 'K',
@@ -25,7 +25,7 @@ var ThreeToOne = map[string]byte{
 	"ILE": 'I', "VAL": 'V',
 }
 
-// Function that creates protein fasta files for each chain in a cif
+// SequenceFromPDB creates protein fasta files for each chain in a cif
 // file. The returned *bytes.Buffer can be passed to
 // protein.ProteinChannelFasta as the io.Reader.
 func SequenceFromPDB(r io.Reader) *bytes.Buffer {
@@ -52,7 +52,7 @@ func SequenceFromPDB(r io.Reader) *bytes.Buffer {
 	return &buf
 }
 
-// Function that creates protein fasta files for each chain in a cif
+// SequenceFromCIF creates protein fasta files for each chain in a cif
 // file. The returned *bytes.Buffer can be passed to
 // protein.ProteinChannelFasta as the io.Reader.
 func SequenceFromCIF(r io.Reader) *bytes.Buffer {
@@ -89,7 +89,7 @@ type Residue struct {
 // amino acid numbers to atom id numbers.
 type ChainMap map[int]Residue
 
-// Create a ChainMap from the ATOM field of a cif file.
+// NewChainMap creates a ChainMap from the ATOM fields of a cif file.
 func NewChainMap(r io.Reader, chain string) ChainMap {
 	scanner := bufio.NewScanner(r)
 	currentResidue := 0
@@ -130,9 +130,9 @@ func NewChainMap(r io.Reader, chain string) ChainMap {
 }
 
 
-// Create a ChainMap from the ATOM field of a pdb file. Created for
-// use with esmfold structures; enables automatic finding of motifs
-// and their IDStart and IDStop.
+// NewChainMapPDB creates a ChainMap from the ATOM field of a pdb
+// file. Created for use with esmfold structures; enables automatic
+// finding of motifs and their IDStart and IDStop.
 func NewChainMapPDB(r io.Reader, chain string) ChainMap {
 	scanner := bufio.NewScanner(r)
 	currentResidue := 0
@@ -175,7 +175,7 @@ func NewChainMapPDB(r io.Reader, chain string) ChainMap {
 // information parsed from ATOM lines of cif file.
 type Structure map[int]Atom
 
-// Creates a new Structure map from a cif file.
+// NewStructure creates a new Structure map from a cif file.
 func NewStructure(r io.Reader) Structure {
 	scanner := bufio.NewScanner(r)
 	structure := make(Structure, 0)

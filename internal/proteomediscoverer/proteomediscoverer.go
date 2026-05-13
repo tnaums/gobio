@@ -26,7 +26,7 @@ type ProteomeDiscoverer struct {
 	Peptides  map[string]int
 }
 
-// Prints sequence in fasta format with only mapped peptides visible
+// String prints sequence in fasta format with only mapped peptides visible
 func (p ProteomeDiscoverer) String() string {
 	resultString := p.Protein.AminoAcid
 	spaces := []byte{32}
@@ -58,8 +58,9 @@ func (p ProteomeDiscoverer) String() string {
 	return builder.String()
 }
 
-// Parses proteome discoverer summary that contains identified peptide
-// information. Includes downloading of protein sequences from NCBI.
+// ParseCSV parses a proteome discoverer summary that contains
+// identified peptide information. Includes downloading of protein
+// sequences from NCBI.
 func ParseCSV(f io.Reader) (Manager, error) {
 	start := true
 	r := csv.NewReader(f)

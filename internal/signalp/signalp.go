@@ -16,12 +16,12 @@ type SignalP struct {
 	HmmProb   float64
 }
 
-// Holds signalp info for a proteome
+// Holds signalp info for a proteome. Key is protein number.
 type SignalPMap map[int]SignalP
 
 
-// Parses a *_SigP.tab file from JGI Mycocosm fungal proteome and
-// writes secreted protein info into a SignalPMap
+// NewSignalPMap parses a *_SigP.tab file from JGI Mycocosm fungal
+// proteome and writes secreted protein info into a SignalPMap
 func NewSignalPMap(r io.Reader) (SignalPMap, error) {
 	scanner := bufio.NewScanner(r)
 	retMap := SignalPMap{}

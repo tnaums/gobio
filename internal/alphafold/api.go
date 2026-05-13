@@ -7,9 +7,10 @@ import (
 	"net/http"
 )
 
-// Client method that retrieves json summary for a uniprot
-// id. Unmarshals response into type AlphafoldSummary. Can be called
-// directly by client program or used indirectly by call to client.GetCIF(id).
+// GetSummaries is an http.Client method that retrieves the json summary for
+// a uniprot id. Unmarshals response into type AlphafoldSummary. Can
+// be called directly by client program or used indirectly by call to
+// client.GetCIF(id).
 func (c *Client) GetSummaries(id string) (AlphafoldSummary, error) {
 	fmt.Printf("Retrieving info for id: %s\n", id)
 
@@ -41,9 +42,10 @@ func (c *Client) GetSummaries(id string) (AlphafoldSummary, error) {
 	return afSummary, nil
 }
 
-// Client method to retrieve structure file for a uniprot id. There
-// may be more than one structure for one id, maybe. Function returns only
-// one but prints a warning message if there are more.
+// GetCIF is an http.Client method to retrieve a structure file for a
+// uniprot id. There may be more than one structure for one
+// id. Function returns only one but prints a warning message if there
+// are more.
 func (c *Client) GetCIF(id string) (*http.Response, error){
 	summaries, err := c.GetSummaries(id)
 	if err != nil {

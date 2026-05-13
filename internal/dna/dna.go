@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-// The DNA struct contains the sequence header, the Parent DNA sequence,
+// DNA contains the sequence header, the Parent DNA sequence,
 // and the Complement DNA sequence. The Orfs slice contains all
 // possible open reading frames based solely on translation.
 type DNA struct {
@@ -95,7 +95,7 @@ func (d DNA) Translate() (orfs []Orf) {
 	return orfs
 }
 
-// DNA.String prints the sequence of the Parent strand in fasta format.
+// String prints the sequence of the Parent strand in fasta format.
 func (d DNA) String() string {
 	builder := strings.Builder{}
 	builder.WriteString(fmt.Sprintf(">%s\n", d.Header))
@@ -115,7 +115,7 @@ func (d DNA) String() string {
 	return builder.String()
 }
 
-// Orf.String prints the sequence of the orf in fasta format
+// String prints the sequence of an orf in fasta format
 func (o Orf) String() string {
 	builder := strings.Builder{}
 	builder.WriteString(fmt.Sprintf(">%s|Frame_%d|Length%d\n", o.Strand, o.Frame, len(o.AminoAcid)))
@@ -135,10 +135,9 @@ func (o Orf) String() string {
 	return builder.String()
 }
 
-// DNAChannelFasta reads fasta sequences from an io.Reader interface,
-// such as an *os.File returned from os.Open(fileName). Returns channel of
-// type DNA and initiates a go routine that creates DNAs and adds them
-// to the channel.
+// DNAChannelFasta reads fasta sequences from an io.Reader interface.
+// It returns a channel of type DNA and initiates a go routine that
+// creates DNAs and adds them to the channel.
 func DNAChannelFasta(f io.Reader) <-chan DNA {
 	out := make(chan DNA)
 	go func() {
@@ -192,8 +191,7 @@ func NewDNAFromSequence(header, sequence string) DNA {
 }
 
 // NewDNAFromFasta creates a slice of type DNA from a fasta file containing
-// one or more DNA sequences. You probably want
-// DNACHannelFasta.
+// one or more DNA sequences. 
 func NewDNAFromFasta(filename string) ([]DNA, error) {
 	returnSlice := make([]DNA, 0)
 	file, err := os.Open(filename)
@@ -214,9 +212,9 @@ func NewDNAFromFasta(filename string) ([]DNA, error) {
 	return returnSlice, nil
 }
 
-// FastaParser reads a fasta file, extracts the sequence name from the header,
+// fastaParser reads a fasta file, extracts the sequence name from the header,
 // and creates a sequence string from the sequence. Returns a slice of strings
-// with alternating header and sequence.
+// with alternating header and sequence. Called by NewDNAFromFasta.
 func fastaParser(r io.Reader) (data []string) {
 	start := true
 	name := ""
@@ -240,7 +238,7 @@ func fastaParser(r io.Reader) (data []string) {
 
 }
 
-// Reverses a string. Called by reverseComplement.
+// reverse reverses a string. Called by reverseComplement.
 func reverse(s string) string {
 	rns := []rune(s) // convert to rune
 	for i, j := 0, len(rns)-1; i < j; i, j = i+1, j-1 {
@@ -254,9 +252,7 @@ func reverse(s string) string {
 	return string(rns)
 }
 
-// reverseComplement
 func reverseComplement(parent string) (complement string) {
-
 	reverseSeq := reverse(parent)
 	for _, base := range reverseSeq {
 		if base == 'A' {

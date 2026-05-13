@@ -16,13 +16,13 @@ import (
 
 func main() {
 	// Set the uniprot id for the structure
-	id := "I1S3A5"
-	//id := "C7YS44"
+	//id := "I1S3A5"
+	id := "C7YS44"
 
 	// Initialize client for api request
 	alphafoldClient := alphafold.NewClient(15 * time.Second)
 
-	// Returns *alphafold.AlhpafoldSummary
+	// Returns *http.Response
 	resp, err := alphafoldClient.GetCIF(id)
 	if err != nil {
 		fmt.Println(err)
@@ -30,7 +30,7 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	// save structure to disk
+	// save structure to disk to be opened by pymol
 	out, err := os.Create("cmd/alphafold/af.cif")
 	if err != nil {
 		fmt.Println(err)
@@ -55,7 +55,7 @@ func main() {
 	fmt.Println()
 
 	// use regular expression to locate catalytic serine
-	r, _ := regexp.Compile("DST")
+	r, _ := regexp.Compile("SVSK")
 	list := r.FindStringIndex(chainA.AminoAcid)
 	fmt.Println(list)
 
@@ -92,7 +92,7 @@ func main() {
 		pymol.SelectByChain(stdin, "chainA", "forest", "A", false)
 
 		// Select motif that was identified by regular expression pattern match.
-		pymol.SelectByID(stdin, "DST", "yellow", motifStart, motifEnd, true)
+		pymol.SelectByID(stdin, "SVSK", "yellow", motifStart, motifEnd, true)
 
 	}()
 	// When pymol exits, the output is captured and printed to the command line.

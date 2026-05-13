@@ -7,9 +7,12 @@ import (
 	"regexp"
 )
 
+// EPost accepts a string that is either a single protein accession,
+// or a series of accessions separated by commas. Initial request
+// returns a WebEnv and QueryKey that are parsed from the
+// response. This information is then used as request to retrieve the
+// sequences.
 func (c *Client) EPost(accessions string) (*http.Response, error) {
-	// Download protein records corresponding to a list of GI or
-	// accession numbers. "accession1,accession2,accession3"
 	params := EPost{
 		Database: "protein",
 		IdList:   accessions,
@@ -52,6 +55,7 @@ func (c *Client) EPost(accessions string) (*http.Response, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Error creating req: %s", err)
 	}
+
 	// Post the efetch URL
 	resp, err = c.httpClient.Do(req)
 	if err != nil {
