@@ -39,6 +39,9 @@ retrieving dna and protein sequences from ncbi and uniprot
 databases, performing local blast searches and viewing the results,
 and interacting with the pymol molecular structure viewer.
 
+Basic knowledge of go interfaces and channels is helpful, but copying
+from demonstration scripts can also work.
+
 As an example, we can open a protein fasta file from disk and create a protein.Protein type. First, we open a file to create an *os.File
 ```go
 package main
@@ -187,29 +190,6 @@ included in the repository--like folders of genome sequences and local
 blast databases. The comments inbeded in the main.go files should,
 however, explain the API.
 
-## Contributing
-
-### Clone the repo
-
-```bash
-git clone https://github.com/tnaums/gobio
-cd gobio
-```
-
-### Run an example program
-
-```bash
-go run ./cmd/demofastadna
-```
-
-```bash
-go run ./cmd/demopymol
-```
-requires pymol molecular structure viewer
-
-### Submit a pull request
-
-If you'd like to contribute, please fork the repository and open a pull request to the `main` branch.
 
 # Overview of packages
 
@@ -271,43 +251,104 @@ esmfold packages described below.
 Package pymol was inspired by the python package 'pymolPy3':
     https://github.com/carbonscott/pymolPy3/tree/main
 
+## alphafold
+The alphafold package retrieves predicted structures for a given
+uniprot id:
+```go
+func (c *Client) GetCIF(id string) (*http.Response, error)
+```
+
+Alphafold summaries for a given uniprot id can also be retrieved:
+```go
+func (c *Client) GetSummaries(id string) (AlphafoldSummary, error)
+```
+
+## esmfold
+
+The esmfold packaged uses GetStructure to send an amino
+acid sequence to the esmfold API and returns a newly predicted
+structure from the server.
+```go func (c *Client)
+GetStructure(protein protein.Protein) (*http.Response, error)
+```
+
+## eutils
+
+The eutils package creates a web client that uses the `EPost` method
+to retrieve one or more proteins from an NCBI accession. For multiple
+proteins, a single string with accessions separated by commas is used.
+```go
+func (c *Client) EPost(accessions string) (*http.Response, error)
+```
+
+## localblast
+
+The localblast package performs local blast searches using the function
+`LocalBlast`.
+```go
+func LocalBlast(query protein.Protein, proteome string) BlastOutput
+```
+
+The function `PrintBlastp` displays blast results.
+```go
+func PrintBlastp(b BlastOutput)
+```
+
+## proteomediscoverer
+
+The proteomediscoverer package parses result summaries from LC-MS/MS
+analysis of tryptic peptides (*.csv format). It downloads sequences
+for each protein and prints a summary of mapped peptides through the
+Stringer interface.
+
+## signalp
+
+The signalp package parses information from a *_SigP.tab file from JGI
+Mycocosm fungal proteome. It is useful for analysis of secreted fungal
+proteins.
+
+Information for a proteome is placed into a map with the protein
+number as a key and the information as a value:
+```go
+type SignalPMap map[int]SignalP
+```
+
+## uniprot
+
+The uniprot package is used for retrieving protein records based on
+accession. As the uniprot api conveniently returns records as json, the
+information is unmarshalled into a go struct. For convenience and
+printing ease, each record is also retrieved as a flatfile.
 
 
-# komagataella
+
+## komagataella
 package komagataella // import "github.com/tnaums/gobio/internal/komagataella"
 
 Package for analysis of pPICZ plasmids that are used for expression of
 recombinant proteins in Komagataella pfaffii, also known as Pichia pastoris.
 
-FUNCTIONS
-```go
-func GetCoding(d dna.DNA, promoter string) (dna.DNA, error)
-    Extracts protein coding sequence from the plasmid sequence.
-```
-```go
-func GetPromoter(d dna.DNA) (string, error)
-    Determines promoter type, either inducible aox1, or constitutive gap.
-```
-```go
-func GetRecombinant(dna dna.DNA) (protein.Protein, string)
-    Determines protein sequence from DNA coding sequence. Also, returns
-    secretion signal sequence or cytoplasmic.
+
+## Contributing
+
+### Clone the repo
+
+```bash
+git clone https://github.com/tnaums/gobio
+cd gobio
 ```
 
-TYPES
-```go
-type Komagataella struct {
-	Plasmid  dna.DNA
-	Promoter string
-	Coding   dna.DNA
-	Protein  protein.Protein
-	SSS      string
-}
+### Run an example program
+
+```bash
+go run ./cmd/demofastadna
 ```
-```go
-func NewKomagataella(r io.Reader) (Komagataella, error)
-    Factory function that creates Komagataella struct from a fasta file.
+
+```bash
+go run ./cmd/demopymol
 ```
-```go
-func (k Komagataella) String() string
-```
+requires pymol molecular structure viewer
+
+### Submit a pull request
+
+If you'd like to contribute, please fork the repository and open a pull request to the `main` branch.
