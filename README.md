@@ -275,7 +275,7 @@ GetStructure(protein protein.Protein) (*http.Response, error)
 ## eutils
 
 The eutils package creates a web client that uses the `EPost` method
-to retrieve one or more proteins from an NCBI accession. For multiple
+to retrieve one or more proteins from NCBI accession numbers. For multiple
 proteins, a single string with accessions separated by commas is used.
 ```go
 func (c *Client) EPost(accessions string) (*http.Response, error)
@@ -300,6 +300,25 @@ The proteomediscoverer package parses result summaries from LC-MS/MS
 analysis of tryptic peptides (*.csv format). It downloads sequences
 for each protein and prints a summary of mapped peptides through the
 Stringer interface.
+
+```console
+>XP_018742465.1 hypothetical protein FVEG_00370 [Fusarium verticillioides 7600]|43.24kDa
+MVNFKNLAFAATALFGLVNAAPTTAKVDSSKVIPGKYIITLKSDIAAADVDSHLSWVEDV
+HKRGLNKRAEKGVERTYKGKYGFQGYAGSFDKSTVEEIKKNPDVAIVEQDREWVINWVEE
+EEEEAKTLAKRALTTQSGAPWGLGTVSHRSSGFTSYIYDTNAGTNTYAYVVDTGVRTTHN
+EFEGRAQAVYTAFSGDNADSVGHGTHVSGTIAGKTYGVSKKATIQAVKVFQGSSSSTSII
+LAGFNWAANDIISKGRTARSVVNMSLGGGYSASFNNAVNSASSSGIISAIAAGNDGANAA
+NTSPASATSAITVGAIDSSWAIASYSNYGTVLDIFAPGTGVLSAWYTSNSATNSISGTSM
+ATPHIAGLVLYGISVNGVSGVTGVTNWLKTTATSGKITGNLRSSPNLIGNNGNTAQ
+>mapped_peptides
+                                                            
+                                                            
+          RALTTQSGAPWGLGTVSHRSSGFTSYIYDTNAGTNTYAYVVDTGVRTTHN
+EFEGRAQAVYTAFSGDNADSVGHGTHVSGTIAGKTYGVSKKATIQAVK            
+                                                            
+                                                            
+                             TTATSGKITGNLRSSPNLIGNNGNTAQ
+```
 
 ## signalp
 
