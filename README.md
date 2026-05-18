@@ -211,138 +211,39 @@ requires pymol molecular structure viewer
 
 If you'd like to contribute, please fork the repository and open a pull request to the `main` branch.
 
-# dna
-package dna // import "github.com/tnaums/gobio/internal/dna"
+# Overview of packages Each package is contained in a single folder
+inside of `gobio/internal`.
 
-Package dna provides a DNA type to store DNA sequence information.
+## protein
 
-VARIABLES
-```go
-var GeneticCode = map[string]byte{
-	"TTT": 'F', "TTC": 'F', "TTG": 'L', "TTA": 'L',
-	"TCT": 'S', "TCC": 'S', "TCA": 'S', "TCG": 'S',
-	"TAT": 'Y', "TAC": 'Y', "TAG": '*', "TAA": '*',
-	"TGT": 'C', "TGC": 'C', "TGG": 'W', "TGA": '*',
-	"CTT": 'L', "CTC": 'L', "CTG": 'L', "CTA": 'L',
-	"CCT": 'P', "CCC": 'P', "CCA": 'P', "CCG": 'P',
-	"CAT": 'H', "CAC": 'H', "CAG": 'Q', "CAA": 'Q',
-	"CGT": 'R', "CGC": 'R', "CGG": 'R', "CGA": 'R',
-	"ATT": 'I', "ATC": 'I', "ATG": 'M', "ATA": 'I',
-	"ACT": 'T', "ACC": 'T', "ACA": 'T', "ACG": 'T',
-	"AAT": 'N', "AAC": 'N', "AAG": 'K', "AAA": 'K',
-	"AGT": 'S', "AGC": 'S', "AGG": 'R', "AGA": 'R',
-	"GTT": 'V', "GTC": 'V', "GTG": 'V', "GTA": 'V',
-	"GCT": 'A', "GCC": 'A', "GCA": 'A', "GCG": 'A',
-	"GAT": 'D', "GAC": 'D', "GAG": 'E', "GAA": 'E',
-	"GGT": 'G', "GGC": 'G', "GGG": 'G', "GGA": 'G',
-}
-```
-    GeneticCode is a map of the standard genetic code.
-
-
-FUNCTIONS
-```go
-func ChannelFromFasta(f io.ReadCloser) <-chan DNA
-    ChannelFromFasta reads fasta sequences from an io.Reader interface, such
-    as an *os.File returned from os.Open(fileName). Returns channel of type DNA
-    and initiates a go routine that creates DNA structs and adds them to the channel.
-```
-```go
-func NewGenBank(r io.Reader) GenBank
-    Parses a GenBank file containing a single dna sequence and returns a GenBank
-    struct.
-```
-TYPES
-```go
-type DNA struct {
-	Header     string
-	Parent     string
-	Complement string
-	Orfs       []Orf
-}
-    The DNA struct contains the sequence header, the Parent DNA sequence,
-    and the Complement DNA sequence. The Orfs slice contains all possible open
-    reading frames based solely on translation.
-
-type GenBank struct {
-	Sequence   DNA
-	Features   []byte
-	Accession  string
-	Definition string
-	// Has unexported fields.
-}
-
-```
-```go
-func NewDNAFromFasta(filename string) ([]DNA, error)
-    NewDNAFromFasta creates a slice of type DNA from a fasta file containing one
-    or more DNA sequences.
-```
-```go
-func NewDNAFromSequence(header, sequence string) DNA
-    NewDNAFromSequence is a function that creates a type DNA struct from a
-    sequence string.
-```
-```go
-func (d DNA) String() string
-    DNA.String prints the sequence of the Parent strand in fasta format.
-```
-```go
-func (d DNA) Translate() (orfs []Orf)
-    Translate converts DNA sequences to a slice of type Orf containing all
-    possible open reading frames.
-```
-
-```go
-type Orf struct {
-	Strand    string
-	Frame     int
-	AminoAcid string
-}
-
-    The Orf struct contains information for a possible open reading frame.
-```    
-```go
-func (o Orf) String() string
-    Orf.String prints the sequence of an orf in fasta format.
-```
-
-# protein
-package protein // import "github.com/tnaums/gobio/internal/protein"
-
-Package protein provides a protein type to store protein sequence information.
-
-FUNCTIONS
+The protein package defines the Protein type. Proteins can be created by
+calling `ChannelFromFasta` with an io.Reader containing one or more
+sequences in fasta format.
 ```go
 func ChannelFromFasta(f io.Reader) <-chan Protein
-    ChannelFromFasta reads fasta sequences from an io.Reader interface,
-    such as an *os.File returned from os.Open(fileName). Returns channel of type
-    Protein and initiates go routine that creates Proteins and adds to channel.
 ```
 
-TYPES
-```go
-type Protein struct {
-	Header    string
-	AminoAcid string
-	Mass      float64
-}
-    Contains header and amino acid sequence, parsed from fasta file. Mass can be
-    calculated from AminoAcid by calling calculateMass(aaSequence).
-```
+Single Protein types can be created by passing a header and sequence as
+strings to `NewProtein`.
 ```go
 func NewProtein(header, sequence string) Protein
-    Create a Protein struct from header and sequence strings
 ```
+
+## dna
+
+The dna package defines the DNA type. DNAs can be created by calling
+`ChannelFromFasta` with an io.Reader containing one or more sequences
+in fasta format. The Complement sequence is automatically created as
+is a slice of Orfs, which are calculated based only on translation of
+all six reading frames. Some Orfs contain only a single amino acid;
+most useful in a loop with size selection.
 ```go
-func NewProteinFromFasta(filename string) ([]Protein, error)
-    NewProteinFromFasta creates a slice of type Protein from a fasta file
-    containing one or more protein sequences.
+func ChannelFromFasta(f io.Reader) <-chan DNA
 ```
+
+Single DNA types can be created by passing a header and sequence as strings to `NewDNAFromSequence`.
 ```go
-func (p Protein) String() string
-    String method that satisfies the Stringer interface;
-    for example: fmt.Println(protein) prints 'protein' in fasta format
+func NewDNAFromSequence(header, sequence string) DNA 
 ```
 
 # pymol
