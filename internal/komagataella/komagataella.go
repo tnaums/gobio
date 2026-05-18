@@ -40,7 +40,7 @@ func (k Komagataella) String() string {
 // Factory function that creates Komagataella struct from a pPICZ DNA
 // fasta file.
 func NewKomagataella(r io.Reader) (Komagataella, error) {
-	dnas := dna.DNAChannelFasta(r)
+	dnas := dna.ChannelFromFasta(r)
 	dna, ok := <-dnas
 	if !ok {
 		return Komagataella{}, fmt.Errorf("error retrieving DNA from reader")

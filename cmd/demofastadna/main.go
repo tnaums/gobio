@@ -28,7 +28,7 @@ func main() {
 	defer file.Close()
 
 	// Create channel of DNA from io.Reader interface
-	dnas := dna.DNAChannelFasta(file)
+	dnas := dna.ChannelFromFasta(file)
 
 	// Retrieve first sequence and print
 	first :=  <- dnas

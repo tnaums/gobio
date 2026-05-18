@@ -135,10 +135,10 @@ func (o Orf) String() string {
 	return builder.String()
 }
 
-// DNAChannelFasta reads fasta sequences from an io.Reader interface.
-// It returns a channel of type DNA and initiates a go routine that
+// ChannelFromFasta reads fasta sequences from an io.Reader interface.
+// It returns a channel of type DNA
 // creates DNAs and adds them to the channel.
-func DNAChannelFasta(f io.Reader) <-chan DNA {
+func ChannelFromFasta(f io.Reader) <-chan DNA {
 	out := make(chan DNA)
 	go func() {
 		defer close(out)

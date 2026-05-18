@@ -242,8 +242,8 @@ var GeneticCode = map[string]byte{
 
 FUNCTIONS
 ```go
-func DNAChannelFasta(f io.ReadCloser) <-chan DNA
-    DNAChannelFasta reads fasta sequences from an io.Reader interface, such
+func ChannelFromFasta(f io.ReadCloser) <-chan DNA
+    ChannelFromFasta reads fasta sequences from an io.Reader interface, such
     as an *os.File returned from os.Open(fileName). Returns channel of type DNA
     and initiates a go routine that creates DNA structs and adds them to the channel.
 ```
