@@ -23,7 +23,7 @@ func main() {
 	}
 
 	// create a protein channel
-	proteins := protein.ProteinChannelFasta(file)
+	proteins := protein.ChannelFromFasta(file)
 	// get protein from channel
 	p := <-proteins
 
@@ -54,7 +54,7 @@ func main() {
 	}
 	// create protein.Protein from info in pdb file
 	buf := pymol.SequenceFromPDB(file)
-	proteins = protein.ProteinChannelFasta(buf)
+	proteins = protein.ChannelFromFasta(buf)
 	chainA := <-proteins
 	fmt.Println(chainA)
 	fmt.Println()

@@ -154,10 +154,10 @@ func fastaParser(r io.Reader) (data []string) {
 
 }
 
-// ProteinChannelFasta reads fasta sequences from an io.Reader
+// ChannelFromFasta reads fasta sequences from an io.Reader
 // interface.  Returns channel of type Protein and initiates go
 // routine that creates Proteins and adds to channel.
-func ProteinChannelFasta(f io.Reader) <-chan Protein {
+func ChannelFromFasta(f io.Reader) <-chan Protein {
 	out := make(chan Protein)
 	go func() {
 		//		defer f.Close()

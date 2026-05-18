@@ -1,4 +1,4 @@
-// Demonstrates use of protein.ProteinChannelFasta for
+// Demonstrates use of protein.ChannelFromFasta for
 // reading proteins from a fasta file containing one
 // or more sequences.
 package main
@@ -27,7 +27,7 @@ func main() {
 	defer file.Close()
 
 	// Create a channel of Proteins
-	proteins := protein.ProteinChannelFasta(file)
+	proteins := protein.ChannelFromFasta(file)
 
 	protein, ok := <-proteins
 	if ok {

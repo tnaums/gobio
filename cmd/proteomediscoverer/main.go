@@ -27,7 +27,9 @@ func main() {
 	// Get slice of records
 	manager, _ := proteomediscoverer.ParseCSV(file)
 
-	// run localblast for selected protein against 3 databases
+	// print summary of mapped peptides
+	for _, protein := range manager.Records { fmt.Println(protein) }
+	// run localblast for selected protein against multiple proteome databases
 	proteomes := []string{"verticillioides.aa.fasta", "graminearum.aa.fasta", "subglutinans.aa.fasta", "proliferatum.aa.fasta", "Vdahliae.aa.fasta", "Cgram.fasta", "Ccarb.aa.fasta"}
 	for idx, proteome := range proteomes {
 		fmt.Printf(" %.2d. Performing blastp against %s\n", idx, proteome)

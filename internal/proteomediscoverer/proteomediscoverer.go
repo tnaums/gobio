@@ -41,6 +41,7 @@ func (p ProteomeDiscoverer) String() string {
 	}
 
 	builder := strings.Builder{}
+	builder.WriteString(fmt.Sprintf("%s\n", p.Protein))
 	builder.WriteString(">mapped_peptides\n")
 	for idx, base := range string(withSpaces) {
 		if idx == 0 {
@@ -114,7 +115,7 @@ func ParseCSV(f io.Reader) (Manager, error) {
 	defer resp.Body.Close()
 
 	// Open a channel of proteins from *http.Response.Body (io.Reader)
-	proteins := protein.ProteinChannelFasta(resp.Body)
+	proteins := protein.ChannelFromFasta(resp.Body)
 
 	// Add proteins
 	for i := 0; i < len(manager.Records); i++ {

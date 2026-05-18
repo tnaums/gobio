@@ -62,7 +62,7 @@ import (
 We next create a go channel. Since the function uses the io.Reader interface, an *http.Response.Body can also be used as as argument. Any io.Reader containing protein fasta sequences will work.
 ```go
 	// Create a channel of Proteins
-	proteins := protein.ProteinChannelFasta(file)
+	proteins := protein.ChannelFromFasta(file)
 
 ```
 Proteins can then be read through the channel.
@@ -129,7 +129,7 @@ func main() {
 	defer file.Close()
 
 	// Create a channel of Proteins
-	proteins := protein.ProteinChannelFasta(file)
+	proteins := protein.ChannelFromFasta(file)
 
 	var count int
 
@@ -314,8 +314,8 @@ Package protein provides a protein type to store protein sequence information.
 
 FUNCTIONS
 ```go
-func ProteinChannelFasta(f io.Reader) <-chan Protein
-    ProteinChannelFasta reads fasta sequences from an io.Reader interface,
+func ChannelFromFasta(f io.Reader) <-chan Protein
+    ChannelFromFasta reads fasta sequences from an io.Reader interface,
     such as an *os.File returned from os.Open(fileName). Returns channel of type
     Protein and initiates go routine that creates Proteins and adds to channel.
 ```
@@ -411,7 +411,7 @@ func SelectByID(r io.Writer, name string, color string, idstart int, idend int, 
 ```go
 func SequenceFromCIF(r io.Reader) *bytes.Buffer
     Function that creates protein fasta files for each chain in a cif file.
-    The returned *bytes.Buffer can be passed to protein.ProteinChannelFasta as
+    The returned *bytes.Buffer can be passed to protein.ChannelFromFasta as
     the io.Reader.
 ```
 ```go

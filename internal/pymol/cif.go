@@ -27,7 +27,7 @@ var ThreeToOne = map[string]byte{
 
 // SequenceFromPDB creates protein fasta files for each chain in a cif
 // file. The returned *bytes.Buffer can be passed to
-// protein.ProteinChannelFasta as the io.Reader.
+// protein.ChannelFromFasta as the io.Reader.
 func SequenceFromPDB(r io.Reader) *bytes.Buffer {
 	buf := bytes.Buffer{}
 	scanner := bufio.NewScanner(r)
@@ -54,7 +54,7 @@ func SequenceFromPDB(r io.Reader) *bytes.Buffer {
 
 // SequenceFromCIF creates protein fasta files for each chain in a cif
 // file. The returned *bytes.Buffer can be passed to
-// protein.ProteinChannelFasta as the io.Reader.
+// protein.ChannelFromFasta as the io.Reader.
 func SequenceFromCIF(r io.Reader) *bytes.Buffer {
 	buf := bytes.Buffer{}
 	scanner := bufio.NewScanner(r)

@@ -56,7 +56,7 @@ func main() {
 	signalPMap, _ := signalp.NewSignalPMap(file2)
 
 	// Create go channel that returns protein.Protein from proteome sequence file
-	proteins := protein.ProteinChannelFasta(file)
+	proteins := protein.ChannelFromFasta(file)
 
 	for p := range proteins { // iterate over proteins that are returned from go channel
 		// get protein int from p.Header and search signalp map to see if it is present

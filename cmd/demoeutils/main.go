@@ -1,6 +1,6 @@
 // Demonstrates use of eutils.EPost for retrieving protein fasta
 // sequences from NCBI. The response body is then sent to
-// protein.ProteinChannelFasta where the seqeunces are returned as
+// protein.ChannelFromFasta where the seqeunces are returned as
 // protein.Protein type through a go channel.
 package main
 
@@ -27,7 +27,7 @@ func main() {
 	defer resp.Body.Close()
 
 	// Open a channel of proteins from *http.Response (io.ReadCloser)
-	proteins := protein.ProteinChannelFasta(resp.Body) 
+	proteins := protein.ChannelFromFasta(resp.Body) 
 
 	// Print first protein
 	fmt.Println(<-proteins)

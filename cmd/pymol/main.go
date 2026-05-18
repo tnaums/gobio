@@ -35,7 +35,7 @@ func main() {
 
 	// create protein.Protein from info in cif file
 	buf := pymol.SequenceFromCIF(file)
-	proteins := protein.ProteinChannelFasta(buf)
+	proteins := protein.ChannelFromFasta(buf)
 	_ = <-proteins // discard chain A sequence
 	chainB := <-proteins
 	fmt.Println(chainB)

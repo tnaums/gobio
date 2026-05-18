@@ -25,8 +25,8 @@ func main() {
 	}
 	defer file.Close()
 
-	// Create a channel of Proteins
-	proteins := protein.ProteinChannelFasta(file)
+	// Create a channel of Proteins and read first Protein
+	proteins := protein.ChannelFromFasta(file)
 	protein, _ := <-proteins
 
 	// local blast against Fusarium graminearum
