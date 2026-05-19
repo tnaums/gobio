@@ -91,14 +91,14 @@ func GetCoding(d dna.DNA, promoter string) (dna.DNA, error) {
 
 	if promoter == "aox1" {
 		codingString := aox1.FindStringSubmatch(d.Parent)
-		codingDNA := dna.NewDNAFromSequence("coding", codingString[1])
+		codingDNA := dna.NewFromSequence("coding", codingString[1])
 		return codingDNA, nil
 	}
 	if promoter == "gap" {
 		codingString := gap.FindStringSubmatch(d.Parent)
 		// Some gap cytoplasmic have extra 5' nucleotides
 		adjusted := startAtATG.FindString(codingString[1])
-		codingDNA := dna.NewDNAFromSequence("coding", adjusted)
+		codingDNA := dna.NewFromSequence("coding", adjusted)
 		return codingDNA, nil
 	}
 	return dna.DNA{}, fmt.Errorf("unable to get coding sequence for unknown promoter")
@@ -110,11 +110,11 @@ func GetRecombinant(dna dna.DNA) (protein.Protein, string) {
 	proteinString := dna.Orfs[0].AminoAcid
 	if strings.HasPrefix(proteinString, alpha) {
 		sequence := strings.TrimPrefix(proteinString[:len(proteinString)-1], alpha)
-		return protein.NewProtein("alpha", sequence), "alpha"
+		return protein.NewFromSequence("alpha", sequence), "alpha"
 	}
 	if strings.HasPrefix(proteinString, ost1) {
 		sequence := strings.TrimPrefix(proteinString[:len(proteinString)-1], ost1)
-		return protein.NewProtein("ost1", sequence), "ost1"
+		return protein.NewFromSequence("ost1", sequence), "ost1"
 	}
-	return protein.NewProtein("cytoplasmic", proteinString[:len(proteinString)-1]), "cytoplasmic"
+	return protein.NewFromSequence("cytoplasmic", proteinString[:len(proteinString)-1]), "cytoplasmic"
 }

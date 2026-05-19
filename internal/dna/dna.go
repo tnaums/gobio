@@ -177,9 +177,9 @@ func ChannelFromFasta(f io.Reader) <-chan DNA {
 	return out
 }
 
-// NewDNAFromSequence is a function that creates a type DNA struct
+// NewFromSequence is a function that creates a type DNA struct
 // from header and sequence strings.
-func NewDNAFromSequence(header, sequence string) DNA {
+func NewFromSequence(header, sequence string) DNA {
 	s := strings.ToUpper(sequence)
 	newDNA := DNA{
 		Header:     header,

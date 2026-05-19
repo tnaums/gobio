@@ -45,7 +45,7 @@ func NewGenBank(r io.Reader) GenBank {
 			g.state = genbankStateDone
 			sequence := strings.Join(strings.Fields(buf.String()), "")
 			header := fmt.Sprintf("%s|%dbp|%s", g.Accession,  len(sequence), g.Definition)
-			g.Sequence = NewDNAFromSequence(header, sequence)
+			g.Sequence = NewFromSequence(header, sequence)
 		}		
 		if strings.HasPrefix(scanner.Text(), "ORIGIN") {
 			g.state = genbankStateOrigin

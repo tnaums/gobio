@@ -71,7 +71,7 @@ func main() {
 			mHeader := p.Header + "|secreted"
 			mStart := s.NnCutPos
 			mSequence := p.AminoAcid[mStart:]
-			mature := protein.NewProtein(mHeader, mSequence) // truncated mature protein
+			mature := protein.NewFromSequence(mHeader, mSequence) // truncated mature protein
 			// select only proteins with desired mature mass
 			if mature.Mass > 16 && mature.Mass < 19 {
 				matches := 0

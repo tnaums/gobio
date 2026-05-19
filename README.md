@@ -206,9 +206,9 @@ func ChannelFromFasta(f io.Reader) <-chan Protein
 ```
 
 Single Protein types can be created by passing a header and sequence as
-strings to `NewProtein`.
+strings to `NewFromSequence`.
 ```go
-func NewProtein(header, sequence string) Protein
+func NewFromSequence(header, sequence string) Protein
 ```
 
 ## dna
@@ -223,9 +223,9 @@ most useful in a loop with size selection.
 func ChannelFromFasta(f io.Reader) <-chan DNA
 ```
 
-Single DNA types can be created by passing a header and sequence as strings to `NewDNAFromSequence`.
+Single DNA types can be created by passing a header and sequence as strings to `NewFromSequence`.
 ```go
-func NewDNAFromSequence(header, sequence string) DNA 
+func NewFromSequence(header, sequence string) DNA 
 ```
 
 ## pymol

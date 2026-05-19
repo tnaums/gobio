@@ -98,7 +98,7 @@ func (p Protein) String() string {
 }
 
 
-func NewProtein(header, sequence string) Protein {
+func NewFromSequence(header, sequence string) Protein {
 	return Protein{
 		Header:    header,
 		AminoAcid: sequence,

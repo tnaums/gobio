@@ -18,7 +18,7 @@ type UniprotComplete struct {
 
 func (u UniprotComplete) GetFasta() protein.Protein {
 	header := fmt.Sprintf("%s|%s|%s", u.JSON.Accession, u.JSON.Organism.Names[0].Value, u.JSON.Protein.RecommendedName.FullName.Value)
-	protein := protein.NewProtein(header, u.JSON.Sequence.Sequence)
+	protein := protein.NewFromSequence(header, u.JSON.Sequence.Sequence)
 	return protein
 }
 
