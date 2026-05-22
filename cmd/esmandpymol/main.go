@@ -41,7 +41,8 @@ func main() {
 	// save structure to disk
 	out, err := os.Create("cmd/esmandpymol/esmfold.pdb")
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		os.Exit(1)
 	}
 	defer out.Close() // no error handling
 
