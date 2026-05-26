@@ -280,7 +280,7 @@ multiple proteins, a single string with accessions separated by commas
 is expected. The API will complain and refuse to send data if multiple
 requests are sent in a short period.
 ```go func (c *Client)
-EPost(accessions string) (*http.Response, error)
+func (c *Client) EPost(accessions string) (*http.Response, error)
 ```
 
 ## localblast
@@ -337,14 +337,13 @@ type SignalPMap map[int]SignalP
 ## uniprot
 
 The uniprot package is used for retrieving protein records based on
-accession. As the uniprot API conveniently returns records as json,
+accession. As the uniprot API conveniently returns json records,
 the information is unmarshalled into a go struct. For printing ease,
 each record is also retrieved as a flatfile.
 
 
 
 ## komagataella
-package komagataella // import "github.com/tnaums/gobio/internal/komagataella"
 
 Package for analysis of pPICZ plasmids that are used for expression of
 recombinant proteins in Komagataella pfaffii, also known as Pichia pastoris.
