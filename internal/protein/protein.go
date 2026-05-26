@@ -1,5 +1,5 @@
-// Package protein provides a protein type to store protein
-// sequence information
+// Package protein provides a protein representation and methods to create
+// them from sequence files.
 package protein
 
 import (
@@ -10,10 +10,10 @@ import (
 	"strings"
 )
 
-// Protein contains header and amino acid sequence, parsed from fasta
-// file. Mass is calculated from AminoAcid by calling
-// calculateMass(aaSequence). Peptides are created by calling
-// CreateTrypticPeptides.
+// Protein is a protein representation.  Mass is automatically
+// calculated at creation. Peptides is a representation of
+// tryptic peptide that can be created by calling
+// protein.CreateTrypticPeptides().
 type Protein struct {
 	Header    string
 	AminoAcid string
@@ -25,6 +25,7 @@ type Tryptic struct {
 	Sequence   string
 }
 
+// CreateTrypticPeptides fills the Peptides field of a Protein.
 func (p *Protein) CreateTrypticPeptides() {
 	results := make([]Tryptic, 0)
 	sequence := p.AminoAcid
@@ -77,7 +78,7 @@ func (p *Protein) CreateTrypticPeptides() {
 	p.Peptides = results
 }
 
-// String method prints Protein sequence in fasta format.
+// String prints Protein in fasta format.
 func (p Protein) String() string {
 	builder := strings.Builder{}
 	builder.WriteString(fmt.Sprintf(">%s|%.2fkDa\n", p.Header, p.Mass))
@@ -97,7 +98,8 @@ func (p Protein) String() string {
 	return builder.String()
 }
 
-
+// NewFromSequence creates and returns a single protein representation
+// from header and sequence strings.
 func NewFromSequence(header, sequence string) Protein {
 	return Protein{
 		Header:    header,
@@ -106,57 +108,9 @@ func NewFromSequence(header, sequence string) Protein {
 	}
 }
 
-// NewProteinFromFasta creates a slice of type Protein from a fasta file
-// containing one or more protein sequences.
-func NewProteinFromFasta(filename string) ([]Protein, error) {
-	returnSlice := make([]Protein, 0)
-	file, err := os.Open(filename)
-	if err != nil {
-		return []Protein{}, err
-	}
-
-	data := fastaParser(file)
-	for i := 0; i < len(data); i = i + 2 {
-		newProtein := Protein{
-			Header:    data[i],
-			AminoAcid: data[i+1],
-			Mass:      calculateMass(data[i+1]),
-		}
-		returnSlice = append(returnSlice, newProtein)
-	}
-	return returnSlice, nil
-}
-
-// fastaParser reads a fasta file, extracts the sequence name from
-// the header and creates a sequence string from the sequence.
-// Returns a slice of strings with alternating header and sequence.
-// Called by NewProteinFromFasta.
-func fastaParser(r io.Reader) (data []string) {
-	start := true
-	name := ""
-	sequence := ""
-	scanner := bufio.NewScanner(r)
-	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), ">") {
-			if !start {
-				data = append(data, sequence)
-				sequence = ""
-			}
-			name = scanner.Text()
-			data = append(data, name[1:])
-			start = false
-		} else {
-			sequence += scanner.Text()
-		}
-	}
-	data = append(data, sequence)
-	return data
-
-}
-
 // ChannelFromFasta reads fasta sequences from an io.Reader
 // interface.  Returns channel of type Protein and initiates go
-// routine that creates Proteins and adds to channel.
+// routine that creates and adds Proteins to channel.
 func ChannelFromFasta(f io.Reader) <-chan Protein {
 	out := make(chan Protein)
 	go func() {
