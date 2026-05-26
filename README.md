@@ -70,18 +70,18 @@ We next create a go channel. Since the function uses the io.Reader interface, an
 ```
 Proteins can then be read through the channel.
 ```go
-	protein, ok := <-proteins
+	firstProtein, ok := <-proteins
 	if ok {
-		fmt.Println(protein)
+		fmt.Println(firstProtein)
 	} else {
 		fmt.Println("Protein channel is empty.")
 	}
 ```
 This prints the protein in fasta format. Since the file only had one protein sequence, a second call to the channel will not return a Protein.
 ```go
-	protein, ok = <-proteins
+	secondProtein, ok := <-proteins
 	if ok {
-		fmt.Println(protein)
+		fmt.Println(secondProtein)
 	} else {
 		fmt.Println("Protein channel is empty.")
 	}	
@@ -103,7 +103,7 @@ DWALTLNTREYISETEFDELRWYSLPDFLSAFPIAG
 Protein channel is empty.
 ```
 
-Alternately, load entire proteome.
+Alternately, load entire proteome and analyze sequences one by one.
 
 ```go
 package main
@@ -137,9 +137,9 @@ func main() {
 	var count int
 
         // iterate over the entire proteome looking form large proteins
-	for protein := range proteins {
-		if protein.Mass > 300 {
-			fmt.Println(protein.Header)
+	for p := range proteins {
+		if p.Mass > 300 {
+			fmt.Println(p.Header)
 			fmt.Println()
 			count++
 		}

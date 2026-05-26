@@ -29,25 +29,25 @@ func main() {
 	// Create a channel of Proteins
 	proteins := protein.ChannelFromFasta(file)
 
-	protein, ok := <-proteins
+	firstProtein, ok := <-proteins
 	if ok {
-		fmt.Println(protein)
+		fmt.Println(firstProtein)
 	} else {
 		fmt.Println("Protein channel is empty.")
 	}
 
-	protein, ok = <-proteins
+	secondProtein, ok := <-proteins
 	if ok {
-		fmt.Println(protein)
+		fmt.Println(secondProtein)
 	} else {
 		fmt.Println("Protein channel is empty.")
 	}	
 
 
 	var count int
-	for protein := range proteins {
-		if protein.Mass > 200 {
-			fmt.Println(protein.Header)
+	for p := range proteins {
+		if p.Mass > 200 {
+			fmt.Println(p.Header)
 			fmt.Println()
 			count++
 		}
