@@ -17,7 +17,7 @@ func main() {
 	// Initialize client for api request
 	eutilsClient := eutils.NewClient(5 * time.Second, eutils.WithNucleotide())
 	// generate *http.Response from ncbi query
-	resp, err := eutilsClient.EPost("KM492932.1,MN339473.1") // a dna sequence
+	resp, err := eutilsClient.EPost("KM492932.1,MN339473.1") // dna sequences
 
 	if err != nil {
 		fmt.Println(err)

@@ -13,15 +13,14 @@ import (
 // response. This information is then used as request to retrieve the
 // sequences.
 func (c *Client) EPost(accessions string) (*http.Response, error) {
-	params := EPost{
-		Database: c.database,
-		Rettype:  c.rettype,
-		IdList:   accessions,
-	}
-	fmt.Println(params.Database)
-	fmt.Println(params.Rettype)
+	// params := EPost{
+	// 	Database: c.database,
+	// 	Rettype:  c.rettype,
+	// 	IdList:   accessions,
+	// }
+	fmt.Printf("Retrieving %s sequences in %s format...\n\n\n", c.database, c.rettype)
 	// Assemble the epost URL
-	post := fmt.Sprintf("epost.fcgi?db=%s&idtype=acc&id=%s", params.Database, params.IdList)
+	post := fmt.Sprintf("epost.fcgi?db=%s&idtype=acc&id=%s", c.database, accessions)
 	url := baseURL + post
 
 	req, err := http.NewRequest("POST", url, nil)
@@ -50,7 +49,7 @@ func (c *Client) EPost(accessions string) (*http.Response, error) {
 	webEnv := (rWE.FindStringSubmatch(string(b)))
 
 	// Assemble the efetch URL
-	url = fmt.Sprintf(baseURL+"efetch.fcgi?db=%s&query_key=%s&WebEnv=%s&rettype=%s&retmode=text", params.Database, queryKey[1], webEnv[1], params.Rettype)
+	url = fmt.Sprintf(baseURL+"efetch.fcgi?db=%s&query_key=%s&WebEnv=%s&rettype=%s&retmode=text", c.database, queryKey[1], webEnv[1], c.rettype)
 
 	req, err = http.NewRequest("POST", url, nil)
 	if err != nil {

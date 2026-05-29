@@ -289,7 +289,7 @@ changed to genbank.
 eutilsClient := eutils.NewClient(5 * time.Second)
 // Initialize client to request nucleotide records in fasta format
 eutilsClient := eutils.NewClient(5 * time.Second, eutils.WithNucleotide())
-// Initialize client to request protein recordds in genbank format
+// Initialize client to request protein records in genbank format
 eutilsClient := eutils.NewClient(5 * time.Second, eutils.WithGenbank())
 // Initialize client to request nucleotide records in genbank format
 eutilsClient := eutils.NewClient(5 * time.Second, eutils.WithGenbank(), eutils.WithNucleotide())
