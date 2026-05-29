@@ -6,11 +6,12 @@ package main
 
 import (
 	"fmt"
-	"io"
+	//"io"
 	"os"
 	"time"
 
 	"github.com/tnaums/gobio/internal/eutils"
+	"github.com/tnaums/gobio/internal/protein"	
 )
 
 func main() {
@@ -25,7 +26,11 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	buf, err := io.ReadAll(resp.Body)
-	fmt.Println(string(buf))
+	proteins := protein.ChannelFromGenbank(resp.Body)
+	fmt.Println()
+	for p := range proteins {
+		fmt.Printf("%#v\n", p)
+	}
+
 
 }

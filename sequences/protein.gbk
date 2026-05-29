@@ -1,0 +1,960 @@
+Retrieving protein sequences in genbank format...
+
+
+LOCUS       AIZ65945                 642 aa            linear   PLN 16-DEC-2014
+DEFINITION  polyglycine hydrolase [Epicoccum sorghinum].
+ACCESSION   AIZ65945
+VERSION     AIZ65945.1
+DBSOURCE    accession KM492932.1
+KEYWORDS    .
+SOURCE      Epicoccum sorghinum
+  ORGANISM  Epicoccum sorghinum
+            Eukaryota; Fungi; Dikarya; Ascomycota; Pezizomycotina;
+            Dothideomycetes; Pleosporomycetidae; Pleosporales; Pleosporineae;
+            Didymellaceae; Epicoccum.
+REFERENCE   1  (residues 1 to 642)
+  AUTHORS   Naumann,T.A., Naldrett,M., Ward,T.J. and Price,N.P.J.
+  TITLE     Identification of polyglycine hydrolases as endoproteases with
+            beta-lactamase-like catalytic domains surrounded by a conserved
+            network of tryptophans
+  JOURNAL   Unpublished
+REFERENCE   2  (residues 1 to 642)
+  AUTHORS   Naumann,T.A., Naldrett,M., Ward,T.J. and Price,N.P.J.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (04-SEP-2014) BFP, USDA-ARS-NCAUR, 1815 N. University
+            St., Peoria, IL 61604, USA
+FEATURES             Location/Qualifiers
+     source          1..642
+                     /organism="Epicoccum sorghinum"
+                     /strain="NRRL 54204"
+                     /db_xref="taxon:749593"
+                     /identified_by="Donald T. Wicklow"
+     Protein         1..642
+                     /product="polyglycine hydrolase"
+                     /function="cleaves glycine-glycine peptide bonds in
+                     interdomain region of some plant class IV chitinases"
+     Region          46..88
+                     /region_name="BTRD1"
+                     /note="Bacterial tandem repeat domain 1; pfam17660"
+                     /db_xref="CDD:465442"
+     Region          90..138
+                     /region_name="BTRD1"
+                     /note="Bacterial tandem repeat domain 1; pfam17660"
+                     /db_xref="CDD:465442"
+     Region          316..>580
+                     /region_name="AmpC"
+                     /note="CubicO group peptidase, beta-lactamase class C
+                     family [Defense mechanisms]; COG1680"
+                     /db_xref="CDD:441286"
+     CDS             1..642
+                     /coded_by="KM492932.1:1..1929"
+                     /note="Es-cmp"
+ORIGIN      
+        1 mytsrlllsn lasclslatl vasfpanqqd ltfakrngtf eqsvfygltg peveaklakl
+       61 kadgyrptsl nihgstsdak yagiwtkqtg ddfetilgan ktvydawlds hkaqgyvsth
+      121 vsatggssda lfagvmekvp svanwiqvcg ldnpyayana tidepmyikg vsmygapner
+      181 qycilghenl vnyqqtvfyq tdyfkkdyak llqsetskrh wrpvfidlse dllptpifdd
+      241 tsvgqwvart dlsaseleae iaaqkaknly avhiagagsk gskyavlfae hlsplerkwt
+      301 vtgevtgfkt ndvvakdmda vmeefmkkns vrqaqvaasv ngtvvaersy twaesdravv
+      361 kptdkfglgs vskmftyaat tnllneglln httrvypflg mnnpadnrsl ditvdhllqh
+      421 tagynrdikp digfifrnia lernqttpvs lrelieyvye qpldftpgtd svysnygtml
+      481 lsylianitg esfnsyihkn vlngldvely ptspelnann pivqetkytf ypaqdpastk
+      541 qvsnanggdg sireeaigaf glrasastis qflanhaayd igprqaytyr dgtivgsraf
+      601 aqsqdlidws lilntreyes eqkweqlvfg pisqwykyal ae
+//
+
+LOCUS       QIR83317                 948 aa            linear   PLN 04-APR-2020
+DEFINITION  kilbournase [Stenocarpella maydis].
+ACCESSION   QIR83317
+VERSION     QIR83317.1
+DBSOURCE    accession MN339473.1
+KEYWORDS    .
+SOURCE      Stenocarpella maydis
+  ORGANISM  Stenocarpella maydis
+            Eukaryota; Fungi; Dikarya; Ascomycota; Pezizomycotina;
+            Sordariomycetes; Sordariomycetidae; Diaporthales; Diaporthaceae;
+            Stenocarpella.
+REFERENCE   1  (residues 1 to 948)
+  AUTHORS   Naumann,T.A., Naldrett,M.J. and Price,N.P.J.
+  TITLE     Kilbournase, a protease-associated domain subtilase secreted by the
+            fungal corn pathogen Stenocarpella maydis
+  JOURNAL   Unpublished
+REFERENCE   2  (residues 1 to 948)
+  AUTHORS   Naumann,T.A., Naldrett,M.J. and Price,N.P.J.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (20-AUG-2019) MPM Research Unit, USDA/ARS/NCAUR, 1815 N.
+            University Street, Peoria, IL 61604, USA
+FEATURES             Location/Qualifiers
+     source          1..948
+                     /organism="Stenocarpella maydis"
+                     /strain="NRRL 53565"
+                     /db_xref="taxon:238245"
+     Protein         1..948
+                     /product="kilbournase"
+     Region          64..136
+                     /region_name="Inhibitor_I9"
+                     /note="Peptidase inhibitor I9; pfam05922"
+                     /db_xref="CDD:428674"
+     Region          185..642
+                     /region_name="Peptidases_S8_5"
+                     /note="Peptidase S8 family domain, uncharacterized
+                     subfamily 5; cd07489"
+                     /db_xref="CDD:173814"
+     Site            order(205,252,298,317,350,578)
+                     /site_type="active"
+                     /db_xref="CDD:173814"
+     Site            order(205,252,350,578)
+                     /site_type="active"
+                     /note="catalytic triad [active]"
+                     /db_xref="CDD:173814"
+     Region          664..766
+                     /region_name="fn3_6"
+                     /note="Fibronectin type-III domain; cl05663"
+                     /db_xref="CDD:471288"
+     CDS             1..948
+                     /coded_by="join(MN339473.1:1..772,MN339473.1:839..2913)"
+                     /note="secreted protease-associated domain subtilase that
+                     degrades the amino-terminal chitin binding domain of ChitA
+                     chitinase from Zea mays"
+ORIGIN      
+        1 mvgsrmlpal aaavalfsqg acaaegpgvy qfingppssn srllppgqep qaavpgpkav
+       61 pkayivelkp gsaslngrse pmhdrfhkra edagvdyqvr reftdtslfh glsvdlakde
+      121 dkaaleqlpe vkkvwpvlqv srptpvgtfa statnvtvgs pgdglstdii rgenytidyn
+      181 lkmagvdhlh argikgkgvr iavidtgvdy nhpalgggfg pgykiafgrn yvtddgqggp
+      241 ddpiatcssg ghgthvsgii ggqdpknfgf gllgvapeat lgmyrvfscg gdasndvvmq
+      301 ammdayndga divsmslgsn ngfedadptg qiitnakarg iatvvaagnd galgpmltss
+      361 paigrdaiav asvdgakypt tykmqgssgg efrysslwpl sgnftvyaps nytdslvcay
+      421 qtivnsaaav rangwniset flmvreghvc dlntifaniv yqgfkgmiaw rdsdfanpye
+      481 ndymssapgs fvlsldavdg prlykavtad pvnfraeftd rrfvpvdnps agftsnystm
+      541 gntwegtvfk pqlaapghli lsswplsvgg yatisgtsma tpfvsgcfal iksafpnmtv
+      601 ddmanlltst aqpakwwgds hithsvvhqg agtinvwday nsglrfqegv ivcgegaqpv
+      661 arnitftntl grsttfdish apaglmqrtp yadlnevgym iygfpskpiy atvefetptr
+      721 vtlgagesat vsfvvtppag ldpntvplys gyikftsdrs vhtvpyqglt yvvnevpvle
+      781 rgpvpgedvp qlpamfflnm ttgtqsyett dvveydtaag dypsmtyfar qptyamrvdl
+      841 vaanttfvpt yygfntsnii dtktpalpid ntfggvdsfy avfemyylap vfsllswwgg
+      901 iedsagnssl vpagdyrfll rllpveknyd apedwvswlg pvlrivda
+//
+
+LOCUS       XP_603356               1107 aa            linear   MAM 29-JUL-2008
+DEFINITION  PREDICTED: similar to Thyroid peroxidase precursor (TPO) [Bos
+            taurus].
+ACCESSION   XP_603356
+VERSION     XP_603356.4
+DBSOURCE    REFSEQ: accession XM_603356.4
+KEYWORDS    RefSeq.
+SOURCE      Bos taurus (cattle)
+  ORGANISM  Bos taurus
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Mammalia; Eutheria; Laurasiatheria; Cetartiodactyla; Ruminantia;
+            Pecora; Bovidae; Bovinae; Bos.
+COMMENT     MODEL REFSEQ:  This record is predicted by automated computational
+            analysis. This record is derived from a genomic sequence
+            (NW_001493824) annotated using gene prediction method: GNOMON.
+            Also see:
+                Documentation of NCBI's Annotation Process
+            
+            [WARNING] On Jun 3, 2010 this sequence was replaced by XP_603356.5.
+            
+            On Jul 29, 2008 this sequence version replaced XP_603356.3.
+            COMPLETENESS: full length.
+FEATURES             Location/Qualifiers
+     source          1..1107
+                     /organism="Bos taurus"
+                     /db_xref="taxon:9913"
+                     /breed="Hereford"
+     Protein         1..1107
+                     /product="similar to Thyroid peroxidase precursor (TPO)"
+                     /calculated_mol_wt=121602
+     CDS             1..1107
+                     /gene="TPO"
+                     /coded_by="XM_603356.4:1..3324"
+                     /db_xref="GeneID:525013"
+ORIGIN      
+        1 metaevqklp ptnretrsvp skkrgcgwvm eghrqvlesl tplkttvlft rnfmqksqsq
+       61 slnisgprvv rgrwwfgpgl vwsqleeglw adgarfpvis aqkrcwqmra ravlgvvlav
+      121 tcagavfsfl lrpggllwge teesqvrgiv easrllvdks vyaamrrnlh krevispaql
+      181 lsfsklpept sraasraaev measvqeaar rghlrsgpsq lptdalsegl lsaianlsgc
+      241 lpymlpprcp atclaskyrl isgacnnrdh prwgasntal arwlppayed giseprgwnp
+      301 hflykgfplp pvrevtrrii hasneavtgd drysdlltaw gqyidhdiaf tpqsaapsap
+      361 wvgadcqltc eprspcfpiq lpanaagpac lpfyrstaac gtgtqgalfg nlssanprqq
+      421 mngltsflda stvygssaas errlrnwtsa egllrvnary rdagraflpf appsappaca
+      481 pqpgapgara pcflagdgra sevpalaalh tlwlrehnrl atalkalnah wsadtayqea
+      541 rkvvgalhqi itlrdyvpri lgpeafgrhv gpyrgydpsv dptvsnvfst aafrfghati
+      601 hplvqrldar fqehlgprll lrdaffrpwr lleeggvdpv mrgllarpak lqvqdqllne
+      661 elterlfvls dagtldlasi nlqrgrdhgl pgynewrqfc glsrletrad lgaatangsm
+      721 adrildlygh pdnidvwlgg laetflpgar tgplfaclvg kqmkalrdgd rfwwehravf
+      781 teaqrrelgr hslsrvicdn tgltrvprda frvgqwpqdf escdripgmd lrawreappp
+      841 ddacgfpdqv enggfllcde sgrrvlvfsc hhgfqlqgpe qvtctrrgwd sqppvcrdin
+      901 ecedevdppc hasarckntk gsfqcecsdp hvpgedgrtc vdsgrlpras vvslvlgavl
+      961 vcslagltwt vvcrwmladp tspllpvege gegpswlgrg kprdvctppr dasaglaeqw
+     1021 veallemfsa dvrkrvpvse tcfgarprrf dpkhsgpapw apagrqmdrl rlrplrgshp
+     1081 lrplpaspgv rsvrtqphts evseqvr
+//
+
+LOCUS       NP_001003009             933 aa            linear   MAM 09-FEB-2011
+DEFINITION  thyroid peroxidase precursor [Canis lupus familiaris].
+ACCESSION   NP_001003009
+VERSION     NP_001003009.1
+DBSOURCE    REFSEQ: accession NM_001003009.1
+KEYWORDS    RefSeq.
+SOURCE      Canis lupus familiaris (dog)
+  ORGANISM  Canis lupus familiaris
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Mammalia; Eutheria; Laurasiatheria; Carnivora; Caniformia; Canidae;
+            Canis.
+REFERENCE   1  (residues 1 to 933)
+  AUTHORS   Fyfe,J.C., Kampschmidt,K., Dang,V., Poteet,B.A., He,Q., Lowrie,C.,
+            Graham,P.A. and Fetro,V.M.
+  TITLE     Congenital hypothyroidism with goiter in toy fox terriers
+  JOURNAL   J. Vet. Intern. Med. 17 (1), 50-57 (2003)
+   PUBMED   12564727
+COMMENT     PROVISIONAL REFSEQ: This record has not yet been subject to final
+            NCBI review. The reference sequence was derived from AY094504.1.
+            
+            [WARNING] On Oct 8, 2011 this sequence was replaced by
+            NP_001003009.2.
+FEATURES             Location/Qualifiers
+     source          1..933
+                     /organism="Canis lupus familiaris"
+                     /sub_species="familiaris"
+                     /db_xref="taxon:9615"
+                     /chromosome="17"
+                     /map="17"
+     Protein         1..933
+                     /product="thyroid peroxidase precursor"
+                     /EC_number="1.11.1.8"
+                     /calculated_mol_wt=98755
+     sig_peptide     1..18
+                     /inference="non-experimental evidence, no additional
+                     details recorded"
+                     /note="Potential; propagated from UniProtKB/Swiss-Prot
+                     (Q8HYB7.1)"
+                     /calculated_mol_wt=1725
+     mat_peptide     19..933
+                     /product="Thyroid peroxidase"
+                     /experiment="experimental evidence, no additional details
+                     recorded"
+                     /note="propagated from UniProtKB/Swiss-Prot (Q8HYB7.1)"
+                     /calculated_mol_wt=98755
+     Site            393
+                     /site_type="other"
+                     /inference="non-experimental evidence, no additional
+                     details recorded"
+                     /note="Transition state stabilizer (By similarity);
+                     propagated from UniProtKB/Swiss-Prot (Q8HYB7.1)"
+     Site            847..867
+                     /site_type="transmembrane region"
+                     /inference="non-experimental evidence, no additional
+                     details recorded"
+                     /note="propagated from UniProtKB/Swiss-Prot (Q8HYB7.1)"
+     CDS             1..933
+                     /gene="TPO"
+                     /coded_by="NM_001003009.1:1..2802"
+                     /db_xref="GeneID:403521"
+ORIGIN      
+        1 mgalavlgvt llvalargll pfflggrdll wgqsgeasvl gvveesrrvv dgaiqhtvrr
+       61 dlskrglpsp sqllsfsklp eptsravsra aeimeasvqa vrtrvygklg rswpltdtlp
+      121 eavldtiana sgcrphmlpp rcpdtclark yrlitgacnn rdhprwgasn talarwlppa
+      181 yedgiseprg wnphvlysgf plppvrevtr qvirvpneav teddqysdll tvwgqyidhd
+      241 vaftpqsasg aafgagadcq ltcenrspcf piqlppdasg paclpfsrss aacgtgiqga
+      301 ffgnlssanp rqqmngltsf ldastvygss palekqlrnw tsaegllrvn trhwdagrah
+      361 lpfmrppapl acvpepgtrg tagapcflag dsrasevptl aalhtlwlre hnrlasalka
+      421 lnahwsadta yqearkvvga lhqiitlrdy vpkvlgpeaf qqhvgpyegy dptmdptvsn
+      481 vfstaafrfg hatvhplvrr ldarfqehpg lpplrlqdaf fspwrllkeg gldpllrgll
+      541 aspaklpvqe qlmneelter lfvlgssgsl dlgsinlqrg rdhglpgyna wrefcglgrl
+      601 htraelrsav anatlagrim dlyghpdnid vwlgglaepl lprartgplf acligrqmka
+      661 lrdgdrfwwe ssgvftdeqr relarhslsr vicdntglps vpadafqvsr fpqdfepcen
+      721 ipglnldvwr ealpqgdacg lpdsldngdv vlcgeagrrv lvfscrhgfk lqgpeqvacs
+      781 prggavrapv crdineceda shppchgsar crntkggfrc ectdpavlge dgttcvdsgr
+      841 lpkaslvsia lgivlvvgla gltwtlvcrw ahagrkasls iaelggrgap ppgrgagqdg
+      901 asgslvpplg pqgrtravdp tssrshvaqg spa
+//
+
+LOCUS       NP_000538                933 aa            linear   PRI 30-APR-2025
+DEFINITION  thyroid peroxidase isoform a precursor [Homo sapiens].
+ACCESSION   NP_000538
+VERSION     NP_000538.3
+DBSOURCE    REFSEQ: accession NM_000547.6
+KEYWORDS    RefSeq.
+SOURCE      Homo sapiens (human)
+  ORGANISM  Homo sapiens
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Mammalia; Eutheria; Euarchontoglires; Primates; Haplorrhini;
+            Catarrhini; Hominidae; Homo.
+REFERENCE   1  (residues 1 to 933)
+  AUTHORS   Iwasaki,H., Suwanai,H., Yakou,F., Sakai,H., Ishii,K., Hara,N.,
+            Buckle,A.M., Kanekura,K., Miyagi,T., Narumi,S. and Suzuki,R.
+  TITLE     Disulfide Bonds of Thyroid Peroxidase Are Critical Elements for
+            Subcellular Localization, Proteasome-Dependent Degradation, and
+            Enzyme Activity
+  JOURNAL   Thyroid 34 (5), 659-667 (2024)
+   PUBMED   38482822
+  REMARK    GeneRIF: Disulfide Bonds of Thyroid Peroxidase Are Critical
+            Elements for Subcellular Localization, Proteasome-Dependent
+            Degradation, and Enzyme Activity.
+REFERENCE   2  (residues 1 to 933)
+  AUTHORS   Lacka,K., Maciejewski,A., Jarecki,P., Herman,W., Lacki,J.K.,
+            Zaba,R. and Kowalczyk,M.J.
+  TITLE     Is There a Link between Thyroid Peroxidase Gene Promoter
+            Polymorphisms and Autoimmune Thyroiditis in the Polish Population?
+  JOURNAL   Int J Mol Sci 25 (6), 3312 (2024)
+   PUBMED   38542286
+  REMARK    GeneRIF: Is There a Link between Thyroid Peroxidase Gene Promoter
+            Polymorphisms and Autoimmune Thyroiditis in the Polish Population?
+            Publication Status: Online-Only
+REFERENCE   3  (residues 1 to 933)
+  AUTHORS   Naqvi,S.F., Yildiz-Bolukbasi,E., Afzal,M., Nalbant,G., Mumtaz,S.,
+            Tolun,A. and Malik,S.
+  TITLE     Homozygous Mutations in Thyroid Peroxidase (TPO) in Hypothyroidism
+            with Intellectual Disability, Developmental Delay, and Hearing and
+            Ocular Anomalies in Two Families: Severe Manifestation of Untreated
+            TPO-deficiency Poses a Diagnostic Dilemma
+  JOURNAL   Yale J Biol Med 96 (3), 347-365 (2023)
+   PUBMED   37780999
+  REMARK    GeneRIF: Homozygous Mutations in Thyroid Peroxidase (TPO) in
+            Hypothyroidism with Intellectual Disability, Developmental Delay,
+            and Hearing and Ocular Anomalies in Two Families: Severe
+            Manifestation of Untreated TPO-deficiency Poses a Diagnostic
+            Dilemma.
+            Publication Status: Online-Only
+REFERENCE   4  (residues 1 to 933)
+  AUTHORS   Ferrand,M., Le Fourn,V. and Franc,J.L.
+  TITLE     Increasing diversity of human thyroperoxidase generated by
+            alternative splicing. Characterized by molecular cloning of new
+            transcripts with single- and multispliced mRNAs
+  JOURNAL   J Biol Chem 278 (6), 3793-3800 (2003)
+   PUBMED   12454013
+  REMARK    GeneRIF: investigation of diversity generated by alternative
+            splicing
+REFERENCE   5  (residues 1 to 933)
+  AUTHORS   Abramowicz,M.J., Targovnik,H.M., Varela,V., Cochaux,P., Krawiec,L.,
+            Pisarev,M.A., Propato,F.V., Juvenal,G., Chester,H.A. and Vassart,G.
+  TITLE     Identification of a mutation in the coding sequence of the human
+            thyroid peroxidase gene causing congenital goiter
+  JOURNAL   J Clin Invest 90 (4), 1200-1204 (1992)
+   PUBMED   1401057
+REFERENCE   6  (residues 1 to 933)
+  AUTHORS   Lagorce,J.F., Thomes,J.C., Catanzano,G., Buxeraud,J., Raby,M. and
+            Raby,C.
+  TITLE     Formation of molecular iodine during oxidation of iodide by the
+            peroxidase/H2O2 system. Implications for antithyroid therapy
+  JOURNAL   Biochem Pharmacol 42 Suppl, S89-S92 (1991)
+   PUBMED   1722671
+REFERENCE   7  (residues 1 to 933)
+  AUTHORS   Kimura,S., Hong,Y.S., Kotani,T., Ohtaki,S. and Kikkawa,F.
+  TITLE     Structure of the human thyroid peroxidase gene: comparison and
+            relationship to the human myeloperoxidase gene
+  JOURNAL   Biochemistry 28 (10), 4481-4489 (1989)
+   PUBMED   2548579
+REFERENCE   8  (residues 1 to 933)
+  AUTHORS   Magnusson,R.P., Chazenbalk,G.D., Gestautas,J., Seto,P., Filetti,S.,
+            DeGroot,L.J. and Rapoport,B.
+  TITLE     Molecular cloning of the complementary deoxyribonucleic acid for
+            human thyroid peroxidase
+  JOURNAL   Mol Endocrinol 1 (11), 856-861 (1987)
+   PUBMED   3153466
+REFERENCE   9  (residues 1 to 933)
+  AUTHORS   Kimura,S., Kotani,T., McBride,O.W., Umeki,K., Hirai,K., Nakayama,T.
+            and Ohtaki,S.
+  TITLE     Human thyroid peroxidase: complete cDNA and protein sequence,
+            chromosome mapping, and identification of two alternately spliced
+            mRNAs
+  JOURNAL   Proc Natl Acad Sci U S A 84 (16), 5555-5559 (1987)
+   PUBMED   3475693
+REFERENCE   10 (residues 1 to 933)
+  AUTHORS   Degroot,L.J. and Niepomniszcze,H.
+  TITLE     Biosynthesis of thyroid hormone: basic and clinical aspects
+  JOURNAL   Metabolism 26 (6), 665-718 (1977)
+   PUBMED   67547
+COMMENT     REVIEWED REFSEQ: This record has been curated by NCBI staff. The
+            reference sequence was derived from BC063107.1, J02969.1,
+            BC095448.1, AW874082.1 and AC141930.2.
+            
+            On Feb 25, 2003 this sequence version replaced NP_000538.2.
+            
+            Summary: This gene encodes a membrane-bound glycoprotein. The
+            encoded protein acts as an enzyme and plays a central role in
+            thyroid gland function. The protein functions in the iodination of
+            tyrosine residues in thyroglobulin and phenoxy-ester formation
+            between pairs of iodinated tyrosines to generate the thyroid
+            hormones, thyroxine and triiodothyronine. Mutations in this gene
+            are associated with several disorders of thyroid hormonogenesis,
+            including congenital hypothyroidism, congenital goiter, and thyroid
+            hormone organification defect IIA. Multiple transcript variants
+            encoding distinct isoforms have been identified for this gene, but
+            the full-length nature of some variants has not been determined.
+            [provided by RefSeq, May 2011].
+            
+            Transcript Variant: This variant (1) represents the longest
+            transcript and encodes the longest isoform (a, also known as TPO1).
+            
+            Publication Note:  This RefSeq record includes a subset of the
+            publications that are available for this gene. Please see the Gene
+            record to access additional publications.
+            
+            ##Evidence-Data-START##
+            Transcript exon combination :: J02969.1 [ECO:0000332]
+            RNAseq introns              :: single sample supports all introns
+                                           SAMEA2144120, SAMEA2145240
+                                           [ECO:0000348]
+            ##Evidence-Data-END##
+FEATURES             Location/Qualifiers
+     source          1..933
+                     /organism="Homo sapiens"
+                     /db_xref="taxon:9606"
+                     /chromosome="2"
+                     /map="2p25.3"
+     Protein         1..933
+                     /product="thyroid peroxidase isoform a precursor"
+                     /EC_number="1.11.1.8"
+                     /note="thyroperoxidase; thyroid microsomal antigen"
+                     /calculated_mol_wt=101102
+     sig_peptide     1..18
+                     /inference="COORDINATES: ab initio prediction:SignalP:6.0"
+                     /calculated_mol_wt=1879
+     mat_peptide     19..933
+                     /product="Thyroid peroxidase. /id=PRO_0000023662"
+                     /note="propagated from UniProtKB/Swiss-Prot (P07202.4)"
+                     /calculated_mol_wt=101102
+     Site            129
+                     /site_type="glycosylation"
+                     /note="N-linked (GlcNAc...) asparagine.
+                     /evidence=ECO:0000255; propagated from
+                     UniProtKB/Swiss-Prot (P07202.4)"
+     Region          167..734
+                     /region_name="thyroid_peroxidase"
+                     /note="Thyroid peroxidase (TPO); cd09825"
+                     /db_xref="CDD:188657"
+     Site            307
+                     /site_type="glycosylation"
+                     /note="N-linked (GlcNAc...) asparagine.
+                     /evidence=ECO:0000255; propagated from
+                     UniProtKB/Swiss-Prot (P07202.4)"
+     Site            order(317,593,596)
+                     /site_type="other"
+                     /note="putative homodimer interface [polypeptide binding]"
+                     /db_xref="CDD:188657"
+     Site            order(321,325,327)
+                     /site_type="other"
+                     /note="Ca binding site [ion binding]"
+                     /db_xref="CDD:188657"
+     Site            342
+                     /site_type="glycosylation"
+                     /note="N-linked (GlcNAc...) asparagine.
+                     /evidence=ECO:0000255; propagated from
+                     UniProtKB/Swiss-Prot (P07202.4)"
+     Site            order(396,399,487,490..491,494,497,523,575,582)
+                     /site_type="other"
+                     /note="heme binding site [chemical binding]"
+                     /db_xref="CDD:188657"
+     Site            396
+                     /site_type="other"
+                     /note="Transition state stabilizer.
+                     /evidence=ECO:0000255|PROSITE-ProRule:PRU00298; propagated
+                     from UniProtKB/Swiss-Prot (P07202.4)"
+     Site            order(450,453..454,458,486,490,492,649,653,657..658,
+                     661..662,665)
+                     /site_type="other"
+                     /note="putative substrate binding site [chemical binding]"
+                     /db_xref="CDD:188657"
+     Site            569
+                     /site_type="glycosylation"
+                     /note="N-linked (GlcNAc...) asparagine.
+                     /evidence=ECO:0000255; propagated from
+                     UniProtKB/Swiss-Prot (P07202.4)"
+     Region          742..795
+                     /region_name="CCP"
+                     /note="Complement control protein (CCP) modules (aka short
+                     consensus repeats SCRs or SUSHI repeats) have been
+                     identified in several proteins of the complement system;
+                     cd00033"
+                     /db_xref="CDD:153056"
+     Site            order(752,769)
+                     /site_type="active"
+                     /note="receptor-ligand interactions [active]"
+                     /db_xref="CDD:153056"
+     Region          796..839
+                     /region_name="EGF_CA"
+                     /note="Calcium-binding EGF-like domain; smart00179"
+                     /db_xref="CDD:214542"
+     Site            order(796,799,816)
+                     /site_type="other"
+                     /note="Ca2+ binding site [ion binding]"
+                     /db_xref="CDD:238011"
+     Site            847..871
+                     /site_type="transmembrane region"
+                     /note="propagated from UniProtKB/Swiss-Prot (P07202.4)"
+     Region          881..933
+                     /region_name="Disordered.
+                     /evidence=ECO:0000256|SAM:MobiDB-lite"
+                     /note="propagated from UniProtKB/Swiss-Prot (P07202.4)"
+     CDS             1..933
+                     /gene="TPO"
+                     /gene_synonym="MSA; TDH2A; TPX"
+                     /coded_by="NM_000547.6:90..2891"
+                     /note="isoform a precursor is encoded by transcript
+                     variant 1"
+                     /db_xref="CCDS:CCDS1643.1"
+                     /db_xref="GeneID:7173"
+                     /db_xref="HGNC:HGNC:12015"
+                     /db_xref="MIM:606765"
+ORIGIN      
+        1 mralavlsvt lvmacteaff pfisrgkell wgkpeesrvs svleeskrlv dtamyatmqr
+       61 nlkkrgilsp aqllsfsklp eptsgviara aeimetsiqa mkrkvnlktq qsqhptdals
+      121 edllsiianm sgclpymlpp kcpntclank yrpitgacnn rdhprwgasn talarwlppv
+      181 yedgfsqprg wnpgflyngf plppvrevtr hviqvsnevv tdddrysdll mawgqyidhd
+      241 iaftpqstsk aafgggadcq mtcenqnpcf piqlpeearp aagtaclpfy rssaacgtgd
+      301 qgalfgnlst anprqqmngl tsfldastvy gsspalerql rnwtsaegll rvharlrdsg
+      361 raylpfvppr apaacapepg ipgetrgpcf lagdgrasev psltalhtlw lrehnrlaaa
+      421 lkalnahwsa davyqearkv vgalhqiitl rdyiprilgp eafqqyvgpy egydstanpt
+      481 vsnvfstaaf rfghatihpl vrrldasfqe hpdlpglwlh qaffspwtll rgggldplir
+      541 gllarpaklq vqdqlmneel terlfvlsns stldlasinl qrgrdhglpg ynewrefcgl
+      601 prletpadls taiasrsvad kildlykhpd nidvwlggla enflprartg plfacligkq
+      661 mkalrdgdwf wwenshvftd aqrrelekhs lsrvicdntg ltrvpmdafq vgkfpedfes
+      721 cdsitgmnle awretfpqdd kcgfpesven gdfvhceesg rrvlvyscrh gyelqgreql
+      781 tctqegwdfq pplckdvnec adgahppcha sarcrntkgg fqclcadpye lgddgrtcvd
+      841 sgrlprvtwi smslaallig gfagltstvi crwtrtgtks tlpisetggg tpelrcgkhq
+      901 avgtspqraa aqdseqesag megrdthrlp ral
+//
+
+LOCUS       NP_062226                914 aa            linear   ROD 24-MAR-2012
+DEFINITION  thyroid peroxidase precursor [Rattus norvegicus].
+ACCESSION   NP_062226
+VERSION     NP_062226.1
+DBSOURCE    REFSEQ: accession NM_019353.1
+KEYWORDS    RefSeq.
+SOURCE      Rattus norvegicus (Norway rat)
+  ORGANISM  Rattus norvegicus
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Mammalia; Eutheria; Euarchontoglires; Glires; Rodentia;
+            Sciurognathi; Muroidea; Muridae; Murinae; Rattus.
+REFERENCE   1  (residues 1 to 914)
+  AUTHORS   Shang,W.W., Luo,J., Cheng,W.B., Huang,Q. and Wang,W.D.
+  TITLE     [Effect of PTU on the expression of thyroid TPO, Tg mRNA in rats]
+  JOURNAL   Sichuan Da Xue Xue Bao Yi Xue Ban 41 (3), 428-431 (2010)
+   PUBMED   20629314
+  REMARK    GeneRIF: Compared with the control group, the TPO mRNA levels of
+            the propylthiouracil-treated group were increased, while the Tg
+            mRNA levels were decreased significantly.
+REFERENCE   2  (residues 1 to 914)
+  AUTHORS   Cuesta,I., Zaret,K.S. and Santisteban,P.
+  TITLE     The forkhead factor FoxE1 binds to the thyroperoxidase promoter
+            during thyroid cell differentiation and modifies compacted
+            chromatin structure
+  JOURNAL   Mol. Cell. Biol. 27 (20), 7302-7314 (2007)
+   PUBMED   17709379
+  REMARK    GeneRIF: Results suggest that FoxE1 is a pioneer factor whose
+            primary mechanistic role in mediating the hormonal regulation of
+            the thyroperoxidase gene is to enable other regulatory factors to
+            access the chromatin.
+REFERENCE   3  (residues 1 to 914)
+  AUTHORS   Bazzara,L.G., Velez,M.L., Costamagna,M.E., Cabanillas,A.M.,
+            Fozzatti,L., Lucero,A.M., Pellizas,C.G. and Masini-Repiso,A.M.
+  TITLE     Nitric oxide/cGMP signaling inhibits TSH-stimulated iodide uptake
+            and expression of thyroid peroxidase and thyroglobulin mRNA in
+            FRTL-5 thyroid cells
+  JOURNAL   Thyroid 17 (8), 717-727 (2007)
+   PUBMED   17714035
+  REMARK    GeneRIF: A novel property of nitric oxide to inhibit TPO and
+            thyroglobulin mRNA expression is supported
+REFERENCE   4  (residues 1 to 914)
+  AUTHORS   Schmutzler,C., Bacinski,A., Gotthardt,I., Huhne,K., Ambrugger,P.,
+            Klammer,H., Schlecht,C., Hoang-Vu,C., Gruters,A., Wuttke,W.,
+            Jarry,H. and Kohrle,J.
+  TITLE     The ultraviolet filter benzophenone 2 interferes with the thyroid
+            hormone axis in rats and is a potent in vitro inhibitor of human
+            recombinant thyroid peroxidase
+  JOURNAL   Endocrinology 148 (6), 2835-2844 (2007)
+   PUBMED   17379648
+  REMARK    GeneRIF: Endocrine disruptor chemicals, most potently
+            Benzophenone-2, may disturb TH homeostasis by inhibiting or
+            inactivating TPO, effects that are even more pronounced in the
+            absence of iodide.
+REFERENCE   5  (residues 1 to 914)
+  AUTHORS   Kuliawat,R., Ramos-Castaneda,J., Liu,Y. and Arvan,P.
+  TITLE     Intracellular trafficking of thyroid peroxidase to the cell surface
+  JOURNAL   J. Biol. Chem. 280 (30), 27713-27718 (2005)
+   PUBMED   15917231
+  REMARK    GeneRIF: in FRTL5 cells, a large fraction of rTPO is delivered to
+            the plasma membrane yet does not acquire Golgi-type processing of
+            its N-glycans
+REFERENCE   6  (residues 1 to 914)
+  AUTHORS   Kwitek,A.E., Gullings-Handley,J., Yu,J., Carlos,D.C., Orlebeke,K.,
+            Nie,J., Eckert,J., Lemke,A., Andrae,J.W., Bromberg,S., Pasko,D.,
+            Chen,D., Scheetz,T.E., Casavant,T.L., Soares,M.B., Sheffield,V.C.,
+            Tonellato,P.J. and Jacob,H.J.
+  TITLE     High-density rat radiation hybrid maps containing over 24,000
+            SSLPs, genes, and ESTs provide a direct link to the rat genome
+            sequence
+  JOURNAL   Genome Res. 14 (4), 750-757 (2004)
+   PUBMED   15060019
+REFERENCE   7  (residues 1 to 914)
+  AUTHORS   Bikker,H., Vulsma,T., Baas,F. and de Vijlder,J.J.
+  TITLE     Identification of five novel inactivating mutations in the human
+            thyroid peroxidase gene by denaturing gradient gel electrophoresis
+  JOURNAL   Hum. Mutat. 6 (1), 9-16 (1995)
+   PUBMED   7550241
+REFERENCE   8  (residues 1 to 914)
+  AUTHORS   Isozaki,O., Kohn,L.D., Kozak,C.A. and Kimura,S.
+  TITLE     Thyroid peroxidase: rat cDNA sequence, chromosomal localization in
+            mouse, and regulation of gene expression by comparison to
+            thyroglobulin in rat FRTL-5 cells
+  JOURNAL   Mol. Endocrinol. 3 (11), 1681-1692 (1989)
+   PUBMED   2691880
+REFERENCE   9  (residues 1 to 914)
+  AUTHORS   Derwahl,M., Seto,P. and Rapoport,B.
+  TITLE     Complete nucleotide sequence of the cDNA for thyroid peroxidase in
+            FRTL5 rat thyroid cells
+  JOURNAL   Nucleic Acids Res. 17 (20), 8380 (1989)
+   PUBMED   2813071
+COMMENT     PROVISIONAL REFSEQ: This record has not yet been subject to final
+            NCBI review. The reference sequence was derived from X17396.1.
+            
+            [WARNING] On Aug 31, 2012 this sequence was replaced by
+            NP_062226.2.
+            
+            Summary: membrane-bound glycoprotein; iodinates tyrosine residues
+            in thyroglobulin to generate biologically active thyroid hormones
+            T3 and T4 [RGD, Feb 2006].
+FEATURES             Location/Qualifiers
+     source          1..914
+                     /organism="Rattus norvegicus"
+                     /db_xref="taxon:10116"
+                     /chromosome="6"
+                     /map="6q16"
+     Protein         1..914
+                     /product="thyroid peroxidase precursor"
+                     /EC_number="1.11.1.8"
+                     /calculated_mol_wt=98085
+     sig_peptide     1..31
+                     /inference="non-experimental evidence, no additional
+                     details recorded"
+                     /note="Potential; propagated from UniProtKB/Swiss-Prot
+                     (P14650.1)"
+                     /calculated_mol_wt=3394
+     mat_peptide     32..914
+                     /product="Thyroid peroxidase"
+                     /experiment="experimental evidence, no additional details
+                     recorded"
+                     /note="propagated from UniProtKB/Swiss-Prot (P14650.1)"
+                     /calculated_mol_wt=98085
+     Region          161..722
+                     /region_name="thyroid_peroxidase"
+                     /note="Thyroid peroxidase (TPO); cd09825"
+                     /db_xref="CDD:188657"
+     Site            order(309,581,584)
+                     /site_type="other"
+                     /note="putative homodimer interface [polypeptide binding]"
+                     /db_xref="CDD:188657"
+     Site            order(313,317,319)
+                     /site_type="other"
+                     /note="Ca binding site [ion binding]"
+                     /db_xref="CDD:188657"
+     Site            order(384,387,475,478..479,482,485,511,563,570)
+                     /site_type="other"
+                     /note="heme binding site [chemical binding]"
+                     /db_xref="CDD:188657"
+     Site            384
+                     /site_type="other"
+                     /inference="non-experimental evidence, no additional
+                     details recorded"
+                     /note="Transition state stabilizer (By similarity);
+                     propagated from UniProtKB/Swiss-Prot (P14650.1)"
+     Site            order(438,441..442,446,474,478,480,637,641,645..646,
+                     649..650,653)
+                     /site_type="other"
+                     /note="putative substrate binding site [chemical binding]"
+                     /db_xref="CDD:188657"
+     Region          730..783
+                     /region_name="CCP"
+                     /note="Complement control protein (CCP) modules (aka short
+                     consensus repeats SCRs or SUSHI repeats) have been
+                     identified in several proteins of the complement system;
+                     cd00033"
+                     /db_xref="CDD:153056"
+     Site            order(740,757)
+                     /site_type="active"
+                     /note="receptor-ligand interactions [active]"
+                     /db_xref="CDD:153056"
+     Region          784..813
+                     /region_name="EGF_CA"
+                     /note="Calcium-binding EGF domain; pfam07645"
+                     /db_xref="CDD:429571"
+     Site            order(784,787,804)
+                     /site_type="other"
+                     /note="Ca2+ binding site [ion binding]"
+                     /db_xref="CDD:238011"
+     Region          <802..826
+                     /region_name="FXa_inhibition"
+                     /note="Coagulation Factor Xa inhibitory site; pfam14670"
+                     /db_xref="CDD:464251"
+     Site            835..859
+                     /site_type="transmembrane region"
+                     /inference="non-experimental evidence, no additional
+                     details recorded"
+                     /note="propagated from UniProtKB/Swiss-Prot (P14650.1)"
+     CDS             1..914
+                     /gene="Tpo"
+                     /coded_by="NM_019353.1:42..2786"
+                     /db_xref="GeneID:54314"
+                     /db_xref="RGD:3900"
+ORIGIN      
+        1 mrtlgamavm lvvmgtaifl pfllrsrdil ggktmtshvi svvetsqllv dnavyntmkr
+       61 nlkkrgvlsp aqllsfsklp estsgaisra aeimetsiqv mkreqsqfst dalsadilat
+      121 ianlsgclpf mlpprcpdtc lankyrpitg vcnnrdhprw gasntalarw lppvyedgfs
+      181 qprgwnpnfl yhgfplppvr evtrhliqvs neavteddqy sdflpvwgqy idhdialtpq
+      241 ststaafwgg vdcqltcenq npcfpiqlps nssrttaclp fyrssaacgt gdqgalfgnl
+      301 saanprqqmn gltsfldast vygsspgvek qlrnwsssag llrvntlhld sgraylpfas
+      361 aacapepgap hanrtpcfla gdgrasevpa laavhtlwlr ehnrlatafk ainthwsant
+      421 ayqearkvvg alhqiitmrd yipkilgpda frqyvgpyeg ynptvnptvs nvfstaafrf
+      481 ghatvhplvr rlntdfqdht elprlqlhdv ffrpwrliqe ggldpivrgl larpaklqvq
+      541 eqlmneelte rlfvlsnvgt ldlaslnlqr grdhglpgyn ewrefcglsr ldtgaelnka
+      601 ianrsmvnki melykhadni dvwlgglaek flpgartgpl faciigkqmk alrdgdrfww
+      661 enshvftdaq rqelekhslp rvicdntglt rvpvdafrig kfpqdfesce eipsmdlrlw
+      721 retfpqddkc vfpekvdngn fvhceesgkl vlvyscfhgy klqgqeqvtc tqngwdsepp
+      781 vckdvnecad lthppchssa kckntkgsfq cvctdpymlg edektcidsg rlpraswvsi
+      841 algalliggl aslswtvicr wthadkkstl litervtmes gfrksqesgi spqkaevqda
+      901 eqepaygsrv llce
+//
+
+LOCUS       NP_033443                914 aa            linear   ROD 29-JAN-2026
+DEFINITION  thyroid peroxidase precursor [Mus musculus].
+ACCESSION   NP_033443 XP_980277
+VERSION     NP_033443.1
+DBSOURCE    REFSEQ: accession NM_009417.3
+KEYWORDS    RefSeq; RefSeq Select.
+SOURCE      Mus musculus (house mouse)
+  ORGANISM  Mus musculus
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Mammalia; Eutheria; Euarchontoglires; Glires; Rodentia; Myomorpha;
+            Muroidea; Muridae; Murinae; Mus; Mus.
+REFERENCE   1  (residues 1 to 914)
+  AUTHORS   Takeishi,S., Marchand,T., Koba,W.R., Borger,D.K., Xu,C., Guha,C.,
+            Bergman,A., Frenette,P.S., Gritsman,K. and Steidl,U.
+  TITLE     Haematopoietic stem cell number is not solely defined by niche
+            availability
+  JOURNAL   Nature 646 (8085), 687-696 (2025)
+   PUBMED   40866696
+REFERENCE   2  (residues 1 to 914)
+  AUTHORS   Zhang,Z., Wu,Y., Fu,J., Yu,X., Su,Y., Jia,S., Cheng,H., Shen,Y.,
+            He,X., Ren,K., Zheng,X., Guan,H., Rao,F. and Zhao,L.
+  TITLE     Proteostatic reactivation of the developmental transcription factor
+            TBX3 drives BRAF/MAPK-mediated tumorigenesis
+  JOURNAL   Nat Commun 15 (1), 4108 (2024)
+   PUBMED   38750011
+  REMARK    Erratum:[Nat Commun. 2024 Jun 10;15(1):4936. doi:
+            10.1038/s41467-024-49330-w. PMID: 38858379]
+            Publication Status: Online-Only
+REFERENCE   3  (residues 1 to 914)
+  AUTHORS   Adams,D.J., Barlas,B., McIntyre,R.E., Salguero,I., van der
+            Weyden,L., Barros,A., Vicente,J.R., Karimpour,N., Haider,A.,
+            Ranzani,M., Turner,G., Thompson,N.A., Harle,V., Olvera-Leon,R.,
+            Robles-Espinoza,C.D., Speak,A.O., Geisler,N., Weninger,W.J.,
+            Geyer,S.H., Hewinson,J., Karp,N.A., Fu,B., Yang,F., Kozik,Z.,
+            Choudhary,J., Yu,L., van Ruiten,M.S., Rowland,B.D., Lelliott,C.J.,
+            Del Castillo Velasco-Herrera,M., Verstraten,R., Bruckner,L.,
+            Henssen,A.G., Rooimans,M.A., de Lange,J., Mohun,T.J., Arends,M.J.,
+            Kentistou,K.A., Coelho,P.A., Zhao,Y., Zecchini,H., Perry,J.R.B.,
+            Jackson,S.P. and Balmus,G.
+  CONSRTM   Sanger Mouse Genetics Project
+  TITLE     Genetic determinants of micronucleus formation in vivo
+  JOURNAL   Nature 627 (8002), 130-136 (2024)
+   PUBMED   38355793
+REFERENCE   4  (residues 1 to 914)
+  AUTHORS   Didier-Mathon,H., Stoupa,A., Kariyawasam,D., Yde,S.,
+            Cochant-Priollet,B., Groussin,L., Sebag,F., Cagnard,N.,
+            Nitschke,P., Luton,D., Polak,M. and Carre,A.
+  TITLE     Borealin/CDCA8 deficiency alters thyroid development and results in
+            papillary tumor-like structures
+  JOURNAL   Front Endocrinol (Lausanne) 14, 1286747 (2023)
+   PUBMED   37964961
+  REMARK    Publication Status: Online-Only
+REFERENCE   5  (residues 1 to 914)
+  AUTHORS   Johnson,K.R., Gagnon,L.H., Longo-Guess,C.M., Harris,B.S. and
+            Chang,B.
+  TITLE     Hearing impairment in hypothyroid dwarf mice caused by mutations of
+            the thyroid peroxidase gene
+  JOURNAL   J Assoc Res Otolaryngol 15 (1), 45-55 (2014)
+   PUBMED   24297261
+  REMARK    GeneRIF: Hearing impairment in hypothyroid dwarf mice caused by
+            mutations of the thyroid peroxidase gene.
+REFERENCE   6  (residues 1 to 914)
+  AUTHORS   Endo,Y., Onogi,S., Umeki,K., Yamamoto,I., Kotani,T., Ohtaki,S. and
+            Fujita,T.
+  TITLE     Regional localization of the gene for thyroid peroxidase to human
+            chromosome 2p25 and mouse chromosome 12C
+  JOURNAL   Genomics 25 (3), 760-761 (1995)
+   PUBMED   7759120
+REFERENCE   7  (residues 1 to 914)
+  AUTHORS   Kotani,T., Umeki,K., Yamamoto,I., Takeuchi,M., Takechi,S.,
+            Nakayama,T. and Ohtaki,S.
+  TITLE     Nucleotide sequence of the cDNA encoding mouse thyroid peroxidase
+  JOURNAL   Gene 123 (2), 289-290 (1993)
+   PUBMED   7916704
+REFERENCE   8  (residues 1 to 914)
+  AUTHORS   Taylor,B.A., Reifsnyder,P.C. and DiLauro,R.
+  TITLE     Linkage of the thyroid peroxidase locus (Tpo) to markers in the
+            proximal part of chromosome 12 of the mouse
+  JOURNAL   Cytogenet Cell Genet 60 (3-4), 250-251 (1992)
+   PUBMED   1354596
+REFERENCE   9  (residues 1 to 914)
+  AUTHORS   Isozaki,O., Kohn,L.D., Kozak,C.A. and Kimura,S.
+  TITLE     Thyroid peroxidase: rat cDNA sequence, chromosomal localization in
+            mouse, and regulation of gene expression by comparison to
+            thyroglobulin in rat FRTL-5 cells
+  JOURNAL   Mol Endocrinol 3 (11), 1681-1692 (1989)
+   PUBMED   2691880
+REFERENCE   10 (residues 1 to 914)
+  AUTHORS   Burrow,G.N., Spaulding,S.W., Alexander,N.M. and Bower,B.F.
+  TITLE     Normal peroxidase activity in Pendred's syndrome
+  JOURNAL   J Clin Endocrinol Metab 36 (3), 522-530 (1973)
+   PUBMED   4346605
+COMMENT     REVIEWED REFSEQ: This record has been curated by NCBI staff. The
+            reference sequence was derived from AC157276.2 and X60703.1.
+            
+            On May 4, 2006 this sequence version replaced XP_980277.1.
+            
+            Summary: This gene encodes a membrane-bound glycoprotein. The
+            encoded enzyme plays a central role in thyroid gland function. The
+            enzyme functions in the iodination of tyrosine residues in
+            thyroglobulin and phenoxy-ester formation between pairs of
+            iodinated tyrosines to generate the thyroid hormones, thyroxine and
+            triiodothyronine. Mice with homozygous missense mutations in this
+            gene exhibit hypothyroid dwarfism and hearing impairment. [provided
+            by RefSeq, Sep 2015].
+            
+            Publication Note:  This RefSeq record includes a subset of the
+            publications that are available for this gene. Please see the Gene
+            record to access additional publications.
+            
+            ##Evidence-Data-START##
+            Transcript exon combination :: X60703.1, AK047843.1 [ECO:0000332]
+            RNAseq introns              :: single sample supports all introns
+                                           SAMN01164131 [ECO:0000348]
+            ##Evidence-Data-END##
+            
+            ##RefSeq-Attributes-START##
+            RefSeq Select criteria :: based on conservation, expression
+            ##RefSeq-Attributes-END##
+FEATURES             Location/Qualifiers
+     source          1..914
+                     /organism="Mus musculus"
+                     /strain="C57BL/6"
+                     /db_xref="taxon:10090"
+                     /chromosome="12"
+                     /map="12 13.0 cM"
+     Protein         1..914
+                     /product="thyroid peroxidase precursor"
+                     /EC_number="1.11.1.8"
+                     /calculated_mol_wt=97889
+     sig_peptide     1..31
+                     /note="/evidence=ECO:0000255; propagated from
+                     UniProtKB/Swiss-Prot (P35419.1)"
+                     /calculated_mol_wt=3472
+     mat_peptide     32..914
+                     /product="Thyroid peroxidase. /id=PRO_0000023663"
+                     /note="propagated from UniProtKB/Swiss-Prot (P35419.1)"
+                     /calculated_mol_wt=97889
+     Site            123
+                     /site_type="glycosylation"
+                     /note="N-linked (GlcNAc...) asparagine.
+                     /evidence=ECO:0000255; propagated from
+                     UniProtKB/Swiss-Prot (P35419.1)"
+     Region          161..722
+                     /region_name="thyroid_peroxidase"
+                     /note="Thyroid peroxidase (TPO); cd09825"
+                     /db_xref="CDD:188657"
+     Site            271
+                     /site_type="glycosylation"
+                     /note="N-linked (GlcNAc...) asparagine.
+                     /evidence=ECO:0000255; propagated from
+                     UniProtKB/Swiss-Prot (P35419.1)"
+     Site            299
+                     /site_type="glycosylation"
+                     /note="N-linked (GlcNAc...) asparagine.
+                     /evidence=ECO:0000255; propagated from
+                     UniProtKB/Swiss-Prot (P35419.1)"
+     Site            order(309,581,584)
+                     /site_type="other"
+                     /note="putative homodimer interface [polypeptide binding]"
+                     /db_xref="CDD:188657"
+     Site            order(313,317,319)
+                     /site_type="other"
+                     /note="Ca binding site [ion binding]"
+                     /db_xref="CDD:188657"
+     Site            334
+                     /site_type="glycosylation"
+                     /note="N-linked (GlcNAc...) asparagine.
+                     /evidence=ECO:0000255; propagated from
+                     UniProtKB/Swiss-Prot (P35419.1)"
+     Site            order(384,387,475,478..479,482,485,511,563,570)
+                     /site_type="other"
+                     /note="heme binding site [chemical binding]"
+                     /db_xref="CDD:188657"
+     Site            384
+                     /site_type="other"
+                     /note="Transition state stabilizer.
+                     /evidence=ECO:0000255|PROSITE-ProRule:PRU00298; propagated
+                     from UniProtKB/Swiss-Prot (P35419.1)"
+     Site            order(438,441..442,446,474,478,480,637,641,645..646,
+                     649..650,653)
+                     /site_type="other"
+                     /note="putative substrate binding site [chemical binding]"
+                     /db_xref="CDD:188657"
+     Site            603
+                     /site_type="glycosylation"
+                     /note="N-linked (GlcNAc...) asparagine.
+                     /evidence=ECO:0000255; propagated from
+                     UniProtKB/Swiss-Prot (P35419.1)"
+     Region          730..783
+                     /region_name="CCP"
+                     /note="Complement control protein (CCP) modules (aka short
+                     consensus repeats SCRs or SUSHI repeats) have been
+                     identified in several proteins of the complement system;
+                     cd00033"
+                     /db_xref="CDD:153056"
+     Site            order(740,757)
+                     /site_type="active"
+                     /note="receptor-ligand interactions [active]"
+                     /db_xref="CDD:153056"
+     Region          784..813
+                     /region_name="EGF_CA"
+                     /note="Calcium-binding EGF domain; pfam07645"
+                     /db_xref="CDD:429571"
+     Site            order(784,787,804)
+                     /site_type="other"
+                     /note="Ca2+ binding site [ion binding]"
+                     /db_xref="CDD:238011"
+     Site            835..859
+                     /site_type="transmembrane region"
+                     /note="propagated from UniProtKB/Swiss-Prot (P35419.1)"
+     Region          881..909
+                     /region_name="Disordered.
+                     /evidence=ECO:0000256|SAM:MobiDB-lite"
+                     /note="propagated from UniProtKB/Swiss-Prot (P35419.1)"
+     CDS             1..914
+                     /gene="Tpo"
+                     /coded_by="NM_009417.3:89..2833"
+                     /db_xref="CCDS:CCDS25857.1"
+                     /db_xref="GeneID:22018"
+                     /db_xref="MGI:MGI:98813"
+ORIGIN      
+        1 mrtlgamaim lvvmgtvifl sfilrsrdil cgktmkshvi savetsqlmv dhavyntmkr
+       61 nlkkrevlsp aqllsffklp estsgaisra aeimetsiqv mkreqsqfst dalsadilgt
+      121 ianlsgclpf mlpprcpdtc lankyrpitg acnnrdhprw gasntalarw lppvyedgfs
+      181 qpkgwnpnfl yhgfplppvr evtrhliqvs neavteddqy sdflpvwgqy idhdialtpq
+      241 ststaafwgg vdcqltcenq npcfpiqlps nssgttaclp fyrssaacgt gdqgalfgnl
+      301 saanprqqmn gltsfldast vygsspgvek qlrnwsssag llrvntlhld agraylpfat
+      361 aacapepgtp rtnrtpcfla gdgrasevpa laavhtlwlr ehnrlasafk ainkhwsant
+      421 ayqearkvvg alhqiitmrd yipkilgpda frqyvgpyeg ynptvnptvs nifstaafrf
+      481 ghatvhplvr rlntdfqeht elprlqlrdv ffrpwrliqe ggldpivrgl laraaklqvq
+      541 gqlmneelte rlfvlsnvgt ldlaslnlqr grdhglpdyn ewrefcglsr letpaelnka
+      601 ianrsmvnki mdlykhadni dvwlgglaek flpgartgpl faciigkqmk alrdgdrfww
+      661 entnvftdaq rqelekhslp rvicdntglt rvpvdafrig kfpqdfesce dipsmdlelw
+      721 retfpqddkc vfpeevdngn fvhceesgkl vlvyscfhgy klqgqeqvtc tqkgwdsepp
+      781 vckdvnecad lthppchpsa qckntkgsfq cvctdpyvlg edektcidsg rlpraswvsi
+      841 algalliggl asltwivicr wthadkkatl pitervttqs gcrksqgrgi sphkaaaqdt
+      901 gqepasgsrv llce
+//
+
+

@@ -25,11 +25,11 @@ const (
 )
 
 type GenBank struct {
-	Sequence DNA
-	Features []byte
-	Accession string
+	Sequence   DNA
+	Features   []byte
+	Accession  string
 	Definition string
-	state    genBankState
+	state      genBankState
 }
 
 // Parses a GenBank file containing a single dna sequence and returns a GenBank struct.
@@ -44,9 +44,9 @@ func NewGenBank(r io.Reader) GenBank {
 		if strings.HasPrefix(scanner.Text(), "//") {
 			g.state = genbankStateDone
 			sequence := strings.Join(strings.Fields(buf.String()), "")
-			header := fmt.Sprintf("%s|%dbp|%s", g.Accession,  len(sequence), g.Definition)
+			header := fmt.Sprintf("%s|%dbp|%s", g.Accession, len(sequence), g.Definition)
 			g.Sequence = NewFromSequence(header, sequence)
-		}		
+		}
 		if strings.HasPrefix(scanner.Text(), "ORIGIN") {
 			g.state = genbankStateOrigin
 			g.Features = features.Bytes()
@@ -67,7 +67,7 @@ func NewGenBank(r io.Reader) GenBank {
 			g.Definition = d
 			g.state = genbankStateDefinition
 			continue
-		}		
+		}
 		if g.state == genbankStateOrigin {
 			trimmed := bytes.Trim(scanner.Bytes(), " 0123456789")
 			buf.Write(trimmed)
