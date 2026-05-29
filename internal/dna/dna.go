@@ -6,7 +6,6 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"os"
 	"strings"
 )
 
@@ -188,54 +187,6 @@ func NewFromSequence(header, sequence string) DNA {
 	}
 	newDNA.Orfs = newDNA.Translate()
 	return newDNA
-}
-
-// NewDNAFromFasta creates a slice of type DNA from a fasta file containing
-// one or more DNA sequences. 
-func NewDNAFromFasta(filename string) ([]DNA, error) {
-	returnSlice := make([]DNA, 0)
-	file, err := os.Open(filename)
-	if err != nil {
-		return []DNA{}, err
-	}
-
-	data := fastaParser(file)
-	for i := 0; i < len(data); i = i + 2 {
-		newDNA := DNA{
-			Header:     data[i],
-			Parent:     data[i+1],
-			Complement: reverseComplement(data[i+1]),
-		}
-		newDNA.Orfs = newDNA.Translate()
-		returnSlice = append(returnSlice, newDNA)
-	}
-	return returnSlice, nil
-}
-
-// fastaParser reads a fasta file, extracts the sequence name from the header,
-// and creates a sequence string from the sequence. Returns a slice of strings
-// with alternating header and sequence. Called by NewDNAFromFasta.
-func fastaParser(r io.Reader) (data []string) {
-	start := true
-	name := ""
-	sequence := ""
-	scanner := bufio.NewScanner(r)
-	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), ">") {
-			if !start {
-				data = append(data, sequence)
-				sequence = ""
-			}
-			name = scanner.Text()
-			data = append(data, name[1:])
-			start = false
-		} else {
-			sequence += scanner.Text()
-		}
-	}
-	data = append(data, sequence)
-	return data
-
 }
 
 // reverse reverses a string. Called by reverseComplement.

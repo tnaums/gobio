@@ -275,11 +275,30 @@ func (c *Client) GetStructure(protein protein.Protein) (*http.Response, error)
 ## eutils
 
 The eutils package creates a web client that uses the `EPost` method
-to retrieve one or more proteins from NCBI accession numbers. For
-multiple proteins, a single string with accessions separated by commas
+to retrieve one or more sequence records from NCBI accession numbers. For
+multiple records, a single string with accessions separated by commas
 is expected. The API will complain and refuse to send data if multiple
 requests are sent in a short period.
-```go func (c *Client)
+
+By default, fasta records are retrieved from the protein database. The
+database can be changed to nucleotide and/or the return format can be
+changed to genbank.
+
+```go
+// Initialize client to request protein records in fasta format
+eutilsClient := eutils.NewClient(5 * time.Second)
+// Initialize client to request nucleotide records in fasta format
+eutilsClient := eutils.NewClient(5 * time.Second, eutils.WithNucleotide())
+// Initialize client to request protein recordds in genbank format
+eutilsClient := eutils.NewClient(5 * time.Second, eutils.WithGenbank())
+// Initialize client to request nucleotide records in genbank format
+eutilsClient := eutils.NewClient(5 * time.Second, eutils.WithGenbank(), eutils.WithNucleotide())
+
+// 
+resp, err := eutilsClient.EPost("KM492932.1,MN339473.1")
+```
+
+```go
 func (c *Client) EPost(accessions string) (*http.Response, error)
 ```
 

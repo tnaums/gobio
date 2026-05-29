@@ -14,10 +14,12 @@ import (
 // sequences.
 func (c *Client) EPost(accessions string) (*http.Response, error) {
 	params := EPost{
-		Database: "protein",
+		Database: c.database,
+		Rettype:  c.rettype,
 		IdList:   accessions,
 	}
-
+	fmt.Println(params.Database)
+	fmt.Println(params.Rettype)
 	// Assemble the epost URL
 	post := fmt.Sprintf("epost.fcgi?db=%s&idtype=acc&id=%s", params.Database, params.IdList)
 	url := baseURL + post
@@ -34,7 +36,7 @@ func (c *Client) EPost(accessions string) (*http.Response, error) {
 		return nil, fmt.Errorf("Error making request: %s", err)
 	}
 	defer resp.Body.Close()
-	
+
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("Error reading response body: %s", err)
@@ -43,13 +45,12 @@ func (c *Client) EPost(accessions string) (*http.Response, error) {
 	// Parse WebEnv and QueryKey
 	rQK, _ := regexp.Compile("<QueryKey>(.+)</QueryKey>")
 	rWE, _ := regexp.Compile("<WebEnv>(.+)</WebEnv>")
-	
+
 	queryKey := (rQK.FindStringSubmatch(string(b)))
 	webEnv := (rWE.FindStringSubmatch(string(b)))
 
 	// Assemble the efetch URL
-	url = fmt.Sprintf(baseURL+"efetch.fcgi?db=%s&query_key=%s&WebEnv=%s&rettype=fasta&retmode=text", params.Database, queryKey[1], webEnv[1])
-
+	url = fmt.Sprintf(baseURL+"efetch.fcgi?db=%s&query_key=%s&WebEnv=%s&rettype=%s&retmode=text", params.Database, queryKey[1], webEnv[1], params.Rettype)
 
 	req, err = http.NewRequest("POST", url, nil)
 	if err != nil {
@@ -62,7 +63,7 @@ func (c *Client) EPost(accessions string) (*http.Response, error) {
 		fmt.Printf("Error making request: %s\n", err)
 		return nil, fmt.Errorf("Error making request: %s", err)
 	}
-	
+
 	return resp, nil
-	
+
 }
