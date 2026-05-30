@@ -18,8 +18,8 @@ func main() {
 	// Initialize client for api request
 	eutilsClient := eutils.NewClient(5 * time.Second, eutils.WithGenbank())
 	// generate *http.Response from ncbi query
-	resp, err := eutilsClient.EPost("AIZ65945.1,QIR83317.1,194680922,50978626,28558982,9507199,6678417,")	
-
+	//resp, err := eutilsClient.EPost("AIZ65945.1,QIR83317.1,194680922,50978626,28558982,9507199,6678417,")	
+	resp, err := eutilsClient.EPost("AIZ65945.1,QIR83317.1")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -29,7 +29,7 @@ func main() {
 	proteins := protein.ChannelFromGenbank(resp.Body)
 	fmt.Println()
 	for p := range proteins {
-		fmt.Printf("%#v\n", p)
+		fmt.Println(p)
 	}
 
 

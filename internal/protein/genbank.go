@@ -2,7 +2,7 @@ package protein
 
 import (
 	"bufio"
-	//"bytes"
+	"bytes"
 	"fmt"
 	"io"
 	"strings"
@@ -22,7 +22,9 @@ func ChannelFromGenbank(r io.Reader) <-chan Protein {
 	go func() {
 		defer close(out)
 		state := gbStateSTART
-		//		buf := bytes.Buffer{}
+		buf := bytes.Buffer{}
+		accession := ""
+		definition := ""
 		scanner := bufio.NewScanner(r)
 		for scanner.Scan() {
 			switch state {
@@ -31,18 +33,40 @@ func ChannelFromGenbank(r io.Reader) <-chan Protein {
 					state = gbStateFEATURES
 					continue
 				}
-				fmt.Println(scanner.Text())
-			default:
-				if strings.HasPrefix(scanner.Text(), "//") {
-					state = gbStateSTART
-					fmt.Println()
+				if strings.HasPrefix(scanner.Text(), "ACCESSION") {
+					a := strings.Fields(scanner.Text())
+					accession = a[1]
+					continue
 				}
+				if strings.HasPrefix(scanner.Text(), "DEFINITION") {
+					definition = strings.TrimSpace(strings.TrimPrefix(scanner.Text(), "DEFINITION"))
+					definition = strings.TrimSuffix(definition, ".")
+					continue
+				}
+			case gbStateFEATURES:
+				if strings.HasPrefix(scanner.Text(), "ORIGIN") {
+					state = gbStateSEQUENCE
+					continue
+				}
+			case gbStateSEQUENCE:
+				if strings.HasPrefix(scanner.Text(), "//") {
+					sequence := strings.ToUpper(strings.Join(strings.Fields(buf.String()), ""))
+					out <- Protein{
+						Header: fmt.Sprintf("%s|%s", accession, definition),
+						AminoAcid: sequence,
+						Mass: calculateMass(sequence),
+					}
+					state = gbStateSTART
+					sequence = ""
+					accession = ""
+					definition = ""
+					buf.Truncate(0)
+					continue
+				}
+				trimmed := bytes.Trim(scanner.Bytes(), " 0123456789")
+				buf.Write(trimmed)
+				continue
 			}
-		}
-		out <- Protein{
-			Header:    "accession",
-			AminoAcid: "VSATGGSSDALFAGVMEKVPSVANWIQVCG",
-			Mass:      calculateMass("VSATGGSSDALFAGVMEKVPSVANWIQVCG"),
 		}
 	}()
 	return out

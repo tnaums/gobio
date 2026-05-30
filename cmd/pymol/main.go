@@ -13,7 +13,8 @@ import (
 
 func main() {
 	//cif := "cif/1465415.cif"
-	cif := "cif/9172_0.cif"
+	//cif := "cif/9172_0.cif"
+	cif := "cif/mutant.cif"
 	// cif := "cif/cocca.cif"
 	//cif := "cif/1465415.cif"
 	
@@ -41,7 +42,7 @@ func main() {
 	fmt.Println(chainB)
 
 	// use regular expression to locate motif
-	r, _ := regexp.Compile("DRSGMGQG")
+	r, _ := regexp.Compile("DRSGCGQG")
 	list := r.FindStringIndex(chainB.AminoAcid)
 	fmt.Println(list)
 
