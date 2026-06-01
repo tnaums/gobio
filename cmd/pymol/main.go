@@ -13,8 +13,8 @@ import (
 
 func main() {
 	//cif := "cif/1465415.cif"
-	//cif := "cif/9172_0.cif"
-	cif := "cif/mutant.cif"
+	cif := "cif/9172_0.cif"
+	//cif := "cif/mutant2.cif"
 	// cif := "cif/cocca.cif"
 	//cif := "cif/1465415.cif"
 	
@@ -42,7 +42,7 @@ func main() {
 	fmt.Println(chainB)
 
 	// use regular expression to locate motif
-	r, _ := regexp.Compile("DRSGCGQG")
+	r, _ := regexp.Compile("DRSGMGQG")
 	list := r.FindStringIndex(chainB.AminoAcid)
 	fmt.Println(list)
 
@@ -86,6 +86,7 @@ func main() {
 
 		// Select motif that was identified by regular expression pattern match.
 		pymol.SelectByID(stdin, "DRSGMGQG", "yellow", motifStart, motifEnd, true)
+		pymol.SelectNone(stdin)
 	}()
 
 	// When pymol exits, the output is captured and printed to the command line.

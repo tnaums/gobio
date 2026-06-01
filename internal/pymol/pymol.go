@@ -67,3 +67,8 @@ func SelectByChain(r io.Writer, name string, color string, chain string, showsti
 	io.WriteString(r, builder.String())
 	return
 }
+
+func SelectNone(r io.Writer) {
+	io.WriteString(r, "select none\n")
+	return
+}
