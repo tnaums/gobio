@@ -55,6 +55,18 @@ func SelectByID(r io.Writer, name string, color string, idstart int, idend int, 
 	return
 }
 
+func SelectByResi(r io.Writer, name string, color string, number int, showsticks bool) {
+	builder := strings.Builder{}
+	builder.WriteString(fmt.Sprintf("select %s, resi %d\n", name, number))
+	builder.WriteString(fmt.Sprintf("color %s, %s\n", color, name))
+	if showsticks {
+		builder.WriteString(fmt.Sprintf("show sticks, %s\n", name))
+		builder.WriteString(fmt.Sprintf("util.cnc %s\n", name))		
+	}
+	io.WriteString(r, builder.String())
+	return	
+}
+
 // Makes a pymol selection based on chain, sets the selection color, and
 // optionally shows sticks.
 func SelectByChain(r io.Writer, name string, color string, chain string, showsticks bool) {
@@ -67,6 +79,7 @@ func SelectByChain(r io.Writer, name string, color string, chain string, showsti
 	io.WriteString(r, builder.String())
 	return
 }
+
 
 func SelectNone(r io.Writer) {
 	io.WriteString(r, "select none\n")
