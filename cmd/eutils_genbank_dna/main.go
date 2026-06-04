@@ -6,10 +6,11 @@ package main
 
 import (
 	"fmt"
-	"io"
+	//"io"
 	"os"
 	"time"
 
+	"github.com/tnaums/gobio/internal/dna"	
 	"github.com/tnaums/gobio/internal/eutils"
 )
 
@@ -25,7 +26,17 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	buf, err := io.ReadAll(resp.Body)
-	fmt.Println(string(buf))
+	// buf, err := io.ReadAll(resp.Body)
+	// fmt.Println(string(buf))
 
+	dnas := dna.ChannelFromGenbank(resp.Body)
+	for d := range dnas {
+		fmt.Println(d)
+		fmt.Println("Printing Orfs:")
+		for _, o := range d.Orfs {
+			if len(o.AminoAcid) > 200 {
+				fmt.Println(o)
+			}
+		}
+	}
 }

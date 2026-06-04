@@ -1,0 +1,201 @@
+Retrieving nucleotide sequences in genbank format...
+
+
+LOCUS       KM492932                1929 bp    DNA     linear   PLN 16-DEC-2014
+DEFINITION  Epicoccum sorghinum strain NRRL 54204 polyglycine hydrolase gene,
+            complete cds.
+ACCESSION   KM492932
+VERSION     KM492932.1
+KEYWORDS    .
+SOURCE      Epicoccum sorghinum
+  ORGANISM  Epicoccum sorghinum
+            Eukaryota; Fungi; Dikarya; Ascomycota; Pezizomycotina;
+            Dothideomycetes; Pleosporomycetidae; Pleosporales; Pleosporineae;
+            Didymellaceae; Epicoccum.
+REFERENCE   1  (bases 1 to 1929)
+  AUTHORS   Naumann,T.A., Naldrett,M., Ward,T.J. and Price,N.P.J.
+  TITLE     Identification of polyglycine hydrolases as endoproteases with
+            beta-lactamase-like catalytic domains surrounded by a conserved
+            network of tryptophans
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 1929)
+  AUTHORS   Naumann,T.A., Naldrett,M., Ward,T.J. and Price,N.P.J.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (04-SEP-2014) BFP, USDA-ARS-NCAUR, 1815 N. University
+            St., Peoria, IL 61604, USA
+COMMENT     ##Assembly-Data-START##
+            Sequencing Technology :: Sanger dideoxy sequencing
+            ##Assembly-Data-END##
+FEATURES             Location/Qualifiers
+     source          1..1929
+                     /organism="Epicoccum sorghinum"
+                     /mol_type="genomic DNA"
+                     /strain="NRRL 54204"
+                     /db_xref="taxon:749593"
+                     /identified_by="Donald T. Wicklow"
+     mRNA            <1..>1929
+                     /product="polyglycine hydrolase"
+     CDS             1..1929
+                     /function="cleaves glycine-glycine peptide bonds in
+                     interdomain region of some plant class IV chitinases"
+                     /note="Es-cmp"
+                     /codon_start=1
+                     /product="polyglycine hydrolase"
+                     /protein_id="AIZ65945.1"
+                     /translation="MYTSRLLLSNLASCLSLATLVASFPANQQDLTFAKRNGTFEQSV
+                     FYGLTGPEVEAKLAKLKADGYRPTSLNIHGSTSDAKYAGIWTKQTGDDFETILGANKT
+                     VYDAWLDSHKAQGYVSTHVSATGGSSDALFAGVMEKVPSVANWIQVCGLDNPYAYANA
+                     TIDEPMYIKGVSMYGAPNERQYCILGHENLVNYQQTVFYQTDYFKKDYAKLLQSETSK
+                     RHWRPVFIDLSEDLLPTPIFDDTSVGQWVARTDLSASELEAEIAAQKAKNLYAVHIAG
+                     AGSKGSKYAVLFAEHLSPLERKWTVTGEVTGFKTNDVVAKDMDAVMEEFMKKNSVRQA
+                     QVAASVNGTVVAERSYTWAESDRAVVKPTDKFGLGSVSKMFTYAATTNLLNEGLLNHT
+                     TRVYPFLGMNNPADNRSLDITVDHLLQHTAGYNRDIKPDIGFIFRNIALERNQTTPVS
+                     LRELIEYVYEQPLDFTPGTDSVYSNYGTMLLSYLIANITGESFNSYIHKNVLNGLDVE
+                     LYPTSPELNANNPIVQETKYTFYPAQDPASTKQVSNANGGDGSIREEAIGAFGLRASA
+                     STISQFLANHAAYDIGPRQAYTYRDGTIVGSRAFAQSQDLIDWSLILNTREYESEQKW
+                     EQLVFGPISQWYKYALAE"
+ORIGIN      
+        1 atgtatacat cacggctctt gctgtcaaat ttggcaagct gcctatctct ggcaactctt
+       61 gttgcctctt tccccgccaa ccagcaggat ttgaccttcg cgaagcgtaa tggaacattc
+      121 gagcagagtg tcttctatgg cctgaccggt cccgaggtcg aggccaaact cgcaaagttg
+      181 aaagctgatg gataccggcc cacatctctc aacattcacg gatcgacttc ggacgccaag
+      241 tacgccggca tctggacaaa gcagactgga gatgacttcg agacgatttt gggtgccaac
+      301 aagacggtct atgacgcctg gctagactcg cacaaggccc agggatatgt ttctacacat
+      361 gtctccgcta cgggaggatc ctctgatgca ctctttgctg gagtcatgga aaaggttcct
+      421 agcgtagcca attggataca agtctgtggt cttgacaatc cgtatgctta cgcaaacgcc
+      481 actattgacg aaccgatgta catcaaaggc gtcagcatgt acggtgcgcc taacgagcgt
+      541 cagtactgca tccttggaca tgaaaatcta gtgaactacc agcaaacggt gttctaccag
+      601 actgattact tcaaaaaaga ctatgctaaa ctgctacagt ctgagacctc gaagaggcac
+      661 tggaggcctg tttttatcga cttgtctgag gatttactgc ctactcccat tttcgacgac
+      721 acgagcgttg ggcagtgggt cgcacgtacg gacctttctg catcagagtt ggaagccgaa
+      781 atcgctgcac agaaagctaa gaacctgtat gcagttcaca tcgcgggtgc gggcagcaaa
+      841 ggctcgaaat acgccgtact gtttgctgaa catttgagtc ctttggaacg taaatggact
+      901 gtcaccggcg aggtgaccgg cttcaaaacc aacgatgtgg tagcgaagga tatggatgcg
+      961 gtcatggagg agttcatgaa gaagaacagc gtcaggcagg ctcaggtcgc tgcatctgta
+     1021 aacggaaccg ttgtggctga gcgctcatac acctgggccg agagcgaccg tgctgttgtc
+     1081 aagcctactg acaaattcgg tctcggcagc gtctcgaaga tgttcacgta cgccgccacc
+     1141 actaatcttc tcaatgaagg tctcctgaac cacaccaccc gcgtctaccc tttccttgga
+     1201 atgaataacc ctgctgacaa ccgctctctg gacattactg tcgatcatct cttgcagcac
+     1261 actgccggtt ataaccgcga catcaaacca gacattggct ttatcttccg caacatcgca
+     1321 ctcgaacgta atcagaccac tcctgtgtca cttcgtgagc tcatcgagta cgtctacgaa
+     1381 cagcccctgg acttcactcc tggaaccgac agcgtttact ccaactacgg caccatgttg
+     1441 ttgagctatc tgatcgccaa catcactggc gagtcattta attcctacat ccataagaac
+     1501 gtgctcaatg gccttgacgt cgagctgtat cccacttccc ccgagctcaa tgcgaacaac
+     1561 cctatcgtgc aagagaccaa gtacacattc taccctgccc aggaccctgc gtctaccaag
+     1621 caggtttcaa acgccaacgg tggcgatggg tccatcagag aggaagccat cggcgccttc
+     1681 ggcttgaggg cttctgcctc gacgatctcg caattccttg caaaccacgc cgcgtatgat
+     1741 atcggacctc gccaggctta cacctatcgt gacggcacta tcgttggctc gcgcgccttc
+     1801 gcccagagcc aggaccttat cgactggagt ttgatactta acaccaggga gtacgaaagc
+     1861 gaacaaaagt gggagcagct ggtgtttggt cctatcagcc agtggtataa gtatgcgctc
+     1921 gctgagtaa
+//
+
+LOCUS       MN339473                2913 bp    DNA     linear   PLN 04-APR-2020
+DEFINITION  Stenocarpella maydis strain NRRL 53565 kilbournase gene, complete
+            cds.
+ACCESSION   MN339473
+VERSION     MN339473.1
+KEYWORDS    .
+SOURCE      Stenocarpella maydis
+  ORGANISM  Stenocarpella maydis
+            Eukaryota; Fungi; Dikarya; Ascomycota; Pezizomycotina;
+            Sordariomycetes; Sordariomycetidae; Diaporthales; Diaporthaceae;
+            Stenocarpella.
+REFERENCE   1  (bases 1 to 2913)
+  AUTHORS   Naumann,T.A., Naldrett,M.J. and Price,N.P.J.
+  TITLE     Kilbournase, a protease-associated domain subtilase secreted by the
+            fungal corn pathogen Stenocarpella maydis
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 2913)
+  AUTHORS   Naumann,T.A., Naldrett,M.J. and Price,N.P.J.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (20-AUG-2019) MPM Research Unit, USDA/ARS/NCAUR, 1815 N.
+            University Street, Peoria, IL 61604, USA
+COMMENT     ##Assembly-Data-START##
+            Sequencing Technology :: Sanger dideoxy sequencing
+            ##Assembly-Data-END##
+FEATURES             Location/Qualifiers
+     source          1..2913
+                     /organism="Stenocarpella maydis"
+                     /mol_type="genomic DNA"
+                     /strain="NRRL 53565"
+                     /db_xref="taxon:238245"
+     mRNA            join(<1..772,839..>2913)
+                     /product="kilbournase"
+     CDS             join(1..772,839..2913)
+                     /note="secreted protease-associated domain subtilase that
+                     degrades the amino-terminal chitin binding domain of ChitA
+                     chitinase from Zea mays"
+                     /codon_start=1
+                     /product="kilbournase"
+                     /protein_id="QIR83317.1"
+                     /translation="MVGSRMLPALAAAVALFSQGACAAEGPGVYQFINGPPSSNSRLL
+                     PPGQEPQAAVPGPKAVPKAYIVELKPGSASLNGRSEPMHDRFHKRAEDAGVDYQVRRE
+                     FTDTSLFHGLSVDLAKDEDKAALEQLPEVKKVWPVLQVSRPTPVGTFASTATNVTVGS
+                     PGDGLSTDIIRGENYTIDYNLKMAGVDHLHARGIKGKGVRIAVIDTGVDYNHPALGGG
+                     FGPGYKIAFGRNYVTDDGQGGPDDPIATCSSGGHGTHVSGIIGGQDPKNFGFGLLGVA
+                     PEATLGMYRVFSCGGDASNDVVMQAMMDAYNDGADIVSMSLGSNNGFEDADPTGQIIT
+                     NAKARGIATVVAAGNDGALGPMLTSSPAIGRDAIAVASVDGAKYPTTYKMQGSSGGEF
+                     RYSSLWPLSGNFTVYAPSNYTDSLVCAYQTIVNSAAAVRANGWNISETFLMVREGHVC
+                     DLNTIFANIVYQGFKGMIAWRDSDFANPYENDYMSSAPGSFVLSLDAVDGPRLYKAVT
+                     ADPVNFRAEFTDRRFVPVDNPSAGFTSNYSTMGNTWEGTVFKPQLAAPGHLILSSWPL
+                     SVGGYATISGTSMATPFVSGCFALIKSAFPNMTVDDMANLLTSTAQPAKWWGDSHITH
+                     SVVHQGAGTINVWDAYNSGLRFQEGVIVCGEGAQPVARNITFTNTLGRSTTFDISHAP
+                     AGLMQRTPYADLNEVGYMIYGFPSKPIYATVEFETPTRVTLGAGESATVSFVVTPPAG
+                     LDPNTVPLYSGYIKFTSDRSVHTVPYQGLTYVVNEVPVLERGPVPGEDVPQLPAMFFL
+                     NMTTGTQSYETTDVVEYDTAAGDYPSMTYFARQPTYAMRVDLVAANTTFVPTYYGFNT
+                     SNIIDTKTPALPIDNTFGGVDSFYAVFEMYYLAPVFSLLSWWGGIEDSAGNSSLVPAG
+                     DYRFLLRLLPVEKNYDAPEDWVSWLGPVLRIVDA"
+ORIGIN      
+        1 atggttggca gtcgcatgtt gccagccctc gccgccgccg tcgccctgtt ctcgcagggc
+       61 gcgtgcgctg ccgaaggacc cggagtgtac caattcatca acgggcctcc gtcgtccaac
+      121 agccgcctcc tgccgcccgg acaggagcca caggccgccg tgccgggccc caaggccgtg
+      181 cccaaggcct acatcgtcga gctgaagccc ggctcggcct ctctgaatgg ccgctccgag
+      241 ccgatgcacg accgcttcca caagcgtgcc gaggacgctg gggtcgacta ccaggtccgc
+      301 cgcgagttta ccgacacgtc tctgttccac ggcctctcgg tcgatctggc caaggacgag
+      361 gacaaggccg cactcgagca gctgcccgag gtcaagaagg tctggcctgt cctccaggtg
+      421 tcgcgtccaa cccccgtggg gacgttcgcg tccacagcca ccaacgtgac ggttggcagc
+      481 ccgggagacg gtctctcgac cgacatcatc cgtggcgaga actataccat tgactacaac
+      541 ctcaagatgg ccggggttga ccacctccac gcgcgcggca tcaaggggaa aggcgtcagg
+      601 attgccgtca ttgacacggg cgtcgactac aaccaccctg ccctcggtgg cggtttcggg
+      661 cccggctaca agatcgcctt tggccgcaac tatgtcaccg acgacggaca aggcggtccc
+      721 gatgacccaa ttgccacctg ttcgagcggt ggacacggca ctcatgtttc tggtaagcct
+      781 gccgtgccct gacctttctc gccggacgct gacagatggc tttcctctcg tactacaggc
+      841 atcatcggcg gccaggaccc caagaacttt ggctttggcc tgcttggtgt cgcccccgag
+      901 gccacgctcg gcatgtaccg cgtctttagc tgcggcggtg acgcgtccaa cgacgtcgtg
+      961 atgcaggcca tgatggacgc ctacaacgac ggcgctgaca tcgtgtccat gtccttggga
+     1021 tcgaataatg ggttcgagga cgcagacccc accggccaga tcatcaccaa cgccaaggca
+     1081 cggggcatcg ccaccgttgt cgcagcgggc aacgacggcg ccctgggacc gatgctgacg
+     1141 agctcgccgg ccattggcag ggacgccatc gccgtggcct cggtcgacgg cgccaagtac
+     1201 cccacgacgt acaagatgca gggcagcagt ggtggcgagt tccgctactc gagcctgtgg
+     1261 cccctgagcg gcaacttcac cgtctatgca cccagcaact acaccgacag cctggtctgc
+     1321 gcctaccaga ccatagtcaa ctccgcggca gccgtccggg cgaacgggtg gaacatctcg
+     1381 gagaccttcc tgatggtgcg agagggccac gtatgtgacc tcaacaccat ctttgccaat
+     1441 atcgtatacc agggcttcaa gggcatgatc gcctggaggg actcggactt cgccaacccc
+     1501 tacgagaacg actacatgag ctccgcgccc ggcagcttcg tgctctctct cgacgcggtc
+     1561 gacgggccta ggctctacaa ggccgtgacg gccgacccgg tcaacttccg cgccgagttc
+     1621 acagaccgcc gcttcgtgcc cgtcgacaac cccagcgccg gcttcacgag caactactcg
+     1681 accatgggca acacgtggga gggcaccgtc ttcaagcccc agcttgccgc cccgggacac
+     1741 ctcatcctga gctcctggcc gctctcggtc ggcggctacg ccaccatctc gggcacgtcc
+     1801 atggccaccc ccttcgtctc gggctgcttc gccctcatca agtcggcctt ccccaacatg
+     1861 accgtcgacg acatggccaa cctgctcacg tccaccgccc agcccgccaa gtggtgggga
+     1921 gacagccaca tcacccactc ggtggtccac cagggcgccg gcaccatcaa cgtctgggac
+     1981 gcctacaaca gcggcctcag gttccaggag ggcgtcatcg tgtgcggaga gggcgcacag
+     2041 cccgtcgcga ggaacatcac cttcaccaac acgcttggcc gcagcacgac gtttgacatc
+     2101 tcgcacgccc ccgcgggcct gatgcagcgc acgccttatg ccgacctcaa cgaggtcggg
+     2161 tacatgatct acggcttccc gtccaagccc atctacgcca ccgtagagtt cgagacgccc
+     2221 acccgcgtca ccctcggcgc cggcgagtcg gccaccgtct ccttcgtcgt tacgccccct
+     2281 gccggcctcg accccaacac cgtcccgctg tactcgggct acatcaagtt cacctcggac
+     2341 cgcagcgtcc acacggtgcc ctaccagggc ctgacctacg tcgtcaacga ggtgcccgtc
+     2401 ctggagcgcg gccccgtccc aggggaagac gtgccccagc tgcccgccat gttcttcctc
+     2461 aacatgacga cggggaccca gtcctacgag acgaccgacg tcgtcgagta cgacaccgcc
+     2521 gcgggcgact acccgagcat gacctacttt gcgcgccagc ccacctacgc catgcgcgtc
+     2581 gacctcgtgg ccgccaacac gacctttgtg ccaacctact acggcttcaa cacgtccaac
+     2641 atcatcgaca ccaagacgcc cgccctgccc atcgacaaca cctttggcgg cgtcgactcc
+     2701 ttctacgccg tcttcgagat gtactacctg gcgccggtgt tctcgctgct ctcgtggtgg
+     2761 ggcggcatcg aggacagcgc cggcaactcg agcctcgtcc ccgccggcga ctaccgcttc
+     2821 ctgctgcgcc tgctccccgt cgagaagaac tacgacgcgc ccgaggactg ggtcagctgg
+     2881 ctcggcccgg tgcttcgcat tgtggatgct tga
+//
+
+

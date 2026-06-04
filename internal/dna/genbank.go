@@ -8,76 +8,72 @@ import (
 	"strings"
 )
 
-type genBankState int
+type gbState int
 
 const (
-	genbankStateNone genBankState = iota
-	genbankStateLocus
-	genbankStateDefinition
-	genbankStateAccession
-	genbankStateVersion
-	genbankStateKeywords
-	genbankStateSource
-	genbankStateReference
-	genbankStateFeatures
-	genbankStateOrigin
-	genbankStateDone
+	gbStateSTART gbState = iota
+	gbStateFEATURES
+	gbStateSEQUENCE
+	gbStateDONE
 )
 
-type GenBank struct {
-	Sequence   DNA
-	Features   []byte
-	Accession  string
-	Definition string
-	state      genBankState
-}
-
-// Parses a GenBank file containing a single dna sequence and returns a GenBank struct.
-func NewGenBank(r io.Reader) GenBank {
-	g := GenBank{
-		state: genbankStateNone,
-	}
-	buf := bytes.Buffer{}
-	features := bytes.Buffer{}
-	scanner := bufio.NewScanner(r)
-	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), "//") {
-			g.state = genbankStateDone
-			sequence := strings.Join(strings.Fields(buf.String()), "")
-			header := fmt.Sprintf("%s|%dbp|%s", g.Accession, len(sequence), g.Definition)
-			g.Sequence = NewFromSequence(header, sequence)
+func ChannelFromGenbank(r io.Reader) <-chan DNA {
+	out := make(chan DNA)
+	go func() {
+		defer close(out)
+		state := gbStateSTART
+		buf := bytes.Buffer{}
+		accession := ""
+		definition := ""
+		scanner := bufio.NewScanner(r)
+		for scanner.Scan() {
+			switch state {
+			case gbStateSTART:
+				if strings.HasPrefix(scanner.Text(), "FEATURES") {
+					state = gbStateFEATURES
+					continue
+				}
+				if strings.HasPrefix(scanner.Text(), "ACCESSION") {
+					a := strings.Fields(scanner.Text())
+					accession = a[1]
+					continue
+				}
+				if strings.HasPrefix(scanner.Text(), "DEFINITION") {
+					definition = strings.TrimSpace(strings.TrimPrefix(scanner.Text(), "DEFINITION"))
+					definition = strings.TrimSuffix(definition, ".")
+					continue
+				}
+			case gbStateFEATURES:
+				if strings.HasPrefix(scanner.Text(), "ORIGIN") {
+					state = gbStateSEQUENCE
+					continue
+				}
+				trimmed := strings.Trim(scanner.Text(), " ")
+				if strings.HasPrefix(trimmed, "CDS") {
+					fmt.Printf("Found a CDS: %s\n", trimmed)
+				}
+			case gbStateSEQUENCE:
+				if strings.HasPrefix(scanner.Text(), "//") {
+					sequence := strings.ToUpper(strings.Join(strings.Fields(buf.String()), ""))
+					newDNA := DNA{
+						Header: fmt.Sprintf("%s|%s", accession, definition),
+						Parent: sequence,
+						Complement: reverseComplement(sequence),
+					}
+					newDNA.Orfs = newDNA.Translate()
+					out <- newDNA
+					state = gbStateSTART
+					sequence = ""
+					accession = ""
+					definition = ""
+					buf.Truncate(0)
+					continue
+				}
+				trimmed := bytes.Trim(scanner.Bytes(), " 0123456789")
+				buf.Write(trimmed)
+				continue
+			}
 		}
-		if strings.HasPrefix(scanner.Text(), "ORIGIN") {
-			g.state = genbankStateOrigin
-			g.Features = features.Bytes()
-			continue
-		}
-		if strings.HasPrefix(scanner.Text(), "FEATURES") {
-			g.state = genbankStateFeatures
-			continue
-		}
-		if strings.HasPrefix(scanner.Text(), "ACCESSION") {
-			a := strings.Fields(scanner.Text())
-			g.Accession = a[1]
-			g.state = genbankStateAccession
-			continue
-		}
-		if strings.HasPrefix(scanner.Text(), "DEFINITION") {
-			d := strings.TrimSpace(strings.TrimPrefix(scanner.Text(), "DEFINITION"))
-			g.Definition = d
-			g.state = genbankStateDefinition
-			continue
-		}
-		if g.state == genbankStateOrigin {
-			trimmed := bytes.Trim(scanner.Bytes(), " 0123456789")
-			buf.Write(trimmed)
-			continue
-		}
-		if g.state == genbankStateFeatures {
-			features.Write(scanner.Bytes())
-			features.Write([]byte("\n"))
-			continue
-		}
-	}
-	return g
+	}()
+	return out
 }
