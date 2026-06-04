@@ -17,12 +17,23 @@ const (
 	gbStateDONE
 )
 
+type fState int
+
+const (
+	fStateNONE gbState = iota
+	fStateCDS
+	fStateTRANSLATION
+)
+
 func ChannelFromGenbank(r io.Reader) <-chan DNA {
 	out := make(chan DNA)
 	go func() {
 		defer close(out)
 		state := gbStateSTART
+		fstate := fStateNONE
 		buf := bytes.Buffer{}
+		cds := bytes.Buffer{}
+		orfs := []Orf{}
 		accession := ""
 		definition := ""
 		scanner := bufio.NewScanner(r)
@@ -44,28 +55,59 @@ func ChannelFromGenbank(r io.Reader) <-chan DNA {
 					continue
 				}
 			case gbStateFEATURES:
+				// Finished with FEATURES and move on to SEQUENCE
 				if strings.HasPrefix(scanner.Text(), "ORIGIN") {
 					state = gbStateSEQUENCE
+					fstate = fStateNONE
+
 					continue
 				}
+
 				trimmed := strings.Trim(scanner.Text(), " ")
-				if strings.HasPrefix(trimmed, "CDS") {
-					fmt.Printf("Found a CDS: %s\n", trimmed)
+				switch fstate {
+				case fStateNONE:
+					if strings.HasPrefix(trimmed, "CDS") {
+						fstate = fStateCDS
+					}
+					continue
+				case fStateCDS:
+					if strings.HasPrefix(trimmed, "/translation=") {
+						sequence := strings.TrimPrefix(trimmed, "/translation=\"")
+						cds.Write([]byte(sequence))
+						fstate = fStateTRANSLATION
+					}
+					continue
+				case fStateTRANSLATION:
+					if strings.Index(trimmed, "\"") != -1 {
+						cds.Write([]byte(trimmed[:len(trimmed)-1]))
+						newOrf := Orf{
+							Strand:    "strand",
+							Frame:     0,
+							AminoAcid: cds.String(),
+						}
+						orfs = append(orfs, newOrf)
+						fstate = fStateNONE
+						cds.Truncate(0)
+						continue
+					}
+					cds.Write([]byte(trimmed))
 				}
 			case gbStateSEQUENCE:
 				if strings.HasPrefix(scanner.Text(), "//") {
 					sequence := strings.ToUpper(strings.Join(strings.Fields(buf.String()), ""))
 					newDNA := DNA{
-						Header: fmt.Sprintf("%s|%s", accession, definition),
-						Parent: sequence,
+						Header:     fmt.Sprintf("%s|%s", accession, definition),
+						Parent:     sequence,
 						Complement: reverseComplement(sequence),
+						Orfs: orfs,
 					}
-					newDNA.Orfs = newDNA.Translate()
 					out <- newDNA
 					state = gbStateSTART
+					fstate = fStateNONE
 					sequence = ""
 					accession = ""
 					definition = ""
+					orfs = []Orf{}
 					buf.Truncate(0)
 					continue
 				}

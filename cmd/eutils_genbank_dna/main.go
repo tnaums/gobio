@@ -18,7 +18,8 @@ func main() {
 	// Initialize client for api request
 	eutilsClient := eutils.NewClient(5 * time.Second, eutils.WithGenbank(), eutils.WithNucleotide())
 	// generate *http.Response from ncbi query
-	resp, err := eutilsClient.EPost("KM492932.1,MN339473.1") // dna sequences
+	//resp, err := eutilsClient.EPost("MN339473.1,KM492932.1,") // dna sequences
+	resp, err := eutilsClient.EPost("AB469194") // dna sequences
 
 	if err != nil {
 		fmt.Println(err)
@@ -32,11 +33,8 @@ func main() {
 	dnas := dna.ChannelFromGenbank(resp.Body)
 	for d := range dnas {
 		fmt.Println(d)
-		fmt.Println("Printing Orfs:")
 		for _, o := range d.Orfs {
-			if len(o.AminoAcid) > 200 {
-				fmt.Println(o)
-			}
+			fmt.Println(o)
 		}
 	}
 }
