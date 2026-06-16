@@ -16,7 +16,7 @@ func main() {
 	cif := "cif/9172_0.cif"
 	//cif := "cif/mutant2.cif"
 	// cif := "cif/cocca.cif"
-	//cif := "cif/1465415.cif"
+
 	
 	// launch pymol and create StdinPipe writer to communicate with pymol
 	cmd := exec.Command("pymol", "-p", "-K", cif)
@@ -86,6 +86,11 @@ func main() {
 
 		// Select motif that was identified by regular expression pattern match.
 		pymol.SelectByID(stdin, "DRSGMGQG", "yellow", motifStart, motifEnd, true)
+
+		// Try new function to select cysteines
+		pymol.SelectCysteines(stdin, chainBMap)
+
+		// Start interactive mode without any selections
 		pymol.SelectNone(stdin)
 	}()
 

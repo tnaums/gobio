@@ -80,6 +80,19 @@ func SelectByChain(r io.Writer, name string, color string, chain string, showsti
 	return
 }
 
+func SelectCysteines(r io.Writer, myMap ChainMap) {
+	for k, v := range myMap {
+		builder := strings.Builder{}
+		if v.AminoAcid == "CYS" {
+			label := fmt.Sprintf("%s%d", v.AminoAcid, k)
+			fmt.Printf("key: %d\nvalue: %s\n\n", k, v)
+			builder.WriteString(fmt.Sprintf("select %s, id %d-%d\n", label, v.IDStart, v.IDEnd))
+			builder.WriteString(fmt.Sprintf("show sticks, %s\n", label))
+			builder.WriteString(fmt.Sprintf("util.cnc %s\n", label))
+			io.WriteString(r, builder.String())
+		}
+	}
+}
 
 func SelectNone(r io.Writer) {
 	io.WriteString(r, "select none\n")

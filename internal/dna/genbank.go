@@ -95,13 +95,13 @@ func ChannelFromGenbank(r io.Reader) <-chan DNA {
 			case gbStateSEQUENCE:
 				if strings.HasPrefix(scanner.Text(), "//") {
 					sequence := strings.ToUpper(strings.Join(strings.Fields(buf.String()), ""))
-					newDNA := DNA{
+					out <- DNA{
 						Header:     fmt.Sprintf("%s|%s", accession, definition),
 						Parent:     sequence,
 						Complement: reverseComplement(sequence),
 						Orfs: orfs,
 					}
-					out <- newDNA
+
 					state = gbStateSTART
 					fstate = fStateNONE
 					sequence = ""
